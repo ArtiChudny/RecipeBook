@@ -1,0 +1,5 @@
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Business\bin\Debug\RecipeBook.Business.dll
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Business\bin\Debug\RecipeBook.Business.pdb
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Business\obj\Debug\RecipeBook.Business.csprojResolveAssemblyReference.cache
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Business\obj\Debug\RecipeBook.Business.dll
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Business\obj\Debug\RecipeBook.Business.pdb

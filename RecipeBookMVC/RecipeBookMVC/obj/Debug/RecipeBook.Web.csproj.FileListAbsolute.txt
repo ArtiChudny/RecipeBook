@@ -39,3 +39,17 @@ E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\ru\System.Web.Webpages.De
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\ru\System.Web.Webpages.Razor.resources.dll
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\ru\System.Web.Helpers.resources.dll
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\ru\System.Web.Mvc.resources.dll
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\Microsoft.Practices.ServiceLocation.dll
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\RecipeBook.Business.dll
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\StructureMap.dll
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\StructureMap.Net4.dll
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\StructureMap.Web.dll
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\WebActivatorEx.dll
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\RecipeBook.Business.pdb
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\Microsoft.Practices.ServiceLocation.pdb
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\Microsoft.Practices.ServiceLocation.xml
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\StructureMap.pdb
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\StructureMap.xml
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\StructureMap.Net4.pdb
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\StructureMap.Web.pdb
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\StructureMap.Web.xml
