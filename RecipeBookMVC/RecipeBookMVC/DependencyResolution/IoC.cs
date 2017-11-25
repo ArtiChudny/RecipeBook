@@ -18,7 +18,7 @@
 
 namespace RecipeBookMVC.DependencyResolution {
     using StructureMap;
-    using RecipeBook.Business;
+    using RecipeBook.Dependencies.Registries;
 
     public static class IoC
     {
@@ -26,7 +26,7 @@ namespace RecipeBookMVC.DependencyResolution {
         {
             return new Container(c => {
                 c.AddRegistry<DefaultRegistry>();
-                c.For<IProvider>().Use<MsgProvider>();
+                c.AddRegistry<CommonRegistry>();
             });
         }
     }

@@ -20,10 +20,10 @@ namespace RecipeBookMVC.Controllers
         // GET: Home
         public ActionResult Index()
         {
-           
+
             try
             {
-                HomeViewModel model= new HomeViewModel();
+                HomeViewModel model = new HomeViewModel();
                 model.Message = provider.GetMessage();
                 return View(model);
 
@@ -42,8 +42,8 @@ namespace RecipeBookMVC.Controllers
                 return View("Error");
 
             }
-           
-           
+
+
         }
     }
 }

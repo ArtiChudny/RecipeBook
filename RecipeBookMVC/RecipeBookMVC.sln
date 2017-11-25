@@ -7,6 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeBook.Web", "RecipeBoo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeBook.Business", "RecipeBook.Business\RecipeBook.Business.csproj", "{6A387C77-CD82-4D2D-BA71-68479BD5FAD0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeBook.Data", "RecipeBook.Data\RecipeBook.Data.csproj", "{A6C5B91C-99F4-4F45-B3C3-007C6D7970AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeBook.Common", "RecipeBook.Common\RecipeBook.Common.csproj", "{2D863B8E-6A47-4CB5-9CB1-35FC8F13BB4B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeBook.Dependencies", "RecipeBook.Dependencies\RecipeBook.Dependencies.csproj", "{CA2911B0-B4C0-4E89-A40B-8AFFAD245D12}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +27,18 @@ Global
 		{6A387C77-CD82-4D2D-BA71-68479BD5FAD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A387C77-CD82-4D2D-BA71-68479BD5FAD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A387C77-CD82-4D2D-BA71-68479BD5FAD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6C5B91C-99F4-4F45-B3C3-007C6D7970AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6C5B91C-99F4-4F45-B3C3-007C6D7970AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6C5B91C-99F4-4F45-B3C3-007C6D7970AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6C5B91C-99F4-4F45-B3C3-007C6D7970AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D863B8E-6A47-4CB5-9CB1-35FC8F13BB4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D863B8E-6A47-4CB5-9CB1-35FC8F13BB4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D863B8E-6A47-4CB5-9CB1-35FC8F13BB4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D863B8E-6A47-4CB5-9CB1-35FC8F13BB4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA2911B0-B4C0-4E89-A40B-8AFFAD245D12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA2911B0-B4C0-4E89-A40B-8AFFAD245D12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA2911B0-B4C0-4E89-A40B-8AFFAD245D12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA2911B0-B4C0-4E89-A40B-8AFFAD245D12}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

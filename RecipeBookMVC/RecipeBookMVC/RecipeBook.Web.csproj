@@ -170,6 +170,14 @@
       <Project>{6a387c77-cd82-4d2d-ba71-68479bd5fad0}</Project>
       <Name>RecipeBook.Business</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RecipeBook.Common\RecipeBook.Common.csproj">
+      <Project>{2d863b8e-6a47-4cb5-9cb1-35fc8f13bb4b}</Project>
+      <Name>RecipeBook.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RecipeBook.Dependencies\RecipeBook.Dependencies.csproj">
+      <Project>{ca2911b0-b4c0-4e89-a40b-8affad245d12}</Project>
+      <Name>RecipeBook.Dependencies</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
