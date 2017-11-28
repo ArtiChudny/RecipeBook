@@ -1,0 +1,37 @@
+﻿@model RecipeBook.Common.Models.RecipeDetails
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<ul>
+    <li>
+        @Html.DisplayNameFor(model => model.CookingTime) : @Html.DisplayFor(model => model.CookingTime)
+    </li>
+</ul>
+
+<ul>
+    <li>
+        @Html.DisplayNameFor(model => model.CookingTemperature) : @Html.DisplayFor(model => model.CookingTemperature)
+    </li>
+</ul>
+
+<ul>
+    <li>
+        @Html.DisplayNameFor(model => model.Description) : @Html.DisplayFor(model => model.Description)
+    </li>
+</ul>
+
+<ul>
+    <li>
+        @Html.DisplayNameFor(model => model.Steps) : @Html.DisplayFor(model => model.Steps)
+    </li>
+</ul>
+
+<p>
+
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+

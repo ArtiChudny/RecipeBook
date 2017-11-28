@@ -7,7 +7,7 @@ namespace RecipeBook.Data.Container
     {
         public DataRegistry()
         {
-            For<IDataProvider>().Use<Repositories.Data>();
+            For<IDataProvider>().Use<DataProvider>();
         }
 
     }

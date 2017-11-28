@@ -66,7 +66,7 @@
   <ItemGroup>
     <Compile Include="Container\DataRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\Data.cs" />
+    <Compile Include="Repositories\DataProvider.cs" />
     <Compile Include="Repositories\IDataProvider.cs" />
   </ItemGroup>
   <ItemGroup />

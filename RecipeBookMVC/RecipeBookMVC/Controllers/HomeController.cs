@@ -1,49 +1,38 @@
-﻿using System;
+﻿
+using System;
 using System.Web.Mvc;
+using System.Linq;
 using log4net;
-using RecipeBook.Business;
-using RecipeBookMVC.Models;
-using System.Net;
+using RecipeBook.Business.Providers;
+
 
 namespace RecipeBookMVC.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILog log = LogManager.GetLogger("Logger");
-        private readonly IProvider provider;
+        private IRecipeProvider provider;
 
-        public HomeController(IProvider _provider)
+        public HomeController(IRecipeProvider _provider)
         {
             provider = _provider;
         }
-
         // GET: Home
-        public ActionResult Index()
+
+        public ActionResult Index(int? _categoryId)
         {
-
-            try
+            if (_categoryId == null || _categoryId==0)
             {
-                HomeViewModel model = new HomeViewModel();
-                model.Message = provider.GetMessage();
-                return View(model);
-
+                return View(provider.GetRecipies().ToList());
             }
-            catch (ArgumentNullException ex)
-            {
-
-                log.Error(ex.Message);
-                return View("Error");
-
-
-            }
-            catch (Exception ex)
-            {
-                log.Error(ex.Message);
-                return View("Error");
-
-            }
-
+            else return View(provider.GetRecipiesByCategory(_categoryId));
 
         }
+
+        public ActionResult Details(int _recipeId)
+        {
+            return View(provider.GetDetails(_recipeId));
+        }
+
     }
 }

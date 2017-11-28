@@ -19,11 +19,11 @@
 namespace RecipeBookMVC.DependencyResolution {
     using StructureMap;
     using RecipeBook.Dependencies.Registries;
+   
 
-    public static class IoC
-    {
-        public static IContainer Initialize()
-        {
+
+    public static class IoC {
+        public static IContainer Initialize() {
             return new Container(c => {
                 c.AddRegistry<DefaultRegistry>();
                 c.AddRegistry<CommonRegistry>();

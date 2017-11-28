@@ -1,0 +1,5 @@
+E:\Проект\RecipeBookMVC\RecipeBook.Common\bin\Debug\RecipeBook.Common.dll
+E:\Проект\RecipeBookMVC\RecipeBook.Common\bin\Debug\RecipeBook.Common.pdb
+E:\Проект\RecipeBookMVC\RecipeBook.Common\obj\Debug\RecipeBook.Common.dll
+E:\Проект\RecipeBookMVC\RecipeBook.Common\obj\Debug\RecipeBook.Common.pdb
+E:\Проект\RecipeBookMVC\RecipeBook.Common\obj\Debug\RecipeBook.Common.csprojResolveAssemblyReference.cache

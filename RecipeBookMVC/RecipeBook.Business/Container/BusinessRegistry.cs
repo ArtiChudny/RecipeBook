@@ -7,6 +7,7 @@ namespace RecipeBook.Business.Container
     {
         public BusinessRegistry()
         {
+            For<ICategoryProvider>().Use<CategoryProvider>();
             For<IRecipeProvider>().Use<RecipeProvider>();
         }
     }
