@@ -1,55 +1,63 @@
-﻿
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using RecipeBook.Data.Converters;
 using RecipeBook.Common.Models;
-using System.Linq;
-
+using RecipeBook.Data.Clients;
+using RecipeBook.Data.RecipeService;
 
 namespace RecipeBook.Data.Repositories
 {
     public class DataProvider : IDataProvider
     {
-        List<Category> Categories = new List<Category>()
-        {
-            new Category { CategoryId = 1, CategoryName = "Soups" },
-            new Category { CategoryId = 2, CategoryName = "Dessert" },
-            new Category { CategoryId = 3, CategoryName = "Salads" },
-            new Category { CategoryId = 4, CategoryName = "MainCourses" }
-        };
+        IRecipeClient _recipeClient;
+        IConverter _converter;
 
-        List<Recipe> Recipies = new List<Recipe>()
+        public DataProvider(IRecipeClient recipeClient, IConverter converter)
         {
-            new Recipe { RecipeId = 1, RecipeName = "Borsch", PhotoUrl = null, CategoryId = 1 },
-            new Recipe { RecipeId = 2, RecipeName = "Shchi", PhotoUrl = null, CategoryId = 1 },
-            new Recipe { RecipeId = 3, RecipeName = "Pancake", PhotoUrl = null, CategoryId = 2 },
-            new Recipe { RecipeId = 4, RecipeName = "Greek Salad", PhotoUrl = null, CategoryId = 3 },
-            new Recipe { RecipeId = 5, RecipeName = "Cutlets", PhotoUrl = null, CategoryId = 4 }
-        };
-
-
-        List<RecipeDetails> Details = new List<RecipeDetails>()
-        {
-            new RecipeDetails {RecipeId = 1, CookingTemperature= "100", CookingTime = "60 min", Description = "Borsch", Steps = "Steps"},
-            new RecipeDetails {RecipeId = 2, CookingTemperature= "100", CookingTime = "60 min", Description = "Shchi", Steps = "Steps"},
-            new RecipeDetails {RecipeId = 3, CookingTemperature= "120", CookingTime = "20 min", Description = "Pancake", Steps = "Steps"},
-            new RecipeDetails {RecipeId = 4, CookingTemperature= "-", CookingTime = "20 min", Description = "Greek Salad", Steps = "Steps"},
-            new RecipeDetails {RecipeId = 5, CookingTemperature= "120", CookingTime = "20 min", Description = "Cutlets", Steps = "Steps"}
-        };
+            _converter = converter;
+            _recipeClient = recipeClient;
+        }
 
         public IEnumerable<Category> GetCategories()
         {
-            return Categories;
+            IEnumerable<CategoryDto> categoriesDto = _recipeClient.GetCategories();
+            List<Category> categoryList = new List<Category>();
+            IEnumerable<Category> categories;
+            if (categoriesDto != null)
+            {
+                foreach (var item in categoriesDto)
+                {
+                    categoryList.Add(_converter.ToCategory(item));
+                }
+            }
+            categories = categoryList;
+            return categories;
         }
 
         public RecipeDetails GetDedails(int id)
         {
-            return Details.Single(m => m.RecipeId == id);
+            RecipeDetailsDto detailsDto = _recipeClient.GetDedails(id);
+            RecipeDetails details = new RecipeDetails();
+            if (detailsDto != null)
+            {
+                details = _converter.ToRecipeDetails(detailsDto);
+            }
+            return details;
         }
 
         public IEnumerable<Recipe> GetRecipies()
         {
-
-            return Recipies;
+            IEnumerable<RecipeDto> recipesDto = _recipeClient.GetRecipes();
+            List<Recipe> recipeList = new List<Recipe>();
+            IEnumerable<Recipe> recipies;
+            if (recipesDto != null)
+            {
+                foreach (var item in recipesDto)
+                {
+                    recipeList.Add(_converter.ToRecipe(item));
+                }
+            }
+            recipies = recipeList;
+            return recipies;
         }
 
     }

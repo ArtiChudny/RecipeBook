@@ -1,5 +1,4 @@
-﻿
-using RecipeBook.Common.Models;
+﻿using RecipeBook.Common.Models;
 using System.Collections.Generic;
 
 namespace RecipeBook.Data.Repositories

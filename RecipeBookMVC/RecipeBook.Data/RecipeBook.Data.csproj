@@ -52,6 +52,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -64,20 +66,69 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clients\IRecipeClient.cs" />
+    <Compile Include="Clients\RecipeClient.cs" />
     <Compile Include="Container\DataRegistry.cs" />
+    <Compile Include="Converters\Converter.cs" />
+    <Compile Include="Converters\IConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\DataProvider.cs" />
     <Compile Include="Repositories\IDataProvider.cs" />
+    <Compile Include="Service References\RecipeService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Service References\RecipeService\RecipeBook.Data.RecipeService.CategoryDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\RecipeService\RecipeBook.Data.RecipeService.RecipeDetailsDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\RecipeService\RecipeBook.Data.RecipeService.RecipeDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\RecipeService\RecipeService.wsdl" />
+    <None Include="Service References\RecipeService\RecipeService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RecipeService\RecipeService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RecipeService\RecipeService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RecipeBook.Common\RecipeBook.Common.csproj">
       <Project>{2d863b8e-6a47-4cb5-9cb1-35fc8f13bb4b}</Project>
       <Name>RecipeBook.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\RecipeService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RecipeService\RecipeService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RecipeService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RecipeService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RecipeService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

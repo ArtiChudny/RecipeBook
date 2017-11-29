@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost  Service="RecipeBook.Service.Data.Contracts.RecipeService" %>

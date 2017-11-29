@@ -114,9 +114,3 @@ E:\Проект\RecipeBookMVC\RecipeBookMVC\bin\ru\System.Web.Webpages.Deploymen
 E:\Проект\RecipeBookMVC\RecipeBookMVC\bin\ru\System.Web.Webpages.Razor.resources.dll
 E:\Проект\RecipeBookMVC\RecipeBookMVC\bin\ru\System.Web.Helpers.resources.dll
 E:\Проект\RecipeBookMVC\RecipeBookMVC\bin\ru\System.Web.Mvc.resources.dll
-E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\RecipeBook.Common.dll
-E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\RecipeBook.Dependencies.dll
-E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\RecipeBook.Data.dll
-E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\RecipeBook.Common.pdb
-E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\RecipeBook.Dependencies.pdb
-E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\RecipeBook.Data.pdb

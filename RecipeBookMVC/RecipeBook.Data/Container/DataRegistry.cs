@@ -1,5 +1,6 @@
 ﻿using StructureMap.Configuration.DSL;
 using RecipeBook.Data.Repositories;
+using RecipeBook.Data.Clients;
 
 namespace RecipeBook.Data.Container
 {
@@ -8,6 +9,8 @@ namespace RecipeBook.Data.Container
         public DataRegistry()
         {
             For<IDataProvider>().Use<DataProvider>();
+
+            For<IRecipeClient>().Use<RecipeClient>();
         }
 
     }
