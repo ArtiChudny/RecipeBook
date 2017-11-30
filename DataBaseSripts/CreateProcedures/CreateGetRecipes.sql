@@ -1,0 +1,4 @@
+CREATE PROCEDURE GetRecipes
+AS
+SELECT * FROM
+Recipes
