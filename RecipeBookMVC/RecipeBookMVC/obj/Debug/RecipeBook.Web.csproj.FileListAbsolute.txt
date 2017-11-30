@@ -10,9 +10,6 @@ E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\roslyn\System.Reflection.
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\roslyn\vbc.exe
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\roslyn\VBCSCompiler.exe
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\roslyn\VBCSCompiler.exe.config
-E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\RecipeBookMVC.dll.config
-E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\RecipeBookMVC.dll
-E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\RecipeBookMVC.pdb
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\Microsoft.Web.Infrastructure.dll
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\System.Web.Helpers.dll
@@ -29,8 +26,6 @@ E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\System.Web.Webpages.Razor
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\System.Web.Helpers.xml
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\System.Web.Mvc.xml
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\obj\Debug\RecipeBook.Web.csprojResolveAssemblyReference.cache
-E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\obj\Debug\RecipeBookMVC.dll
-E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\obj\Debug\RecipeBookMVC.pdb
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\log4net.dll
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\log4net.xml
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\ru\System.Web.Razor.resources.dll
@@ -54,8 +49,6 @@ E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\StructureMap.Net4.pdb
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\StructureMap.Web.pdb
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\StructureMap.Web.xml
 E:\Проект\RecipeBookMVC\RecipeBookMVC\obj\Debug\RecipeBook.Web.csprojResolveAssemblyReference.cache
-E:\Проект\RecipeBookMVC\RecipeBookMVC\obj\Debug\RecipeBookMVC.dll
-E:\Проект\RecipeBookMVC\RecipeBookMVC\obj\Debug\RecipeBookMVC.pdb
 E:\Проект\RecipeBookMVC\RecipeBookMVC\bin\roslyn\csc.exe
 E:\Проект\RecipeBookMVC\RecipeBookMVC\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
 E:\Проект\RecipeBookMVC\RecipeBookMVC\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
@@ -68,9 +61,6 @@ E:\Проект\RecipeBookMVC\RecipeBookMVC\bin\roslyn\System.Reflection.Metadat
 E:\Проект\RecipeBookMVC\RecipeBookMVC\bin\roslyn\vbc.exe
 E:\Проект\RecipeBookMVC\RecipeBookMVC\bin\roslyn\VBCSCompiler.exe
 E:\Проект\RecipeBookMVC\RecipeBookMVC\bin\roslyn\VBCSCompiler.exe.config
-E:\Проект\RecipeBookMVC\RecipeBookMVC\bin\RecipeBookMVC.dll.config
-E:\Проект\RecipeBookMVC\RecipeBookMVC\bin\RecipeBookMVC.dll
-E:\Проект\RecipeBookMVC\RecipeBookMVC\bin\RecipeBookMVC.pdb
 E:\Проект\RecipeBookMVC\RecipeBookMVC\bin\log4net.dll
 E:\Проект\RecipeBookMVC\RecipeBookMVC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 E:\Проект\RecipeBookMVC\RecipeBookMVC\bin\Microsoft.Practices.ServiceLocation.dll
@@ -114,3 +104,19 @@ E:\Проект\RecipeBookMVC\RecipeBookMVC\bin\ru\System.Web.Webpages.Deploymen
 E:\Проект\RecipeBookMVC\RecipeBookMVC\bin\ru\System.Web.Webpages.Razor.resources.dll
 E:\Проект\RecipeBookMVC\RecipeBookMVC\bin\ru\System.Web.Helpers.resources.dll
 E:\Проект\RecipeBookMVC\RecipeBookMVC\bin\ru\System.Web.Mvc.resources.dll
+E:\Проект\RecipeBookMVC\RecipeBookMVC\bin\RecipeBook.Web.dll.config
+E:\Проект\RecipeBookMVC\RecipeBookMVC\bin\RecipeBook.Web.dll
+E:\Проект\RecipeBookMVC\RecipeBookMVC\bin\RecipeBook.Web.pdb
+E:\Проект\RecipeBookMVC\RecipeBookMVC\obj\Debug\RecipeBook.Web.dll
+E:\Проект\RecipeBookMVC\RecipeBookMVC\obj\Debug\RecipeBook.Web.pdb
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\RecipeBook.Web.dll.config
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\RecipeBook.Web.dll
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\RecipeBook.Web.pdb
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\RecipeBook.Common.dll
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\RecipeBook.Dependencies.dll
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\RecipeBook.Data.dll
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\RecipeBook.Common.pdb
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\RecipeBook.Dependencies.pdb
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\RecipeBook.Data.pdb
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\obj\Debug\RecipeBook.Web.dll
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\obj\Debug\RecipeBook.Web.pdb

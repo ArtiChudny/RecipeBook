@@ -8,3 +8,13 @@ E:\Проект\RecipeBookMVC\RecipeBook.Service\bin\RecipeBook.Service.Data.pdb
 E:\Проект\RecipeBookMVC\RecipeBook.Service\obj\Debug\RecipeBook.Service.csprojResolveAssemblyReference.cache
 E:\Проект\RecipeBookMVC\RecipeBook.Service\obj\Debug\RecipeBook.Service.dll
 E:\Проект\RecipeBookMVC\RecipeBook.Service\obj\Debug\RecipeBook.Service.pdb
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Service\bin\RecipeBook.Service.dll.config
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Service\bin\RecipeBook.Service.dll
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Service\bin\RecipeBook.Service.pdb
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Service\bin\RecipeBook.Common.dll
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Service\bin\RecipeBook.Service.Data.dll
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Service\bin\RecipeBook.Common.pdb
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Service\bin\RecipeBook.Service.Data.pdb
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Service\obj\Debug\RecipeBook.Service.csprojResolveAssemblyReference.cache
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Service\obj\Debug\RecipeBook.Service.dll
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Service\obj\Debug\RecipeBook.Service.pdb

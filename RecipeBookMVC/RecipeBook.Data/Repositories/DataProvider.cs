@@ -3,23 +3,26 @@ using RecipeBook.Data.Converters;
 using RecipeBook.Common.Models;
 using RecipeBook.Data.Clients;
 using RecipeBook.Data.RecipeService;
+using RecipeBook.Data.CategoryService;
 
 namespace RecipeBook.Data.Repositories
 {
     public class DataProvider : IDataProvider
     {
         IRecipeClient _recipeClient;
+        ICategoryClient _categoryClient;
         IConverter _converter;
 
-        public DataProvider(IRecipeClient recipeClient, IConverter converter)
+        public DataProvider(IRecipeClient recipeClient, ICategoryClient categoryClient, IConverter converter)
         {
             _converter = converter;
             _recipeClient = recipeClient;
+            _categoryClient = categoryClient;
         }
 
         public IEnumerable<Category> GetCategories()
         {
-            IEnumerable<CategoryDto> categoriesDto = _recipeClient.GetCategories();
+            IEnumerable<CategoryDto> categoriesDto = _categoryClient.GetCategories();
             List<Category> categoryList = new List<Category>();
             IEnumerable<Category> categories;
             if (categoriesDto != null)

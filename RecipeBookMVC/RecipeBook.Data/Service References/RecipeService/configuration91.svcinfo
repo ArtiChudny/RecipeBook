@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="pGHK4n2CQg9Chclys/rOWLKDBcE=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="D2aJBpe9J0HRdaUiHPP/8T6ivvY=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IRecipeService">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_IRecipeService" contract="RecipeService.IRecipeService" bindingType="basicHttpBinding" address="http://localhost:17114/RecipeService.svc" bindingConfiguration="BasicHttpBinding_IRecipeService">
+    <endpoint name="BasicHttpBinding_IRecipeService" contract="RecipeService.IRecipeService" bindingType="basicHttpBinding" address="http://localhost:8002/RecipeService.svc" bindingConfiguration="BasicHttpBinding_IRecipeService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:17114/RecipeService.svc</serializedValue>
+          <serializedValue>http://localhost:8002/RecipeService.svc</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

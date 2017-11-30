@@ -1,51 +1,70 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using RecipeBook.Service.Data.ModelsDto;
 
 namespace RecipeBook.Service.Data.Contracts
 {
     public class RecipeService : IRecipeService
     {
-        List<CategoryDto> Categories = new List<CategoryDto>()
-        {
-            new CategoryDto { CategoryId = 1, CategoryName = "Soups" },
-            new CategoryDto { CategoryId = 2, CategoryName = "Dessert" },
-            new CategoryDto { CategoryId = 3, CategoryName = "Salads" },
-            new CategoryDto { CategoryId = 4, CategoryName = "MainCourses" }
-        };
+        SqlConnection sqlConnection = new SqlConnection();
+        string connectionString = ConfigurationManager.ConnectionStrings["RecipeBookDB"].ConnectionString;
 
-        List<RecipeDto> Recipies = new List<RecipeDto>()
+        public IEnumerable<RecipeDto> GetRecipes()
         {
-            new RecipeDto { RecipeId = 1, RecipeName = "Borsch", PhotoUrl = null, CategoryId = 1 },
-            new RecipeDto { RecipeId = 2, RecipeName = "Shchi", PhotoUrl = null, CategoryId = 1 },
-            new RecipeDto { RecipeId = 3, RecipeName = "Pancake", PhotoUrl = null, CategoryId = 2 },
-            new RecipeDto { RecipeId = 4, RecipeName = "Greek Salad", PhotoUrl = null, CategoryId = 3 },
-            new RecipeDto { RecipeId = 5, RecipeName = "Cutlets", PhotoUrl = null, CategoryId = 4 }
-        };
+            sqlConnection.ConnectionString = connectionString;
+            List<RecipeDto> recipesList = new List<RecipeDto>();
 
+            using (var cmd = new SqlCommand("GetRecipes", sqlConnection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
 
-        List<RecipeDetailsDto> Details = new List<RecipeDetailsDto>()
-        {
-            new RecipeDetailsDto {RecipeId = 1, CookingTemperature= "100", CookingTime = "60 min", Description = "Borsch", Steps = "Steps"},
-            new RecipeDetailsDto {RecipeId = 2, CookingTemperature= "100", CookingTime = "60 min", Description = "Shchi", Steps = "Steps"},
-            new RecipeDetailsDto {RecipeId = 3, CookingTemperature= "120", CookingTime = "20 min", Description = "Pancake", Steps = "Steps"},
-            new RecipeDetailsDto {RecipeId = 4, CookingTemperature= "-", CookingTime = "20 min", Description = "Greek Salad", Steps = "Steps"},
-            new RecipeDetailsDto {RecipeId = 5, CookingTemperature= "120", CookingTime = "20 min", Description = "Cutlets", Steps = "Steps"}
-        };
+                sqlConnection.Open();
 
-        public IEnumerable<CategoryDto> GetCategories()
-        {
-            return Categories;
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var recipe = new RecipeDto()
+                        {
+                            RecipeId = reader.GetFieldValue<int>(0),
+                            RecipeName = reader.GetFieldValue<string>(1),
+                            CategoryId = reader.GetFieldValue<int>(2),
+                            PhotoUrl = reader.GetFieldValue<string>(3)
+                        };
+                        recipesList.Add(recipe);
+                    }
+                };
+                sqlConnection.Close();
+            }
+            return recipesList;
         }
 
         public RecipeDetailsDto GetDedails(int id)
         {
-            return Details.Single(x => x.RecipeId == id);
+            sqlConnection.ConnectionString = connectionString;
+            SqlCommand cmd = new SqlCommand("GetDetails", sqlConnection)
+            { CommandType = CommandType.StoredProcedure };
+            cmd.Parameters.AddWithValue("@RecipeId", id);
+
+            RecipeDetailsDto recipeDetails = new RecipeDetailsDto();
+
+            sqlConnection.Open();
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    recipeDetails.RecipeId = reader.GetFieldValue<int>(0);
+                    recipeDetails.Description = reader.GetFieldValue<string>(1);
+                    recipeDetails.CookingTime = reader.GetFieldValue<string>(2);
+                    recipeDetails.CookingTemperature = reader.GetFieldValue<string>(3);
+                    recipeDetails.Steps = reader.GetFieldValue<string>(4);
+                }
+            }
+            sqlConnection.Close();
+            return recipeDetails;
         }
 
-        public IEnumerable<RecipeDto> GetRecipes()
-        {
-            return Recipies;
-        }
     }
 }

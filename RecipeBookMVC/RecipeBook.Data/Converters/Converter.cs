@@ -1,5 +1,6 @@
 ﻿using RecipeBook.Common.Models;
 using RecipeBook.Data.RecipeService;
+using RecipeBook.Data.CategoryService;
 
 namespace RecipeBook.Data.Converters
 {

@@ -1,0 +1,10 @@
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Service\bin\RecipeBook.Service.dll.config
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Service\bin\RecipeBook.Service.dll
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Service\bin\RecipeBook.Service.pdb
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Service\bin\RecipeBook.Common.dll
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Service\bin\RecipeBook.Service.Data.dll
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Service\bin\RecipeBook.Common.pdb
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Service\bin\RecipeBook.Service.Data.pdb
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Service\obj\Release\RecipeBook.Service.csprojResolveAssemblyReference.cache
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Service\obj\Release\RecipeBook.Service.dll
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Service\obj\Release\RecipeBook.Service.pdb

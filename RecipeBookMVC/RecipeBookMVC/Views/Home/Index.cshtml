@@ -17,14 +17,14 @@
         @foreach (var item in Model)
         {
 
-            <dl style="display: inline-block;">
+            <dl style="display: inline-block;margin-right:20px;">
                 <dd>
                     @Html.DisplayFor(modelItem => item.RecipeName)
                 </dd>
                 <dd>
-                    @if (item.PhotoUrl == null)
+                    @if (item.PhotoUrl == "")
                 {
-                        <img src="/no_images.jpg" />
+                        <img src="/no-image-available.png" />
                     }
                     else
                     {

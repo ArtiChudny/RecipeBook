@@ -5,18 +5,6 @@ namespace RecipeBook.Data.Clients
 {
     public class RecipeClient : IRecipeClient
     {
-        public IEnumerable<CategoryDto> GetCategories()
-        {
-            List<CategoryDto> categoriesDto = new List<CategoryDto>();
-            using (RecipeServiceClient client = new RecipeServiceClient())
-            {
-                client.Open();
-                categoriesDto.AddRange(client.GetCategories());
-                client.Close();
-            }
-            return categoriesDto;
-        }
-
         public RecipeDetailsDto GetDedails(int id)
         {
             RecipeDetailsDto detailsDto = new RecipeDetailsDto();

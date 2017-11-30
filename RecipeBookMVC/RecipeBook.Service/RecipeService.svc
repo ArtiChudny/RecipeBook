@@ -1,1 +1,1 @@
-﻿<%@ ServiceHost  Service="RecipeBook.Service.Data.Contracts.RecipeService" %>
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="RecipeBook.Service.Data.Contracts.RecipeService" CodeBehind="RecipeService.svc.cs" %>

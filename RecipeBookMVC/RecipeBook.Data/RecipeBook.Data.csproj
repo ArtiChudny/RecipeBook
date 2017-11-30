@@ -66,6 +66,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clients\CategoryClient.cs" />
+    <Compile Include="Clients\ICategoryClient.cs" />
     <Compile Include="Clients\IRecipeClient.cs" />
     <Compile Include="Clients\RecipeClient.cs" />
     <Compile Include="Container\DataRegistry.cs" />
@@ -74,6 +76,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\DataProvider.cs" />
     <Compile Include="Repositories\IDataProvider.cs" />
+    <Compile Include="Service References\CategoryService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\RecipeService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -86,7 +93,17 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="Service References\RecipeService\RecipeBook.Data.RecipeService.CategoryDto.datasource">
+    <None Include="Service References\CategoryService\CategoryService1.wsdl" />
+    <None Include="Service References\CategoryService\CategoryService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CategoryService\CategoryService31.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CategoryService\CategoryService32.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CategoryService\RecipeBook.Data.CategoryService.CategoryDto.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\RecipeService\RecipeBook.Data.RecipeService.RecipeDetailsDto.datasource">
@@ -113,6 +130,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\CategoryService\" />
     <WCFMetadataStorage Include="Service References\RecipeService\" />
   </ItemGroup>
   <ItemGroup>
@@ -129,6 +147,21 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CategoryService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CategoryService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CategoryService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CategoryService\CategoryService1.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

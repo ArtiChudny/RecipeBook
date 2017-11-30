@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="RecipeBook.Service.Data.Contracts.CategoryContract.CategoryService" CodeBehind="CategoryService.svc.cs" %>

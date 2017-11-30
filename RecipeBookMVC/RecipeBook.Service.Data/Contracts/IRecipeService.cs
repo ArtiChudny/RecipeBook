@@ -9,10 +9,7 @@ namespace RecipeBook.Service.Data.Contracts
     {
         [OperationContract]
         IEnumerable<RecipeDto> GetRecipes();
-
-        [OperationContract]
-        IEnumerable<CategoryDto> GetCategories();
-
+                
         [OperationContract]
         RecipeDetailsDto GetDedails(int id);
     }

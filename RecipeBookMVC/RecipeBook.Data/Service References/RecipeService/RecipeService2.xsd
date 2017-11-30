@@ -1,42 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:17114/RecipeService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/RecipeBook.Service.Data.ModelsDto" />
-  <xs:element name="GetRecipes">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetRecipesResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/RecipeBook.Service.Data.ModelsDto" minOccurs="0" name="GetRecipesResult" nillable="true" type="q1:ArrayOfRecipeDto" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetCategories">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetCategoriesResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/RecipeBook.Service.Data.ModelsDto" minOccurs="0" name="GetCategoriesResult" nillable="true" type="q2:ArrayOfCategoryDto" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetDedails">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="id" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetDedailsResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/RecipeBook.Service.Data.ModelsDto" minOccurs="0" name="GetDedailsResult" nillable="true" type="q3:RecipeDetailsDto" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/RecipeBook.Service.Data.ModelsDto" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/RecipeBook.Service.Data.ModelsDto" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfRecipeDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RecipeDto" nillable="true" type="tns:RecipeDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRecipeDto" nillable="true" type="tns:ArrayOfRecipeDto" />
+  <xs:complexType name="RecipeDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CategoryId" type="xs:int" />
+      <xs:element minOccurs="0" name="PhotoUrl" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RecipeId" type="xs:int" />
+      <xs:element minOccurs="0" name="RecipeName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RecipeDto" nillable="true" type="tns:RecipeDto" />
+  <xs:complexType name="RecipeDetailsDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CookingTemperature" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CookingTime" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RecipeId" type="xs:int" />
+      <xs:element minOccurs="0" name="Steps" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RecipeDetailsDto" nillable="true" type="tns:RecipeDetailsDto" />
 </xs:schema>

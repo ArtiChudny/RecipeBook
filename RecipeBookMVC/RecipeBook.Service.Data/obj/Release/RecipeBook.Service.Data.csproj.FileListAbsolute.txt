@@ -1,0 +1,4 @@
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Service.Data\bin\Release\RecipeBook.Service.Data.dll
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Service.Data\bin\Release\RecipeBook.Service.Data.pdb
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Service.Data\obj\Release\RecipeBook.Service.Data.dll
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Service.Data\obj\Release\RecipeBook.Service.Data.pdb

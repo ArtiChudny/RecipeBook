@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="f5916036-1698-4026-8e29-ff9f828c76ed" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="50361181-0f05-4d02-80a8-e6f4474b3c8f" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -19,14 +19,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:17114/RecipeService.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:8002/RecipeService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="RecipeService.xsd" MetadataType="Schema" ID="9e645c81-6496-49fb-a040-9d07daafd718" SourceId="1" SourceUrl="http://localhost:17114/RecipeService.svc?xsd=xsd2" />
-    <MetadataFile FileName="RecipeService1.xsd" MetadataType="Schema" ID="1de09984-9083-4ab2-973c-dcd05c61c3e4" SourceId="1" SourceUrl="http://localhost:17114/RecipeService.svc?xsd=xsd1" />
-    <MetadataFile FileName="RecipeService.disco" MetadataType="Disco" ID="d7683f48-bc70-4114-85e7-f744ba07f9b1" SourceId="1" SourceUrl="http://localhost:17114/RecipeService.svc?disco" />
-    <MetadataFile FileName="RecipeService.wsdl" MetadataType="Wsdl" ID="e8b6f964-c249-45ef-bf6d-96b3f63ebca5" SourceId="1" SourceUrl="http://localhost:17114/RecipeService.svc?wsdl" />
-    <MetadataFile FileName="RecipeService2.xsd" MetadataType="Schema" ID="a01e4bf0-0e41-4734-925d-2d01b14b79ec" SourceId="1" SourceUrl="http://localhost:17114/RecipeService.svc?xsd=xsd0" />
+    <MetadataFile FileName="RecipeService.wsdl" MetadataType="Wsdl" ID="d6fd68f5-df05-464c-856e-16675ebb5fd9" SourceId="1" SourceUrl="http://localhost:8002/RecipeService.svc?wsdl" />
+    <MetadataFile FileName="RecipeService.xsd" MetadataType="Schema" ID="f22931dd-d398-4495-a3cf-3a2e65c5e0e5" SourceId="1" SourceUrl="http://localhost:8002/RecipeService.svc?xsd=xsd1" />
+    <MetadataFile FileName="RecipeService1.xsd" MetadataType="Schema" ID="a13f3a66-20e9-422c-a2d4-bb0dfbe80818" SourceId="1" SourceUrl="http://localhost:8002/RecipeService.svc?xsd=xsd0" />
+    <MetadataFile FileName="RecipeService.disco" MetadataType="Disco" ID="b5209d5f-95df-40d2-9149-757d6720d272" SourceId="1" SourceUrl="http://localhost:8002/RecipeService.svc?disco" />
+    <MetadataFile FileName="RecipeService2.xsd" MetadataType="Schema" ID="d8ef3460-c7bb-4007-98f0-2e2933d0351b" SourceId="1" SourceUrl="http://localhost:8002/RecipeService.svc?xsd=xsd2" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
