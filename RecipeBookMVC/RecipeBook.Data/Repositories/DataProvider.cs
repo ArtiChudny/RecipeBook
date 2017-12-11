@@ -63,5 +63,21 @@ namespace RecipeBook.Data.Repositories
             return recipies;
         }
 
+        public IEnumerable<RecipeIngredient> GetRecipeIngredients(int id)
+        {
+            IEnumerable<RecipeIngredientDto> recipeIngredientsDto = _recipeClient.GetRecipeIngredients(id);
+            List<RecipeIngredient> recipeIngredientsList = new List<RecipeIngredient>();
+            IEnumerable<RecipeIngredient> recipeIngredients;
+            if (recipeIngredientsDto != null)
+            {
+                foreach (var item in recipeIngredientsDto)
+                {
+                    recipeIngredientsList.Add(_converter.ToRecipeIngredient(item));
+                }
+            }
+            recipeIngredients = recipeIngredientsList;
+            return recipeIngredients;
+
+        }
     }
 }

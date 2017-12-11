@@ -1,31 +1,44 @@
-﻿@model RecipeBook.Common.Models.RecipeDetails
+﻿@model RecipeBook.Web.Models.DetailsViewModel
 @{
     ViewBag.Title = "Details";
 }
 
+
+<div>
+    <h2>Ingredients</h2>
+    @foreach (var item in Model.recipeIngredients)
+    {
+        <ul>
+            <li>
+                @Html.DisplayFor(modelItem => item.IngredientName) : @Html.DisplayFor(modelItem => item.Weight)
+            </li>
+        </ul>
+    }
+</div>
+
+
 <h2>Details</h2>
-
 <ul>
     <li>
-        @Html.DisplayNameFor(model => model.CookingTime) : @Html.DisplayFor(model => model.CookingTime)
+        @Html.DisplayNameFor(model => model.recipeDetails.CookingTime) : @Html.DisplayFor(model => model.recipeDetails.CookingTime)
     </li>
 </ul>
 
 <ul>
     <li>
-        @Html.DisplayNameFor(model => model.CookingTemperature) : @Html.DisplayFor(model => model.CookingTemperature)
+        @Html.DisplayNameFor(model => model.recipeDetails.CookingTemperature) : @Html.DisplayFor(model => model.recipeDetails.CookingTemperature)
     </li>
 </ul>
 
 <ul>
     <li>
-        @Html.DisplayNameFor(model => model.Description) : @Html.DisplayFor(model => model.Description)
+        @Html.DisplayNameFor(model => model.recipeDetails.Description) : @Html.DisplayFor(model => model.recipeDetails.Description)
     </li>
 </ul>
 
 <ul>
     <li>
-        @Html.DisplayNameFor(model => model.Steps) : @Html.DisplayFor(model => model.Steps)
+        @Html.DisplayNameFor(model => model.recipeDetails.Steps) : @Html.DisplayFor(model => model.recipeDetails.Steps)
     </li>
 </ul>
 
@@ -33,5 +46,3 @@
 
     @Html.ActionLink("Back to List", "Index")
 </p>
-
-

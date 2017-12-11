@@ -9,7 +9,7 @@ namespace RecipeBook.Data.Clients
         {
             List<CategoryDto> categoriesDto = new List<CategoryDto>();
             using (CategoryServiceClient client = new CategoryServiceClient())
-            {
+            {//trycatch
                 client.Open();
                 categoriesDto.AddRange(client.GetCategories());
                 client.Close();

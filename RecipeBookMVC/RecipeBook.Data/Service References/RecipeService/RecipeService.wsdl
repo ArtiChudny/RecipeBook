@@ -19,6 +19,12 @@
   <wsdl:message name="IRecipeService_GetDedails_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetDedailsResponse" />
   </wsdl:message>
+  <wsdl:message name="IRecipeService_GetRecipeIngredients_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRecipeIngredients" />
+  </wsdl:message>
+  <wsdl:message name="IRecipeService_GetRecipeIngredients_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRecipeIngredientsResponse" />
+  </wsdl:message>
   <wsdl:portType name="IRecipeService">
     <wsdl:operation name="GetRecipes">
       <wsdl:input wsaw:Action="http://tempuri.org/IRecipeService/GetRecipes" message="tns:IRecipeService_GetRecipes_InputMessage" />
@@ -27,6 +33,10 @@
     <wsdl:operation name="GetDedails">
       <wsdl:input wsaw:Action="http://tempuri.org/IRecipeService/GetDedails" message="tns:IRecipeService_GetDedails_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IRecipeService/GetDedailsResponse" message="tns:IRecipeService_GetDedails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRecipeIngredients">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRecipeService/GetRecipeIngredients" message="tns:IRecipeService_GetRecipeIngredients_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRecipeService/GetRecipeIngredientsResponse" message="tns:IRecipeService_GetRecipeIngredients_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IRecipeService" type="tns:IRecipeService">
@@ -42,6 +52,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetDedails">
       <soap:operation soapAction="http://tempuri.org/IRecipeService/GetDedails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRecipeIngredients">
+      <soap:operation soapAction="http://tempuri.org/IRecipeService/GetRecipeIngredients" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

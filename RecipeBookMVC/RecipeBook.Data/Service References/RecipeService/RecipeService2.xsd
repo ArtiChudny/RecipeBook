@@ -25,4 +25,18 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="RecipeDetailsDto" nillable="true" type="tns:RecipeDetailsDto" />
+  <xs:complexType name="ArrayOfRecipeIngredientDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RecipeIngredientDto" nillable="true" type="tns:RecipeIngredientDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRecipeIngredientDto" nillable="true" type="tns:ArrayOfRecipeIngredientDto" />
+  <xs:complexType name="RecipeIngredientDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IngredientName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RecipeId" type="xs:int" />
+      <xs:element minOccurs="0" name="Weight" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RecipeIngredientDto" nillable="true" type="tns:RecipeIngredientDto" />
 </xs:schema>

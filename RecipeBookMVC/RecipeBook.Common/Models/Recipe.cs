@@ -1,4 +1,5 @@
-﻿
+﻿using System.Collections.Generic;
+
 namespace RecipeBook.Common.Models
 {
     public class Recipe
@@ -7,5 +8,6 @@ namespace RecipeBook.Common.Models
         public string RecipeName { get; set; }
         public string PhotoUrl { get; set; }
         public int CategoryId { get; set; }
+          
     }
 }

@@ -12,5 +12,8 @@ namespace RecipeBook.Service.Data.Contracts
                 
         [OperationContract]
         RecipeDetailsDto GetDedails(int id);
+
+        [OperationContract]
+        IEnumerable<RecipeIngredientDto> GetRecipeIngredients(int id);
     }
 }

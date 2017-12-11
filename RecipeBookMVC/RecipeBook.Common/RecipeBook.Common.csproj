@@ -43,6 +43,7 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Recipe.cs" />
     <Compile Include="Models\RecipeDetails.cs" />
+    <Compile Include="Models\RecipeIngredient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

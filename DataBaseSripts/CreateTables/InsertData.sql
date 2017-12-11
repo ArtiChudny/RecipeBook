@@ -9,11 +9,11 @@ values
 
 insert into Recipes(CategoryId,RecipeName,PhotoUrl)
 values 
-('1','Borsch',null),
-('1','Shchi',null),
-('2','Greek salad',null),
-('3','Pancakes',null),
-('4','Cutlets',null)
+('1','Borsch',''),
+('1','Shchi',''),
+('2','Greek salad',''),
+('3','Pancakes',''),
+('4','Cutlets','')
 
 
 insert into Ingredients(IngredientName)
@@ -27,7 +27,11 @@ values
 ('Milk'),
 ('Egs'),
 ('Onion'),
-('Carrot')
+('Tomato'),
+('Cucumber'),
+('Bell pepper'),
+('Sheep cheese'),
+('Olives')
 
 insert into RecipesIngredients (RecipeId,IngredientId,Weight)
 values
@@ -46,10 +50,15 @@ values
 ('2','9','1'),
 ('2','10','1'),
 
+('3','10','400g'),
+('3','11','400g'),
+('3','12','400g'),
+('3','13','300g'),
+('3','14','100g'),
+
 ('4','5','200'),
 ('4','7','0.5'),
 ('4','8','3'),
-('4','4','400'),
 
 ('5','4','800'),
 ('5','5','50'),
@@ -61,7 +70,7 @@ values
 
 ('1','100','60 min','Borsch','Steps'),
 ('2','100','60 min','Shchi','Steps'),
-('3','120','20 min','Pancake','Steps'),
-('4', null,'20 min','Greek Salad','Steps'),
+('3', '','20 min','Greek Salad','Steps'),
+('4','120','20 min','Pancake','Steps'),
 ('5','120','20 min','Cutlets','Steps')
 

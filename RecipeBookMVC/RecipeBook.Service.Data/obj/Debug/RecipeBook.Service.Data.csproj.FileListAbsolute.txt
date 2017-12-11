@@ -6,3 +6,4 @@ E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Service.Data\bin\Debug\RecipeBoo
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Service.Data\bin\Debug\RecipeBook.Service.Data.pdb
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Service.Data\obj\Debug\RecipeBook.Service.Data.dll
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Service.Data\obj\Debug\RecipeBook.Service.Data.pdb
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Service.Data\obj\Debug\RecipeBook.Service.Data.csprojResolveAssemblyReference.cache

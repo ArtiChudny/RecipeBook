@@ -47,9 +47,14 @@
     <Compile Include="Contracts\CategoryContract\ICategoryService.cs" />
     <Compile Include="Contracts\IRecipeService.cs" />
     <Compile Include="Contracts\RecipeService.cs" />
+    <Compile Include="Contracts\UserContract\IUserService.cs" />
+    <Compile Include="Contracts\UserContract\UserService.cs" />
     <Compile Include="ModelsDto\CategoryDto.cs" />
     <Compile Include="ModelsDto\RecipeDetailsDto.cs" />
     <Compile Include="ModelsDto\RecipeDto.cs" />
+    <Compile Include="ModelsDto\RecipeIngredientDto.cs" />
+    <Compile Include="ModelsDto\RoleDto.cs" />
+    <Compile Include="ModelsDto\UserDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

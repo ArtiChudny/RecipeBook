@@ -112,6 +112,9 @@
     <None Include="Service References\RecipeService\RecipeBook.Data.RecipeService.RecipeDto.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\RecipeService\RecipeBook.Data.RecipeService.RecipeIngredientDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\RecipeService\RecipeService.wsdl" />
     <None Include="Service References\RecipeService\RecipeService.xsd">
       <SubType>Designer</SubType>

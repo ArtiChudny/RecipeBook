@@ -37,5 +37,15 @@ namespace RecipeBook.Data.Converters
                 Steps = detailsDto.Steps
             };
         }
+
+        public RecipeIngredient ToRecipeIngredient(RecipeIngredientDto recipeDto)
+        {
+            return new RecipeIngredient
+            {
+                RecipeId = recipeDto.RecipeId,
+                IngredientName = recipeDto.IngredientName,
+                Weight = recipeDto.Weight
+            };
+        }
     }
 }

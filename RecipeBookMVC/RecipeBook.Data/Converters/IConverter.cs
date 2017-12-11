@@ -9,5 +9,6 @@ namespace RecipeBook.Data.Converters
         Recipe ToRecipe(RecipeDto recipeDto);
         Category ToCategory(CategoryDto categoryDto);
         RecipeDetails ToRecipeDetails(RecipeDetailsDto detailsDto);
+        RecipeIngredient ToRecipeIngredient(RecipeIngredientDto recipeDto);
     }
 }

@@ -1,10 +1,8 @@
-﻿
-using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Linq;
 using log4net;
 using RecipeBook.Business.Providers;
-
+using RecipeBook.Web.Models;
 
 namespace RecipeBookMVC.Controllers
 {
@@ -21,17 +19,24 @@ namespace RecipeBookMVC.Controllers
 
         public ActionResult Index(int? _categoryId)
         {
-            if (_categoryId == null || _categoryId==0)
+            if (_categoryId == null || _categoryId == 0)
             {
                 return View(provider.GetRecipies().ToList());
             }
-            else return View(provider.GetRecipiesByCategory(_categoryId));
+            else
+            {
+                return View(provider.GetRecipiesByCategory(_categoryId));
+            }
 
         }
 
         public ActionResult Details(int _recipeId)
         {
-            return View(provider.GetDetails(_recipeId));
+            DetailsViewModel details=new DetailsViewModel();
+            details.recipeDetails = provider.GetDetails(_recipeId);
+            details.recipeIngredients = provider.GetRecipeIngredients(_recipeId);
+
+            return View(details);
         }
 
     }

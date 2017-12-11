@@ -7,6 +7,8 @@ namespace RecipeBook.Data.Repositories
     {
         IEnumerable<Recipe> GetRecipies();
         IEnumerable<Category> GetCategories();
+        IEnumerable<RecipeIngredient> GetRecipeIngredients(int id);
         RecipeDetails GetDedails(int id);
+
     }
 }

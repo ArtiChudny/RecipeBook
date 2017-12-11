@@ -20,6 +20,11 @@ namespace RecipeBook.Business.Providers
             return dataProvider.GetDedails(id);
         }
 
+        public IEnumerable<RecipeIngredient> GetRecipeIngredients(int id)
+        {
+            return dataProvider.GetRecipeIngredients(id);
+        }
+
         public IEnumerable<Recipe> GetRecipies()
         {
             return dataProvider.GetRecipies();

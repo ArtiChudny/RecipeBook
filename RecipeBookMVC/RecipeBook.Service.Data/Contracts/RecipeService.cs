@@ -14,7 +14,7 @@ namespace RecipeBook.Service.Data.Contracts
         public IEnumerable<RecipeDto> GetRecipes()
         {
             sqlConnection.ConnectionString = connectionString;
-            List<RecipeDto> recipesList = new List<RecipeDto>();
+            var recipesList = new List<RecipeDto>();
 
             using (var cmd = new SqlCommand("GetRecipes", sqlConnection))
             {
@@ -48,7 +48,7 @@ namespace RecipeBook.Service.Data.Contracts
             { CommandType = CommandType.StoredProcedure };
             cmd.Parameters.AddWithValue("@RecipeId", id);
 
-            RecipeDetailsDto recipeDetails = new RecipeDetailsDto();
+            var recipeDetails = new RecipeDetailsDto();
 
             sqlConnection.Open();
             using (SqlDataReader reader = cmd.ExecuteReader())
@@ -66,5 +66,33 @@ namespace RecipeBook.Service.Data.Contracts
             return recipeDetails;
         }
 
+        public IEnumerable<RecipeIngredientDto> GetRecipeIngredients(int id)
+        {
+            sqlConnection.ConnectionString = connectionString;
+            SqlCommand cmd = new SqlCommand("GetRecipeIngredients", sqlConnection)
+            { CommandType = CommandType.StoredProcedure };
+            cmd.Parameters.AddWithValue("@Id", id);
+
+            var recipeIngredientsList = new List<RecipeIngredientDto>();
+
+            sqlConnection.Open();
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    var recipeIngredient = new RecipeIngredientDto()
+                    {
+                        RecipeId=reader.GetFieldValue<int>(0),
+                        IngredientName = reader.GetFieldValue<string>(1),
+                        Weight = reader.GetFieldValue<string>(2),
+                    };
+                    recipeIngredientsList.Add(recipeIngredient);
+                }
+            };
+            sqlConnection.Close();
+            return recipeIngredientsList;
+        }
+
     }
+
 }

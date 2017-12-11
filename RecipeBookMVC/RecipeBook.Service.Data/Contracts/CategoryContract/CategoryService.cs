@@ -8,19 +8,19 @@ namespace RecipeBook.Service.Data.Contracts.CategoryContract
 {
     public class CategoryService : ICategoryService
     {
-        SqlConnection sqlCn = new SqlConnection();
+        SqlConnection sqlConnection = new SqlConnection();
         string connectionString = ConfigurationManager.ConnectionStrings["RecipeBookDB"].ConnectionString;
 
         public IEnumerable<CategoryDto> GetCategories()
         {
-            sqlCn.ConnectionString = connectionString;
+            sqlConnection.ConnectionString = connectionString;
             var categoriesList = new List<CategoryDto>();
 
-            using (var cmd = new SqlCommand("GetCategories", sqlCn))
+            using (var cmd = new SqlCommand("GetCategories", sqlConnection))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                sqlCn.Open();
+                sqlConnection.Open();
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -34,12 +34,10 @@ namespace RecipeBook.Service.Data.Contracts.CategoryContract
                         categoriesList.Add(category);
                     }
                 };
-                sqlCn.Close();
+                sqlConnection.Close();
             }
             return categoriesList;
         }
 
-
-    
     }
 }

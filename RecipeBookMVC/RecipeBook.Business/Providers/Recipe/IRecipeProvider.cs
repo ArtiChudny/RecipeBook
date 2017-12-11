@@ -10,5 +10,6 @@ namespace RecipeBook.Business.Providers
         IEnumerable<Recipe> GetRecipies();
         IEnumerable<Recipe> GetRecipiesByCategory(int? id);
         RecipeDetails GetDetails(int id);
+        IEnumerable<RecipeIngredient> GetRecipeIngredients(int id);
     }
 }

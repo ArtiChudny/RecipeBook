@@ -1,5 +1,8 @@
 CREATE PROCEDURE GetRecipeIngredients
-@RecipeId int
+@Id int
 AS
-SELECT * FROM RecipesIngredients
-WHERE RecipeId=@RecipeId
+Select RecipesIngredients.RecipeId, Ingredients.IngredientName, RecipesIngredients.Weight
+FROM RecipesIngredients
+INNER JOIN Ingredients ON
+RecipesIngredients.IngredientId=Ingredients.IngredientId
+WHERE RecipeId=@Id

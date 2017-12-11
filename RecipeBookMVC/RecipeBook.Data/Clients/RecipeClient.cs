@@ -17,6 +17,18 @@ namespace RecipeBook.Data.Clients
             return detailsDto;
         }
 
+        public IEnumerable<RecipeIngredientDto> GetRecipeIngredients(int id)
+        {
+            List<RecipeIngredientDto> ingredientsDto = new List<RecipeIngredientDto>();
+            using (RecipeServiceClient client = new RecipeServiceClient())
+            {
+                client.Open();
+                ingredientsDto.AddRange(client.GetRecipeIngredients(id));
+                client.Close();
+            }
+            return ingredientsDto;
+        }
+
         public IEnumerable<RecipeDto> GetRecipes()
         {
             List<RecipeDto> recipiesDto = new List<RecipeDto>();
