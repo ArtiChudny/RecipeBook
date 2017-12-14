@@ -8,9 +8,9 @@ namespace RecipeBook.Business.Providers
 {
     public class RecipeProvider : IRecipeProvider
     {
-        private IDataProvider dataProvider;
+        private IDataRepository dataProvider;
 
-        public RecipeProvider(IDataProvider _dataProvider)
+        public RecipeProvider(IDataRepository _dataProvider)
         {
             dataProvider = _dataProvider;
         }
@@ -23,6 +23,11 @@ namespace RecipeBook.Business.Providers
         public IEnumerable<RecipeIngredient> GetRecipeIngredients(int id)
         {
             return dataProvider.GetRecipeIngredients(id);
+        }
+
+        public IEnumerable<Recipe> GetRecipesByIngredient(string ingredientName)
+        {
+            return dataProvider.GetRecipesByIngredient(ingredientName);
         }
 
         public IEnumerable<Recipe> GetRecipies()

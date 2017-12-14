@@ -7,29 +7,29 @@ using RecipeBook.Data.CategoryService;
 
 namespace RecipeBook.Data.Repositories
 {
-    public class DataProvider : IDataProvider
+    public class DataRepository : IDataRepository
     {
-        IRecipeClient _recipeClient;
-        ICategoryClient _categoryClient;
-        IConverter _converter;
+        IRecipeClient recipeClient;
+        ICategoryClient categoryClient;
+        IConverter converter;
 
-        public DataProvider(IRecipeClient recipeClient, ICategoryClient categoryClient, IConverter converter)
+        public DataRepository(IRecipeClient _recipeClient, ICategoryClient _categoryClient, IConverter _converter)
         {
-            _converter = converter;
-            _recipeClient = recipeClient;
-            _categoryClient = categoryClient;
+            converter = _converter;
+            recipeClient = _recipeClient;
+            categoryClient = _categoryClient;
         }
 
         public IEnumerable<Category> GetCategories()
         {
-            IEnumerable<CategoryDto> categoriesDto = _categoryClient.GetCategories();
+            IEnumerable<CategoryDto> categoriesDto = categoryClient.GetCategories();
             List<Category> categoryList = new List<Category>();
             IEnumerable<Category> categories;
             if (categoriesDto != null)
             {
                 foreach (var item in categoriesDto)
                 {
-                    categoryList.Add(_converter.ToCategory(item));
+                    categoryList.Add(converter.ToCategory(item));
                 }
             }
             categories = categoryList;
@@ -38,25 +38,25 @@ namespace RecipeBook.Data.Repositories
 
         public RecipeDetails GetDedails(int id)
         {
-            RecipeDetailsDto detailsDto = _recipeClient.GetDedails(id);
+            RecipeDetailsDto detailsDto = recipeClient.GetDedails(id);
             RecipeDetails details = new RecipeDetails();
             if (detailsDto != null)
             {
-                details = _converter.ToRecipeDetails(detailsDto);
+                details = converter.ToRecipeDetails(detailsDto);
             }
             return details;
         }
 
         public IEnumerable<Recipe> GetRecipies()
         {
-            IEnumerable<RecipeDto> recipesDto = _recipeClient.GetRecipes();
+            IEnumerable<RecipeDto> recipesDto = recipeClient.GetRecipes();
             List<Recipe> recipeList = new List<Recipe>();
             IEnumerable<Recipe> recipies;
             if (recipesDto != null)
             {
                 foreach (var item in recipesDto)
                 {
-                    recipeList.Add(_converter.ToRecipe(item));
+                    recipeList.Add(converter.ToRecipe(item));
                 }
             }
             recipies = recipeList;
@@ -65,19 +65,32 @@ namespace RecipeBook.Data.Repositories
 
         public IEnumerable<RecipeIngredient> GetRecipeIngredients(int id)
         {
-            IEnumerable<RecipeIngredientDto> recipeIngredientsDto = _recipeClient.GetRecipeIngredients(id);
+            IEnumerable<RecipeIngredientDto> recipeIngredientsDto = recipeClient.GetRecipeIngredients(id);
             List<RecipeIngredient> recipeIngredientsList = new List<RecipeIngredient>();
             IEnumerable<RecipeIngredient> recipeIngredients;
             if (recipeIngredientsDto != null)
             {
                 foreach (var item in recipeIngredientsDto)
                 {
-                    recipeIngredientsList.Add(_converter.ToRecipeIngredient(item));
+                    recipeIngredientsList.Add(converter.ToRecipeIngredient(item));
                 }
             }
             recipeIngredients = recipeIngredientsList;
             return recipeIngredients;
+        }
 
+        public IEnumerable<Recipe> GetRecipesByIngredient(string recipeName)
+        {
+            IEnumerable<RecipeDto> recipesDto = recipeClient.GetRecipesByIngredient(recipeName);
+            List<Recipe> recipesList = new List<Recipe>();
+            if (recipesDto != null)
+            {
+                foreach (var item in recipesDto)
+                {
+                    recipesList.Add(converter.ToRecipe(item));
+                }
+            }
+            return recipesList;
         }
     }
 }

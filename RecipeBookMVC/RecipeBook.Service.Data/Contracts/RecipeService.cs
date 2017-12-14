@@ -82,7 +82,7 @@ namespace RecipeBook.Service.Data.Contracts
                 {
                     var recipeIngredient = new RecipeIngredientDto()
                     {
-                        RecipeId=reader.GetFieldValue<int>(0),
+                        RecipeId = reader.GetFieldValue<int>(0),
                         IngredientName = reader.GetFieldValue<string>(1),
                         Weight = reader.GetFieldValue<string>(2),
                     };
@@ -93,6 +93,33 @@ namespace RecipeBook.Service.Data.Contracts
             return recipeIngredientsList;
         }
 
+        public IEnumerable<RecipeDto> GetRecipesByIngredient(string ingredientName)
+        {
+            sqlConnection.ConnectionString = connectionString;
+            SqlCommand cmd = new SqlCommand("GetRecipesByIngredient", sqlConnection)
+            { CommandType = CommandType.StoredProcedure };
+            cmd.Parameters.AddWithValue("@ingredient", ingredientName);
+
+            var recipesList = new List<RecipeDto>();
+
+            sqlConnection.Open();
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    var recipe = new RecipeDto()
+                    {
+                        RecipeId = reader.GetFieldValue<int>(0),
+                        RecipeName = reader.GetFieldValue<string>(1),
+                        CategoryId = reader.GetFieldValue<int>(2),
+                        PhotoUrl = reader.GetFieldValue<string>(3),
+                    };
+                    recipesList.Add(recipe);
+                }
+            };
+            sqlConnection.Close();
+            return recipesList;
+        }
     }
 
 }

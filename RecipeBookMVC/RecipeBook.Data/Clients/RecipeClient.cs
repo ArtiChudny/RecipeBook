@@ -40,5 +40,17 @@ namespace RecipeBook.Data.Clients
             }
             return recipiesDto;
         }
+
+        public IEnumerable<RecipeDto> GetRecipesByIngredient(string recipeName)
+        {
+            List<RecipeDto> recipesDto = new List<RecipeDto>();
+            using (RecipeServiceClient client = new RecipeServiceClient())
+            {
+                client.Open();
+                recipesDto.AddRange(client.GetRecipesByIngredient(recipeName));
+                client.Close();
+            }
+            return recipesDto;
+        }
     }
 }

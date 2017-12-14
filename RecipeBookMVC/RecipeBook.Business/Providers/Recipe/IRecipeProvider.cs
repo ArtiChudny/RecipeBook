@@ -1,7 +1,5 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using RecipeBook.Common.Models;
-
 
 namespace RecipeBook.Business.Providers
 {
@@ -11,5 +9,6 @@ namespace RecipeBook.Business.Providers
         IEnumerable<Recipe> GetRecipiesByCategory(int? id);
         RecipeDetails GetDetails(int id);
         IEnumerable<RecipeIngredient> GetRecipeIngredients(int id);
+        IEnumerable<Recipe> GetRecipesByIngredient(string ingredientName);
     }
 }

@@ -9,11 +9,12 @@ namespace RecipeBook.Data.Container
     {
         public DataRegistry()
         {
-            For<IDataProvider>().Use<DataProvider>();
+            For<IDataRepository>().Use<DataRepository>();
+            For<IUserRepository>().Use<UserRepository>();
             For<IConverter>().Use<Converter>();
             For<IRecipeClient>().Use<RecipeClient>();
             For<ICategoryClient>().Use<CategoryClient>();
-
+            For<IUserClient>().Use<UserClient>();
         }
 
     }

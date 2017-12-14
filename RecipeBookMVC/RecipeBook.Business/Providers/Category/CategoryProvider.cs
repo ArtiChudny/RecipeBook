@@ -1,5 +1,4 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using RecipeBook.Common.Models;
 using RecipeBook.Data.Repositories;
 
@@ -7,9 +6,9 @@ namespace RecipeBook.Business.Providers
 {
     public class CategoryProvider : ICategoryProvider
     {
-        private IDataProvider dataProvider;
+        private IDataRepository dataProvider;
 
-        public CategoryProvider(IDataProvider _dataProvider)
+        public CategoryProvider(IDataRepository _dataProvider)
         {
             dataProvider = _dataProvider;
         }

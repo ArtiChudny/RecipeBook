@@ -4,14 +4,13 @@
     ViewBag.Title = "Index";
 }
 
-
 <div class="col-md-2">
     <h2>Categories</h2>
     @Html.Action("CategoriesList", "Categories")
 </div>
 
-<div class="col-md-8">
 
+<div class="col-md-8">
     <div class="col-md-12">
 
         @foreach (var item in Model)
@@ -35,7 +34,7 @@
                     @Html.RouteLink("Details", new { controller = "Home", action = "Details", _recipeId = item.RecipeId })
                 </dd>
             </dl>
-        }
 
+        }
     </div>
 </div>

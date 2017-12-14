@@ -4,7 +4,6 @@ using System.Data;
 using System.Data.SqlClient;
 using RecipeBook.Service.Data.ModelsDto;
 
-
 namespace RecipeBook.Service.Data.Contracts.UserContract
 {
     public class UserService : IUserService

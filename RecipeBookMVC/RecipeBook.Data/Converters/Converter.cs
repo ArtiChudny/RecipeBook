@@ -1,6 +1,7 @@
 ﻿using RecipeBook.Common.Models;
 using RecipeBook.Data.RecipeService;
 using RecipeBook.Data.CategoryService;
+using RecipeBook.Data.UserService;
 
 namespace RecipeBook.Data.Converters
 {
@@ -45,6 +46,26 @@ namespace RecipeBook.Data.Converters
                 RecipeId = recipeDto.RecipeId,
                 IngredientName = recipeDto.IngredientName,
                 Weight = recipeDto.Weight
+            };
+        }
+
+        public Role ToRole(RoleDto roleDto)
+        {
+            return new Role
+            {
+                RoleId = roleDto.RoleId,
+                RoleName = roleDto.RoleName
+            };
+        }
+
+        public User ToUser(UserDto userDto)
+        {
+            return new User
+            {
+                UserId = userDto.UserId,
+                Login = userDto.Login,
+                Password = userDto.Password,
+                Email = userDto.Email
             };
         }
     }

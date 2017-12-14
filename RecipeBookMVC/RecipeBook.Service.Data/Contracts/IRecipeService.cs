@@ -15,5 +15,10 @@ namespace RecipeBook.Service.Data.Contracts
 
         [OperationContract]
         IEnumerable<RecipeIngredientDto> GetRecipeIngredients(int id);
+
+        [OperationContract]
+        IEnumerable<RecipeDto> GetRecipesByIngredient(string ingredientName);
+
+
     }
 }

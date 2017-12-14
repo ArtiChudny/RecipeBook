@@ -46,3 +46,5 @@ E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Dependencies\bin\Debug\RecipeBoo
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Dependencies\obj\Debug\RecipeBook.Dependencies.csprojResolveAssemblyReference.cache
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Dependencies\obj\Debug\RecipeBook.Dependencies.dll
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Dependencies\obj\Debug\RecipeBook.Dependencies.pdb
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Dependencies\bin\Debug\Newtonsoft.Json.dll
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Dependencies\bin\Debug\Newtonsoft.Json.xml

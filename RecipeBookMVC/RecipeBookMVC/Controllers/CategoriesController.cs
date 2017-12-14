@@ -1,11 +1,10 @@
-﻿
-using System.Collections.Generic;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using RecipeBook.Business.Providers;
-using RecipeBookMVC.Models;
+
 
 namespace RecipeBookMVC.Controllers
 {
+
     public class CategoriesController : Controller
     {
         private ICategoryProvider provider;
@@ -19,7 +18,7 @@ namespace RecipeBookMVC.Controllers
 
         public ActionResult CategoriesList()
         {
-           
+
             return View(provider.GetCategories());
         }
 

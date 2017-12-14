@@ -18,7 +18,20 @@
                     <span class="icon-bar"></span>
                 </button>
                 @Html.ActionLink("Recipe Book", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+               
+                 <div style="position:absolute; right:10%; top:20%;">
+                    @if (HttpContext.Current.User.Identity.IsAuthenticated)
+                    {
+                        @Html.ActionLink("Logout", "Logout", "Login")
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Login", "Login", "Login")
+                    }
+                </div>
+
             </div>
+
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav"></ul>
             </div>

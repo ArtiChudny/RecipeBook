@@ -313,6 +313,12 @@ namespace RecipeBook.Data.RecipeService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/GetRecipeIngredients", ReplyAction="http://tempuri.org/IRecipeService/GetRecipeIngredientsResponse")]
         System.Threading.Tasks.Task<RecipeBook.Data.RecipeService.RecipeIngredientDto[]> GetRecipeIngredientsAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/GetRecipesByIngredient", ReplyAction="http://tempuri.org/IRecipeService/GetRecipesByIngredientResponse")]
+        RecipeBook.Data.RecipeService.RecipeDto[] GetRecipesByIngredient(string ingredientName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/GetRecipesByIngredient", ReplyAction="http://tempuri.org/IRecipeService/GetRecipesByIngredientResponse")]
+        System.Threading.Tasks.Task<RecipeBook.Data.RecipeService.RecipeDto[]> GetRecipesByIngredientAsync(string ingredientName);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -364,6 +370,14 @@ namespace RecipeBook.Data.RecipeService {
         
         public System.Threading.Tasks.Task<RecipeBook.Data.RecipeService.RecipeIngredientDto[]> GetRecipeIngredientsAsync(int id) {
             return base.Channel.GetRecipeIngredientsAsync(id);
+        }
+        
+        public RecipeBook.Data.RecipeService.RecipeDto[] GetRecipesByIngredient(string ingredientName) {
+            return base.Channel.GetRecipesByIngredient(ingredientName);
+        }
+        
+        public System.Threading.Tasks.Task<RecipeBook.Data.RecipeService.RecipeDto[]> GetRecipesByIngredientAsync(string ingredientName) {
+            return base.Channel.GetRecipesByIngredientAsync(ingredientName);
         }
     }
 }

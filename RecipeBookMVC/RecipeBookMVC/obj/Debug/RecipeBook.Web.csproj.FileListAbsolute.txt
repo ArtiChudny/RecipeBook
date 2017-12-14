@@ -120,3 +120,5 @@ E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\RecipeBook.Dependencies.p
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\RecipeBook.Data.pdb
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\obj\Debug\RecipeBook.Web.dll
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\obj\Debug\RecipeBook.Web.pdb
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\Newtonsoft.Json.dll
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\Newtonsoft.Json.xml
