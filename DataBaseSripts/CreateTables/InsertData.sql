@@ -74,3 +74,18 @@ values
 ('4','120','20 min','Pancake','Steps'),
 ('5','120','20 min','Cutlets','Steps')
 
+insert into Roles(RoleName)
+values
+('Admin'),
+('Editor')
+
+insert into Users(Login,Password,Email)
+values
+('admin','123','cook@gmail.com'),
+('editor','123','moder@gmail.com')
+
+insert into UsersRoles(UserId,RoleId)
+values
+(1, 1),
+(1, 2),
+(2, 2)
