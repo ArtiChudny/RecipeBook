@@ -7,7 +7,11 @@ namespace RecipeBook.Data.Clients
     {
         IEnumerable<RecipeDto> GetRecipes();
         RecipeDetailsDto GetDedails(int id);
+        IEnumerable<IngredientDto> GetIngredients();
         IEnumerable<RecipeIngredientDto> GetRecipeIngredients(int id);
-        IEnumerable<RecipeDto> GetRecipesByIngredient(string recipeName);
+        IEnumerable<RecipeDto> GetRecipesByIngredient(string ingredientName);
+        IEnumerable<RecipeDto> GetRecipesByName(string recipeName);
+        IEnumerable<RecipeDto> GetRecipesByCategory(string categoryName);
+        
     }
 }

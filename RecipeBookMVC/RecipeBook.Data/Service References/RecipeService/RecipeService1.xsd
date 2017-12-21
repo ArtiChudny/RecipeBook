@@ -13,6 +13,18 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetIngredients">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetIngredientsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/RecipeBook.Service.Data.ModelsDto" minOccurs="0" name="GetIngredientsResult" nillable="true" type="q2:ArrayOfIngredientDto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetDedails">
     <xs:complexType>
       <xs:sequence>
@@ -23,7 +35,7 @@
   <xs:element name="GetDedailsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/RecipeBook.Service.Data.ModelsDto" minOccurs="0" name="GetDedailsResult" nillable="true" type="q2:RecipeDetailsDto" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/RecipeBook.Service.Data.ModelsDto" minOccurs="0" name="GetDedailsResult" nillable="true" type="q3:RecipeDetailsDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -37,7 +49,7 @@
   <xs:element name="GetRecipeIngredientsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/RecipeBook.Service.Data.ModelsDto" minOccurs="0" name="GetRecipeIngredientsResult" nillable="true" type="q3:ArrayOfRecipeIngredientDto" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/RecipeBook.Service.Data.ModelsDto" minOccurs="0" name="GetRecipeIngredientsResult" nillable="true" type="q4:ArrayOfRecipeIngredientDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -51,7 +63,35 @@
   <xs:element name="GetRecipesByIngredientResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/RecipeBook.Service.Data.ModelsDto" minOccurs="0" name="GetRecipesByIngredientResult" nillable="true" type="q4:ArrayOfRecipeDto" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/RecipeBook.Service.Data.ModelsDto" minOccurs="0" name="GetRecipesByIngredientResult" nillable="true" type="q5:ArrayOfRecipeDto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRecipesByName">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="recipeName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRecipesByNameResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/RecipeBook.Service.Data.ModelsDto" minOccurs="0" name="GetRecipesByNameResult" nillable="true" type="q6:ArrayOfRecipeDto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRecipesByCategory">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="categoryName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRecipesByCategoryResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/RecipeBook.Service.Data.ModelsDto" minOccurs="0" name="GetRecipesByCategoryResult" nillable="true" type="q7:ArrayOfRecipeDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -50,6 +50,7 @@
     <Compile Include="Contracts\UserContract\IUserService.cs" />
     <Compile Include="Contracts\UserContract\UserService.cs" />
     <Compile Include="ModelsDto\CategoryDto.cs" />
+    <Compile Include="ModelsDto\IngredientDto.cs" />
     <Compile Include="ModelsDto\RecipeDetailsDto.cs" />
     <Compile Include="ModelsDto\RecipeDto.cs" />
     <Compile Include="ModelsDto\RecipeIngredientDto.cs" />

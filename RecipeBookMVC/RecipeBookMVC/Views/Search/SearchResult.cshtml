@@ -1,0 +1,37 @@
+﻿@model IEnumerable<RecipeBook.Common.Models.Recipe>
+
+
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+
+        <dl style="display: inline-block;margin-right:20px;">
+
+            <dd>
+                @Html.DisplayFor(modelItem => item.RecipeName)
+            </dd>
+            <dd>
+                @if (item.PhotoUrl == "")
+                {
+                    <img src="/no-image-available.png" />
+                }
+                else
+                {
+                    <img src="@item.PhotoUrl" />
+                }
+            </dd>
+            <dd>
+                @Html.RouteLink("Details", new { controller = "Home", action = "Details", _recipeId = item.RecipeId })
+            </dd>
+        </dl>
+
+    }
+}
+else
+{
+
+    <div style="margin-top:5%">
+        <p>Enter some parameters</p>
+    </div>
+}

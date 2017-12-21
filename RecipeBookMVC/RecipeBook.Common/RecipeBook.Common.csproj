@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Enums\LoginResult.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Ingredient.cs" />
     <Compile Include="Models\Recipe.cs" />
     <Compile Include="Models\RecipeDetails.cs" />
     <Compile Include="Models\RecipeIngredient.cs" />

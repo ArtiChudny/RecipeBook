@@ -28,8 +28,6 @@ namespace RecipeBookMVC.Controllers
                 return View(provider.GetRecipiesByCategory(_categoryId));
             }
 
-            
-
         }
     
         public ActionResult Details(int _recipeId)

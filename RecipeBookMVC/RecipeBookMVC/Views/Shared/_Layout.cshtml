@@ -7,6 +7,7 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -20,6 +21,7 @@
                 @Html.ActionLink("Recipe Book", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
                
                  <div style="position:absolute; right:10%; top:20%;">
+                    @Html.Label(HttpContext.Current.User.Identity.Name)
                     @if (HttpContext.Current.User.Identity.IsAuthenticated)
                     {
                         @Html.ActionLink("Logout", "Logout", "Login")
@@ -47,5 +49,7 @@
     <script src="~/Scripts/jquery-3.2.1.min.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
+    @RenderSection("scripts", required: false)
+   
 </body>
 </html>

@@ -120,6 +120,90 @@ namespace RecipeBook.Service.Data.Contracts
             sqlConnection.Close();
             return recipesList;
         }
+
+        public IEnumerable<RecipeDto> GetRecipesByName(string recipeName)
+        {
+            sqlConnection.ConnectionString = connectionString;
+            SqlCommand cmd = new SqlCommand("GetRecipeByName", sqlConnection)
+            { CommandType = CommandType.StoredProcedure };
+            cmd.Parameters.AddWithValue("@name", recipeName);
+
+            var recipesList = new List<RecipeDto>();
+
+            sqlConnection.Open();
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    var recipe = new RecipeDto()
+                    {
+                        RecipeId = reader.GetFieldValue<int>(0),
+                        RecipeName = reader.GetFieldValue<string>(1),
+                        CategoryId = reader.GetFieldValue<int>(2),
+                        PhotoUrl = reader.GetFieldValue<string>(3),
+                    };
+                    recipesList.Add(recipe);
+                }
+            };
+            sqlConnection.Close();
+            return recipesList;
+        }
+
+        public IEnumerable<RecipeDto> GetRecipesByCategory(string categoryName)
+        {
+            sqlConnection.ConnectionString = connectionString;
+            SqlCommand cmd = new SqlCommand("GetRecipesByCategory", sqlConnection)
+            { CommandType = CommandType.StoredProcedure };
+            cmd.Parameters.AddWithValue("@category", categoryName);
+
+            var recipesList = new List<RecipeDto>();
+
+            sqlConnection.Open();
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    var recipe = new RecipeDto()
+                    {
+                        RecipeId = reader.GetFieldValue<int>(0),
+                        RecipeName = reader.GetFieldValue<string>(1),
+                        CategoryId = reader.GetFieldValue<int>(2),
+                        PhotoUrl = reader.GetFieldValue<string>(3),
+                    };
+                    recipesList.Add(recipe);
+                }
+            };
+            sqlConnection.Close();
+            return recipesList;
+        }
+
+        public IEnumerable<IngredientDto> GetIngredients()
+        {
+            sqlConnection.ConnectionString = connectionString;
+            var ingredientList = new List<IngredientDto>();
+
+            using (var cmd = new SqlCommand("GetIngredients", sqlConnection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                sqlConnection.Open();
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var ingredient = new IngredientDto()
+                        {
+                            IngredientId = reader.GetFieldValue<int>(0),
+                            IngredientName = reader.GetFieldValue<string>(1),
+                        };
+                        ingredientList.Add(ingredient);
+                    }
+                };
+                sqlConnection.Close();
+            }
+            return ingredientList;
+        }
     }
 
 }

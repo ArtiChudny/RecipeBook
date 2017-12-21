@@ -79,9 +79,9 @@ namespace RecipeBook.Data.Repositories
             return recipeIngredients;
         }
 
-        public IEnumerable<Recipe> GetRecipesByIngredient(string recipeName)
+        public IEnumerable<Recipe> GetRecipesByIngredient(string ingredientName)
         {
-            IEnumerable<RecipeDto> recipesDto = recipeClient.GetRecipesByIngredient(recipeName);
+            IEnumerable<RecipeDto> recipesDto = recipeClient.GetRecipesByIngredient(ingredientName);
             List<Recipe> recipesList = new List<Recipe>();
             if (recipesDto != null)
             {
@@ -91,6 +91,48 @@ namespace RecipeBook.Data.Repositories
                 }
             }
             return recipesList;
+        }
+
+        public IEnumerable<Recipe> GetRecipesByName(string recipeName)
+        {
+            IEnumerable<RecipeDto> recipesDto = recipeClient.GetRecipesByName(recipeName);
+            List<Recipe> recipesList = new List<Recipe>();
+            if (recipesDto != null)
+            {
+                foreach (var item in recipesDto)
+                {
+                    recipesList.Add(converter.ToRecipe(item));
+                }
+            }
+            return recipesList;
+        }
+
+        public IEnumerable<Recipe> GetRecipesByCategory(string categoryName)
+        {
+            IEnumerable<RecipeDto> recipesDto = recipeClient.GetRecipesByCategory(categoryName);
+            List<Recipe> recipesList = new List<Recipe>();
+            if (recipesDto != null)
+            {
+                foreach (var item in recipesDto)
+                {
+                    recipesList.Add(converter.ToRecipe(item));
+                }
+            }
+            return recipesList;
+        }
+
+        public IEnumerable<Ingredient> GetIngredients()
+        {
+            IEnumerable<IngredientDto> ingredientsDto = recipeClient.GetIngredients();
+            List<Ingredient> ingredientsList = new List<Ingredient>();
+            if (ingredientsDto != null)
+            {
+                foreach (var item in ingredientsDto)
+                {
+                    ingredientsList.Add(converter.ToIngredient(item));
+                }
+            }
+            return ingredientsList;
         }
     }
 }

@@ -16,6 +16,15 @@ namespace RecipeBook.Data.Converters
             };
         }
 
+        public Ingredient ToIngredient(IngredientDto ingredientDto)
+        {
+            return new Ingredient
+            {
+                IngredientId = ingredientDto.IngredientId,
+                IngredientName = ingredientDto.IngredientName
+            };
+        }
+
         public Recipe ToRecipe(RecipeDto recipeDto)
         {
             return new Recipe()

@@ -108,6 +108,67 @@ namespace RecipeBook.Data.RecipeService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="IngredientDto", Namespace="http://schemas.datacontract.org/2004/07/RecipeBook.Service.Data.ModelsDto")]
+    [System.SerializableAttribute()]
+    public partial class IngredientDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IngredientIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string IngredientNameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IngredientId {
+            get {
+                return this.IngredientIdField;
+            }
+            set {
+                if ((this.IngredientIdField.Equals(value) != true)) {
+                    this.IngredientIdField = value;
+                    this.RaisePropertyChanged("IngredientId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string IngredientName {
+            get {
+                return this.IngredientNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IngredientNameField, value) != true)) {
+                    this.IngredientNameField = value;
+                    this.RaisePropertyChanged("IngredientName");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="RecipeDetailsDto", Namespace="http://schemas.datacontract.org/2004/07/RecipeBook.Service.Data.ModelsDto")]
     [System.SerializableAttribute()]
     public partial class RecipeDetailsDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -302,6 +363,12 @@ namespace RecipeBook.Data.RecipeService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/GetRecipes", ReplyAction="http://tempuri.org/IRecipeService/GetRecipesResponse")]
         System.Threading.Tasks.Task<RecipeBook.Data.RecipeService.RecipeDto[]> GetRecipesAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/GetIngredients", ReplyAction="http://tempuri.org/IRecipeService/GetIngredientsResponse")]
+        RecipeBook.Data.RecipeService.IngredientDto[] GetIngredients();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/GetIngredients", ReplyAction="http://tempuri.org/IRecipeService/GetIngredientsResponse")]
+        System.Threading.Tasks.Task<RecipeBook.Data.RecipeService.IngredientDto[]> GetIngredientsAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/GetDedails", ReplyAction="http://tempuri.org/IRecipeService/GetDedailsResponse")]
         RecipeBook.Data.RecipeService.RecipeDetailsDto GetDedails(int id);
         
@@ -319,6 +386,18 @@ namespace RecipeBook.Data.RecipeService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/GetRecipesByIngredient", ReplyAction="http://tempuri.org/IRecipeService/GetRecipesByIngredientResponse")]
         System.Threading.Tasks.Task<RecipeBook.Data.RecipeService.RecipeDto[]> GetRecipesByIngredientAsync(string ingredientName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/GetRecipesByName", ReplyAction="http://tempuri.org/IRecipeService/GetRecipesByNameResponse")]
+        RecipeBook.Data.RecipeService.RecipeDto[] GetRecipesByName(string recipeName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/GetRecipesByName", ReplyAction="http://tempuri.org/IRecipeService/GetRecipesByNameResponse")]
+        System.Threading.Tasks.Task<RecipeBook.Data.RecipeService.RecipeDto[]> GetRecipesByNameAsync(string recipeName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/GetRecipesByCategory", ReplyAction="http://tempuri.org/IRecipeService/GetRecipesByCategoryResponse")]
+        RecipeBook.Data.RecipeService.RecipeDto[] GetRecipesByCategory(string categoryName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/GetRecipesByCategory", ReplyAction="http://tempuri.org/IRecipeService/GetRecipesByCategoryResponse")]
+        System.Threading.Tasks.Task<RecipeBook.Data.RecipeService.RecipeDto[]> GetRecipesByCategoryAsync(string categoryName);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -356,6 +435,14 @@ namespace RecipeBook.Data.RecipeService {
             return base.Channel.GetRecipesAsync();
         }
         
+        public RecipeBook.Data.RecipeService.IngredientDto[] GetIngredients() {
+            return base.Channel.GetIngredients();
+        }
+        
+        public System.Threading.Tasks.Task<RecipeBook.Data.RecipeService.IngredientDto[]> GetIngredientsAsync() {
+            return base.Channel.GetIngredientsAsync();
+        }
+        
         public RecipeBook.Data.RecipeService.RecipeDetailsDto GetDedails(int id) {
             return base.Channel.GetDedails(id);
         }
@@ -378,6 +465,22 @@ namespace RecipeBook.Data.RecipeService {
         
         public System.Threading.Tasks.Task<RecipeBook.Data.RecipeService.RecipeDto[]> GetRecipesByIngredientAsync(string ingredientName) {
             return base.Channel.GetRecipesByIngredientAsync(ingredientName);
+        }
+        
+        public RecipeBook.Data.RecipeService.RecipeDto[] GetRecipesByName(string recipeName) {
+            return base.Channel.GetRecipesByName(recipeName);
+        }
+        
+        public System.Threading.Tasks.Task<RecipeBook.Data.RecipeService.RecipeDto[]> GetRecipesByNameAsync(string recipeName) {
+            return base.Channel.GetRecipesByNameAsync(recipeName);
+        }
+        
+        public RecipeBook.Data.RecipeService.RecipeDto[] GetRecipesByCategory(string categoryName) {
+            return base.Channel.GetRecipesByCategory(categoryName);
+        }
+        
+        public System.Threading.Tasks.Task<RecipeBook.Data.RecipeService.RecipeDto[]> GetRecipesByCategoryAsync(string categoryName) {
+            return base.Channel.GetRecipesByCategoryAsync(categoryName);
         }
     }
 }

@@ -13,6 +13,12 @@
   <wsdl:message name="IRecipeService_GetRecipes_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetRecipesResponse" />
   </wsdl:message>
+  <wsdl:message name="IRecipeService_GetIngredients_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetIngredients" />
+  </wsdl:message>
+  <wsdl:message name="IRecipeService_GetIngredients_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetIngredientsResponse" />
+  </wsdl:message>
   <wsdl:message name="IRecipeService_GetDedails_InputMessage">
     <wsdl:part name="parameters" element="tns:GetDedails" />
   </wsdl:message>
@@ -31,10 +37,26 @@
   <wsdl:message name="IRecipeService_GetRecipesByIngredient_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetRecipesByIngredientResponse" />
   </wsdl:message>
+  <wsdl:message name="IRecipeService_GetRecipesByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRecipesByName" />
+  </wsdl:message>
+  <wsdl:message name="IRecipeService_GetRecipesByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRecipesByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRecipeService_GetRecipesByCategory_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRecipesByCategory" />
+  </wsdl:message>
+  <wsdl:message name="IRecipeService_GetRecipesByCategory_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRecipesByCategoryResponse" />
+  </wsdl:message>
   <wsdl:portType name="IRecipeService">
     <wsdl:operation name="GetRecipes">
       <wsdl:input wsaw:Action="http://tempuri.org/IRecipeService/GetRecipes" message="tns:IRecipeService_GetRecipes_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IRecipeService/GetRecipesResponse" message="tns:IRecipeService_GetRecipes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetIngredients">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRecipeService/GetIngredients" message="tns:IRecipeService_GetIngredients_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRecipeService/GetIngredientsResponse" message="tns:IRecipeService_GetIngredients_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetDedails">
       <wsdl:input wsaw:Action="http://tempuri.org/IRecipeService/GetDedails" message="tns:IRecipeService_GetDedails_InputMessage" />
@@ -48,11 +70,28 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IRecipeService/GetRecipesByIngredient" message="tns:IRecipeService_GetRecipesByIngredient_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IRecipeService/GetRecipesByIngredientResponse" message="tns:IRecipeService_GetRecipesByIngredient_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetRecipesByName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRecipeService/GetRecipesByName" message="tns:IRecipeService_GetRecipesByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRecipeService/GetRecipesByNameResponse" message="tns:IRecipeService_GetRecipesByName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRecipesByCategory">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRecipeService/GetRecipesByCategory" message="tns:IRecipeService_GetRecipesByCategory_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRecipeService/GetRecipesByCategoryResponse" message="tns:IRecipeService_GetRecipesByCategory_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IRecipeService" type="tns:IRecipeService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GetRecipes">
       <soap:operation soapAction="http://tempuri.org/IRecipeService/GetRecipes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetIngredients">
+      <soap:operation soapAction="http://tempuri.org/IRecipeService/GetIngredients" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -80,6 +119,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetRecipesByIngredient">
       <soap:operation soapAction="http://tempuri.org/IRecipeService/GetRecipesByIngredient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRecipesByName">
+      <soap:operation soapAction="http://tempuri.org/IRecipeService/GetRecipesByName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRecipesByCategory">
+      <soap:operation soapAction="http://tempuri.org/IRecipeService/GetRecipesByCategory" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

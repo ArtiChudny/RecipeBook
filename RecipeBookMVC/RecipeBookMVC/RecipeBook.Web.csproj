@@ -132,6 +132,7 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\MyScripts\SearchScript.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -157,8 +158,10 @@
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\DetailsViewModel.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
+    <Compile Include="Models\JsonAttribute.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\Principal\UserPrincipal.cs" />
+    <Compile Include="Models\SearchViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -177,6 +180,9 @@
     <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\Access\Denied.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Search\Search.cshtml" />
+    <Content Include="Views\Search\SearchResult.cshtml" />
+    <Content Include="Views\Search\SearchBar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -186,7 +192,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Search\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RecipeBook.Business\RecipeBook.Business.csproj">

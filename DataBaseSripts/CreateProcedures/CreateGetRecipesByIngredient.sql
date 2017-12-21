@@ -1,3 +1,5 @@
+USE [RecipeBook]
+GO
 CREATE PROCEDURE GetRecipesByIngredient
 @ingredient nvarchar(50)
 AS
@@ -7,4 +9,4 @@ RecipesIngredients ON
 Recipes.RecipeId=RecipesIngredients.RecipeId
 INNER JOIN Ingredients ON
 RecipesIngredients.IngredientId = Ingredients.IngredientId
-WHERE Ingredients.IngredientId = (Select IngredientId FROM Ingredients WHERE IngredientName = @ingredient)
+WHERE Ingredients.IngredientName = @ingredient

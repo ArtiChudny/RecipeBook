@@ -18,7 +18,6 @@ namespace RecipeBookMVC.Controllers
 
         public ActionResult CategoriesList()
         {
-
             return View(provider.GetCategories());
         }
 

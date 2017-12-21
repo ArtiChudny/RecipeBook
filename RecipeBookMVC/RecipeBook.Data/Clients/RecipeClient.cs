@@ -17,6 +17,18 @@ namespace RecipeBook.Data.Clients
             return detailsDto;
         }
 
+        public IEnumerable<IngredientDto> GetIngredients()
+        {
+            List<IngredientDto> ingredientsDto = new List<IngredientDto>();
+            using (RecipeServiceClient client = new RecipeServiceClient())
+            {
+                client.Open();
+                ingredientsDto.AddRange(client.GetIngredients());
+                client.Close();
+            }
+            return ingredientsDto;
+        }
+
         public IEnumerable<RecipeIngredientDto> GetRecipeIngredients(int id)
         {
             List<RecipeIngredientDto> ingredientsDto = new List<RecipeIngredientDto>();
@@ -41,13 +53,37 @@ namespace RecipeBook.Data.Clients
             return recipiesDto;
         }
 
-        public IEnumerable<RecipeDto> GetRecipesByIngredient(string recipeName)
+        public IEnumerable<RecipeDto> GetRecipesByCategory(string categoryName)
         {
             List<RecipeDto> recipesDto = new List<RecipeDto>();
             using (RecipeServiceClient client = new RecipeServiceClient())
             {
                 client.Open();
-                recipesDto.AddRange(client.GetRecipesByIngredient(recipeName));
+                recipesDto.AddRange(client.GetRecipesByCategory(categoryName));
+                client.Close();
+            }
+            return recipesDto;
+        }
+
+        public IEnumerable<RecipeDto> GetRecipesByIngredient(string ingredientName)
+        {
+            List<RecipeDto> recipesDto = new List<RecipeDto>();
+            using (RecipeServiceClient client = new RecipeServiceClient())
+            {
+                client.Open();
+                recipesDto.AddRange(client.GetRecipesByIngredient(ingredientName));
+                client.Close();
+            }
+            return recipesDto;
+        }
+
+        public IEnumerable<RecipeDto> GetRecipesByName(string recipeName)
+        {
+            List<RecipeDto> recipesDto = new List<RecipeDto>();
+            using (RecipeServiceClient client = new RecipeServiceClient())
+            {
+                client.Open();
+                recipesDto.AddRange(client.GetRecipesByName(recipeName));
                 client.Close();
             }
             return recipesDto;

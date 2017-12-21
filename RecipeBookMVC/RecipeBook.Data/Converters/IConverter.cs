@@ -13,5 +13,6 @@ namespace RecipeBook.Data.Converters
         RecipeIngredient ToRecipeIngredient(RecipeIngredientDto recipeDto);
         User ToUser(UserDto userDto);
         Role ToRole(RoleDto roleDto);
+        Ingredient ToIngredient(IngredientDto ingredientDto);
     }
 }
