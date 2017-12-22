@@ -40,19 +40,19 @@ namespace RecipeBook.Web.Controllers
                 if (model.CategoryName == null && model.IngredientName == null)
                 {
                     recipes = recipeProvider.GetRecipesByName(model.RecipeName);
-                    return View("SearchResult", recipes);
+                    return PartialView("SearchResult", recipes);
                 }
 
                 if (model.CategoryName == null && model.RecipeName == null)
                 {
                     recipes = recipeProvider.GetRecipesByIngredient(model.IngredientName);
-                    return View("SearchResult", recipes);
+                    return PartialView("SearchResult", recipes);
                 }
 
                 if (model.IngredientName == null && model.RecipeName == null)
                 {
                     recipes = recipeProvider.GetRecipesByCategory(model.CategoryName);
-                    return View("SearchResult", recipes);
+                    return PartialView("SearchResult", recipes);
                 }
 
                 if (model.IngredientName == null)
@@ -75,7 +75,6 @@ namespace RecipeBook.Web.Controllers
                 }
 
             }
-
             else
             {
                 var category = categoryProvider.GetCategories().FirstOrDefault(x => x.CategoryName.Contains(model.CategoryName));
@@ -83,12 +82,14 @@ namespace RecipeBook.Web.Controllers
                 recipes = recipes.Where(x => x.RecipeName.Contains(model.RecipeName));
                 return PartialView("SearchResult", recipes);
             }
-
+           
             return PartialView("SearchResult");
         }
 
         public ActionResult Search()
         {
+            ViewBag.categories = categoryProvider.GetCategories();
+            ViewBag.ingredients = recipeProvider.GetIngredients();
             return View();
         }
     }

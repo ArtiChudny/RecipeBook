@@ -1,18 +1,29 @@
 ﻿@model IEnumerable<RecipeBook.Common.Models.Recipe>
 
 
-@if (Model != null)
+@if (Model == null)
+{
+<div style="margin-top:5%">
+    <h3>Enter some parameters</h3>
+</div>
+}
+else if (Model.Count() == 0)
+{
+    <div style="margin-top:5%">
+        <h3>Sorry, there are no recipes with such parameters.</h3>
+    </div>
+}
+else
 {
     foreach (var item in Model)
     {
-
         <dl style="display: inline-block;margin-right:20px;">
 
             <dd>
                 @Html.DisplayFor(modelItem => item.RecipeName)
             </dd>
             <dd>
-                @if (item.PhotoUrl == "")
+                @if (item.PhotoUrl.IsEmpty())
                 {
                     <img src="/no-image-available.png" />
                 }
@@ -27,11 +38,4 @@
         </dl>
 
     }
-}
-else
-{
-
-    <div style="margin-top:5%">
-        <p>Enter some parameters</p>
-    </div>
 }
