@@ -9,5 +9,11 @@ namespace RecipeBook.Service.Data.Contracts.CategoryContract
     {
         [OperationContract]
         IEnumerable<CategoryDto> GetCategories();
+        [OperationContract]
+        void AddCategory(CategoryDto category);
+        [OperationContract]
+        void DeleteCategory(int categoryId);
+        [OperationContract]
+        void UpdateCategory(CategoryDto category);
     }
 }

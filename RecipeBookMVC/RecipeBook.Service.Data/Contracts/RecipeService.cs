@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -85,6 +86,7 @@ namespace RecipeBook.Service.Data.Contracts
                         RecipeId = reader.GetFieldValue<int>(0),
                         IngredientName = reader.GetFieldValue<string>(1),
                         Weight = reader.GetFieldValue<string>(2),
+                        IngredientId = reader.GetFieldValue<int>(3)
                     };
                     recipeIngredientsList.Add(recipeIngredient);
                 }
@@ -203,6 +205,226 @@ namespace RecipeBook.Service.Data.Contracts
                 sqlConnection.Close();
             }
             return ingredientList;
+        }
+
+
+        public void AddIngredient(IngredientDto ingredient)
+        {
+            sqlConnection.ConnectionString = connectionString;
+            using (var cmd = new SqlCommand("AddIngredient", sqlConnection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ingredientName", ingredient.IngredientName);
+                try
+                {
+                    sqlConnection.Open();
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+        }
+
+        public void DeleteIngredient(int ingredientId)
+        {
+            sqlConnection.ConnectionString = connectionString;
+            using (var cmd = new SqlCommand("DeleteIngredient", sqlConnection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ingredientId", ingredientId);
+                try
+                {
+                    sqlConnection.Open();
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+        }
+
+        public void UpdateIngredient(IngredientDto ingredient)
+        {
+            sqlConnection.ConnectionString = connectionString;
+            using (var cmd = new SqlCommand("UpdateIngredient", sqlConnection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ingredientId", ingredient.IngredientId);
+                cmd.Parameters.AddWithValue("@ingredientName", ingredient.IngredientName);
+                try
+                {
+                    sqlConnection.Open();
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+        }
+
+        public void AddRecipeIngredient(RecipeIngredientDto recipeIngredient)
+        {
+            sqlConnection.ConnectionString = connectionString;
+            using (var cmd = new SqlCommand("AddRecipeIngredient", sqlConnection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@recipeId", recipeIngredient.RecipeId);
+                cmd.Parameters.AddWithValue("@ingredientId", recipeIngredient.IngredientId);
+                cmd.Parameters.AddWithValue("@weight", recipeIngredient.Weight);
+                try
+                {
+                    sqlConnection.Open();
+                    cmd.ExecuteNonQuery();
+                    sqlConnection.Close();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+        }
+
+        public void DeleteRecipeIngredient(int recipeId, int ingredientId)
+        {
+            sqlConnection.ConnectionString = connectionString;
+            using (var cmd = new SqlCommand("DeleteRecipeIngredient", sqlConnection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@recipeId", recipeId);
+                cmd.Parameters.AddWithValue("@ingredientId", ingredientId);
+                try
+                {
+                    sqlConnection.Open();
+                    cmd.ExecuteNonQuery();
+                    sqlConnection.Close();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+        }
+
+        public void AddRecipe(RecipeDto recipe)
+        {
+            int recipeId;
+            sqlConnection.ConnectionString = connectionString;
+            using (var cmd = new SqlCommand("AddRecipe", sqlConnection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@recipeName", recipe.RecipeName);
+                cmd.Parameters.AddWithValue("@categoryId", recipe.CategoryId);
+                cmd.Parameters.AddWithValue("@photoUrl", recipe.PhotoUrl);
+                try
+                {
+                    sqlConnection.Open();
+                    recipeId = Convert.ToInt32(cmd.ExecuteScalar());
+                    recipe.Details.RecipeId = recipeId;
+                    sqlConnection.Close();
+                    AddRecipeDetails(recipe.Details);
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+        }
+
+        public void DeleteRecipe(int recipeId)
+        {
+            sqlConnection.ConnectionString = connectionString;
+            using (var cmd = new SqlCommand("DeleteRecipe", sqlConnection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@recipeId", recipeId);
+                try
+                {
+                    sqlConnection.Open();
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+        }
+
+        public void UpdateRecipe(RecipeDto recipe)
+        {
+            sqlConnection.ConnectionString = connectionString;
+            using (var cmd = new SqlCommand("UpdateRecipe", sqlConnection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@recipeId", recipe.RecipeId);
+                cmd.Parameters.AddWithValue("@recipeName", recipe.RecipeName);
+                cmd.Parameters.AddWithValue("@categoryId", recipe.CategoryId);
+                cmd.Parameters.AddWithValue("@photoUrl", recipe.PhotoUrl);
+                try
+                {
+                    sqlConnection.Open();
+                    cmd.ExecuteNonQuery();
+                    sqlConnection.Close();
+                    UpdateRecipeDetails(recipe.Details);
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+        }
+
+        public void AddRecipeDetails(RecipeDetailsDto details)
+        {
+            sqlConnection.ConnectionString = connectionString;
+            using (var cmd = new SqlCommand("AddRecipeDetails", sqlConnection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@recipeId", details.RecipeId);
+                cmd.Parameters.AddWithValue("@description", details.Description);
+                cmd.Parameters.AddWithValue("@time", details.CookingTime);
+                cmd.Parameters.AddWithValue("@temperature", details.CookingTemperature);
+                cmd.Parameters.AddWithValue("@steps", details.Steps);
+                try
+                {
+                    sqlConnection.Open();
+                    cmd.ExecuteNonQuery();
+                    sqlConnection.Close();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+
+
+        }
+
+        public void UpdateRecipeDetails(RecipeDetailsDto details)
+        {
+            sqlConnection.ConnectionString = connectionString;
+            using (var cmd = new SqlCommand("UpdateRecipeDetails", sqlConnection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@recipeId", details.RecipeId);
+                cmd.Parameters.AddWithValue("@description", details.Description);
+                cmd.Parameters.AddWithValue("@time", details.CookingTime);
+                cmd.Parameters.AddWithValue("@temperature", details.CookingTemperature);
+                cmd.Parameters.AddWithValue("@steps", details.Steps);
+                try
+                {
+                    sqlConnection.Open();
+                    cmd.ExecuteNonQuery();
+                    sqlConnection.Close();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
         }
     }
 

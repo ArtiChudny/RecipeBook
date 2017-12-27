@@ -13,5 +13,7 @@ namespace RecipeBook.Service.Data.ModelsDto
         public string PhotoUrl { get; set; }
         [DataMember]
         public int CategoryId { get; set; }
+        [DataMember]
+        public RecipeDetailsDto Details { get; set; }
     }
 }

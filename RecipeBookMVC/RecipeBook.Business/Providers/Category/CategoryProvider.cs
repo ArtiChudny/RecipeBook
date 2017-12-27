@@ -18,5 +18,19 @@ namespace RecipeBook.Business.Providers
             return dataProvider.GetCategories();
         }
 
+        public void AddCategory(Category category)
+        {
+            dataProvider.AddCategory(category);
+        }
+
+        public void DeleteCategory(int categoryId)
+        {
+            dataProvider.DeleteCategory(categoryId);
+        }
+     
+        public void UpdateCategory(Category category)
+        {
+            dataProvider.UpdateCategory(category);
+        }
     }
 }

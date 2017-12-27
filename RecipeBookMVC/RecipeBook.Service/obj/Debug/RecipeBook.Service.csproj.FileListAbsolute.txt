@@ -18,3 +18,5 @@ E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Service\bin\RecipeBook.Service.D
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Service\obj\Debug\RecipeBook.Service.csprojResolveAssemblyReference.cache
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Service\obj\Debug\RecipeBook.Service.dll
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Service\obj\Debug\RecipeBook.Service.pdb
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Service\bin\log4net.dll
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Service\bin\log4net.xml

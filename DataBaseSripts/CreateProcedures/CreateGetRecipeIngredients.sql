@@ -1,7 +1,9 @@
+USE RecipeBook
+GO
 CREATE PROCEDURE GetRecipeIngredients
 @Id int
 AS
-Select RecipesIngredients.RecipeId, Ingredients.IngredientName, RecipesIngredients.Weight
+Select RecipesIngredients.RecipeId, Ingredients.IngredientName, RecipesIngredients.Weight, Ingredients.IngredientId
 FROM RecipesIngredients
 INNER JOIN Ingredients ON
 RecipesIngredients.IngredientId=Ingredients.IngredientId

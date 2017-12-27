@@ -54,5 +54,54 @@ namespace RecipeBook.Business.Providers
             return dataProvider.GetRecipies().Where(x => x.CategoryId == id).ToList();
         }
 
+        public void AddIngredient(Ingredient ingredient)
+        {
+            dataProvider.AddIngredient(ingredient);
+        }
+
+        public void AddRecipe(Recipe recipe)
+        {
+            dataProvider.AddRecipe(recipe);
+        }
+
+        public void AddRecipeDetails(RecipeDetails details)
+        {
+            dataProvider.AddRecipeDetails(details);
+        }
+
+        public void AddRecipeIngredient(int recipeId, int ingredientId)
+        {
+            dataProvider.AddRecipeIngredient(recipeId, ingredientId);
+        }
+
+        public void DeleteIngredient(int ingredientId)
+        {
+            dataProvider.DeleteIngredient(ingredientId);
+        }
+
+        public void DeleteRecipe(int recipeId)
+        {
+            dataProvider.DeleteRecipe(recipeId);
+        }
+
+        public void DeleteRecipeIngredient(int recipeId, int ingredientId)
+        {
+            dataProvider.DeleteRecipeIngredient(recipeId, ingredientId);
+        }
+
+        public void UpdateIngredient(Ingredient ingredient)
+        {
+            dataProvider.UpdateIngredient(ingredient);
+        }
+
+        public void UpdateRecipe(Recipe recipe)
+        {
+            dataProvider.UpdateRecipe(recipe);
+        }
+
+        public void UpdateRecipeDetails(RecipeDetails details)
+        {
+            dataProvider.UpdateRecipeDetails(details);
+        }
     }
 }

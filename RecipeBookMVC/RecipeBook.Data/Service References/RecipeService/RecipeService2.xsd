@@ -9,12 +9,23 @@
   <xs:complexType name="RecipeDto">
     <xs:sequence>
       <xs:element minOccurs="0" name="CategoryId" type="xs:int" />
+      <xs:element minOccurs="0" name="Details" nillable="true" type="tns:RecipeDetailsDto" />
       <xs:element minOccurs="0" name="PhotoUrl" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="RecipeId" type="xs:int" />
       <xs:element minOccurs="0" name="RecipeName" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="RecipeDto" nillable="true" type="tns:RecipeDto" />
+  <xs:complexType name="RecipeDetailsDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CookingTemperature" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CookingTime" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RecipeId" type="xs:int" />
+      <xs:element minOccurs="0" name="Steps" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RecipeDetailsDto" nillable="true" type="tns:RecipeDetailsDto" />
   <xs:complexType name="ArrayOfIngredientDto">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="IngredientDto" nillable="true" type="tns:IngredientDto" />
@@ -28,16 +39,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="IngredientDto" nillable="true" type="tns:IngredientDto" />
-  <xs:complexType name="RecipeDetailsDto">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="CookingTemperature" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CookingTime" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="RecipeId" type="xs:int" />
-      <xs:element minOccurs="0" name="Steps" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="RecipeDetailsDto" nillable="true" type="tns:RecipeDetailsDto" />
   <xs:complexType name="ArrayOfRecipeIngredientDto">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="RecipeIngredientDto" nillable="true" type="tns:RecipeIngredientDto" />
@@ -46,6 +47,7 @@
   <xs:element name="ArrayOfRecipeIngredientDto" nillable="true" type="tns:ArrayOfRecipeIngredientDto" />
   <xs:complexType name="RecipeIngredientDto">
     <xs:sequence>
+      <xs:element minOccurs="0" name="IngredientId" type="xs:int" />
       <xs:element minOccurs="0" name="IngredientName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="RecipeId" type="xs:int" />
       <xs:element minOccurs="0" name="Weight" nillable="true" type="xs:string" />

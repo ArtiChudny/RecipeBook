@@ -1,7 +1,9 @@
 ﻿using RecipeBook.Common.Models;
+using System.Linq;
 using RecipeBook.Data.RecipeService;
 using RecipeBook.Data.CategoryService;
 using RecipeBook.Data.UserService;
+using System.Collections.Generic;
 
 namespace RecipeBook.Data.Converters
 {
@@ -16,12 +18,30 @@ namespace RecipeBook.Data.Converters
             };
         }
 
+        public CategoryDto ToCategoryDto(Category category)
+        {
+            return new CategoryDto()
+            {
+                CategoryId = category.CategoryId,
+                CategoryName = category.CategoryName
+            };
+        }
+
         public Ingredient ToIngredient(IngredientDto ingredientDto)
         {
             return new Ingredient
             {
                 IngredientId = ingredientDto.IngredientId,
                 IngredientName = ingredientDto.IngredientName
+            };
+        }
+
+        public IngredientDto ToIngredientDto(Ingredient ingredient)
+        {
+            return new IngredientDto()
+            {
+                IngredientId = ingredient.IngredientId,
+                IngredientName = ingredient.IngredientName
             };
         }
 
@@ -32,7 +52,8 @@ namespace RecipeBook.Data.Converters
                 RecipeId = recipeDto.RecipeId,
                 CategoryId = recipeDto.CategoryId,
                 RecipeName = recipeDto.RecipeName,
-                PhotoUrl = recipeDto.PhotoUrl
+                PhotoUrl = recipeDto.PhotoUrl,
+                Details = ToRecipeDetails(recipeDto.Details)
             };
         }
 
@@ -48,13 +69,49 @@ namespace RecipeBook.Data.Converters
             };
         }
 
+        public RecipeDetailsDto ToRecipeDetailsDto(RecipeDetails details)
+        {
+            return new RecipeDetailsDto()
+            {
+                RecipeId = details.RecipeId,
+                CookingTemperature = details.CookingTemperature,
+                CookingTime = details.CookingTime,
+                Description = details.Description,
+                Steps = details.Steps
+            };
+        }
+
+        public RecipeDto ToRecipeDto(Recipe recipe)
+        {
+            return new RecipeDto()
+            {
+                RecipeId = recipe.RecipeId,
+                RecipeName = recipe.RecipeName,
+                PhotoUrl = recipe.PhotoUrl,
+                CategoryId = recipe.CategoryId,
+                Details = ToRecipeDetailsDto(recipe.Details)
+            };
+        }
+
         public RecipeIngredient ToRecipeIngredient(RecipeIngredientDto recipeDto)
         {
             return new RecipeIngredient
             {
                 RecipeId = recipeDto.RecipeId,
                 IngredientName = recipeDto.IngredientName,
-                Weight = recipeDto.Weight
+                Weight = recipeDto.Weight,
+                IngredientId = recipeDto.IngredientId
+            };
+        }
+
+        public RecipeIngredientDto ToRecipeIngredientDto(RecipeIngredient recipeIngredient)
+        {
+            return new RecipeIngredientDto()
+            {
+                RecipeId = recipeIngredient.RecipeId,
+                IngredientName = recipeIngredient.IngredientName,
+                Weight = recipeIngredient.IngredientName,
+                IngredientId = recipeIngredient.IngredientId
             };
         }
 
@@ -67,6 +124,38 @@ namespace RecipeBook.Data.Converters
             };
         }
 
+        public RoleDto ToRoleDto(Role role)
+        {
+            return new RoleDto
+            {
+                RoleId = role.RoleId,
+                RoleName = role.RoleName
+            };
+        }
+
+        public IEnumerable<Role> ToRoles(IEnumerable<RoleDto> rolesDto)
+        {
+            List<Role> roles = new List<Role>();
+            foreach (var item in rolesDto)
+            {
+                roles.Add(ToRole(item));
+            }
+            return roles;
+        }
+
+        public IEnumerable<RoleDto> ToRolesDto(IEnumerable<Role> roles)
+        {
+            List<RoleDto> rolesDto = new List<RoleDto>();
+            if (roles != null)
+            {
+                foreach (var item in roles)
+                {
+                    rolesDto.Add(ToRoleDto(item));
+                }
+            }
+            return rolesDto;
+        }
+
         public User ToUser(UserDto userDto)
         {
             return new User
@@ -74,7 +163,20 @@ namespace RecipeBook.Data.Converters
                 UserId = userDto.UserId,
                 Login = userDto.Login,
                 Password = userDto.Password,
-                Email = userDto.Email
+                Email = userDto.Email,
+                Roles = ToRoles(userDto.UserRoles).ToArray()
+            };
+        }
+
+        public UserDto ToUserDto(User user)
+        {
+            return new UserDto
+            {
+                UserId = user.UserId,
+                Login = user.Login,
+                Password = user.Password,
+                Email = user.Email,
+                UserRoles = ToRolesDto(user.Roles).ToArray()
             };
         }
     }

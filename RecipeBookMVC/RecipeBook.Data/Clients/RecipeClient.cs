@@ -5,6 +5,7 @@ namespace RecipeBook.Data.Clients
 {
     public class RecipeClient : IRecipeClient
     {
+
         public RecipeDetailsDto GetDedails(int id)
         {
             RecipeDetailsDto detailsDto = new RecipeDetailsDto();
@@ -87,6 +88,106 @@ namespace RecipeBook.Data.Clients
                 client.Close();
             }
             return recipesDto;
+        }
+
+        public void AddIngredient(IngredientDto ingredient)
+        {
+            using (RecipeServiceClient client = new RecipeServiceClient())
+            {
+                client.Open();
+                client.AddIngredient(ingredient);
+                client.Close();
+            }
+        }
+
+        public void AddRecipe(RecipeDto recipe)
+        {
+            using (RecipeServiceClient client = new RecipeServiceClient())
+            {
+                client.Open();
+                client.AddRecipe(recipe);
+                client.Close();
+            }
+        }
+
+        public void AddRecipeDetails(RecipeDetailsDto details)
+        {
+            using (RecipeServiceClient client = new RecipeServiceClient())
+            {
+                client.Open();
+                client.AddRecipeDetails(details);
+                client.Close();
+            }
+        }
+
+        public void AddRecipeIngredient(int recipeId, int ingredientId)
+        {
+            using (RecipeServiceClient client = new RecipeServiceClient())
+            {
+                client.Open();
+                client.AddRecipeIngredient(recipeId, ingredientId);
+                client.Close();
+            }
+        }
+
+        public void DeleteIngredient(int ingredientId)
+        {
+            using (RecipeServiceClient client = new RecipeServiceClient())
+            {
+                client.Open();
+                client.DeleteIngredient(ingredientId);
+                client.Close();
+            }
+        }
+
+        public void DeleteRecipe(int recipeId)
+        {
+            using (RecipeServiceClient client = new RecipeServiceClient())
+            {
+                client.Open();
+                client.DeleteIngredient(recipeId);
+                client.Close();
+            }
+        }
+
+        public void DeleteRecipeIngredient(int recipeId, int ingredientId)
+        {
+            using (RecipeServiceClient client = new RecipeServiceClient())
+            {
+                client.Open();
+                client.DeleteRecipeIngredient(recipeId, ingredientId);
+                client.Close();
+            }
+        }
+
+        public void UpdateIngredient(IngredientDto ingredient)
+        {
+            using (RecipeServiceClient client = new RecipeServiceClient())
+            {
+                client.Open();
+                client.UpdateIngredient(ingredient);
+                client.Close();
+            }
+        }
+
+        public void UpdateRecipe(RecipeDto recipe)
+        {
+            using (RecipeServiceClient client = new RecipeServiceClient())
+            {
+                client.Open();
+                client.UpdateRecipe(recipe);
+                client.Close();
+            }
+        }
+
+        public void UpdateRecipeDetails(RecipeDetailsDto details)
+        {
+            using (RecipeServiceClient client = new RecipeServiceClient())
+            {
+                client.Open();
+                client.UpdateRecipeDetails(details);
+                client.Close();
+            }
         }
     }
 }

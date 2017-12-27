@@ -13,5 +13,19 @@ namespace RecipeBook.Business.Providers
         IEnumerable<Recipe> GetRecipesByIngredient(string ingredientName);
         IEnumerable<Recipe> GetRecipesByName(string recipeName);
         IEnumerable<Recipe> GetRecipesByCategory(string categoryName);
+
+        void AddIngredient(Ingredient ingredient);
+        void DeleteIngredient(int ingredientId);
+        void UpdateIngredient(Ingredient ingredient);
+
+        void AddRecipeIngredient(int recipeId, int ingredientId);
+        void DeleteRecipeIngredient(int recipeId, int ingredientId);
+
+        void AddRecipe(Recipe recipe);
+        void DeleteRecipe(int recipeId);
+        void UpdateRecipe(Recipe recipe);
+
+        void AddRecipeDetails(RecipeDetails details);
+        void UpdateRecipeDetails(RecipeDetails details);
     }
 }

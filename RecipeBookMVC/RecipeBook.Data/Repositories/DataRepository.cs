@@ -134,5 +134,70 @@ namespace RecipeBook.Data.Repositories
             }
             return ingredientsList;
         }
+
+        public void AddCategory(Category category)
+        {
+            categoryClient.AddCategory(converter.ToCategoryDto(category));
+        }
+
+        public void DeleteCategory(int categoryId)
+        {
+            categoryClient.DeleteCategory(categoryId);
+        }
+
+        public void UpdateCategory(Category category)
+        {
+            categoryClient.UpdateCategory(converter.ToCategoryDto(category));
+        }
+
+        public void AddIngredient(Ingredient ingredient)
+        {
+            recipeClient.AddIngredient(converter.ToIngredientDto(ingredient));
+        }
+
+        public void DeleteIngredient(int ingredientId)
+        {
+            recipeClient.DeleteIngredient(ingredientId);
+        }
+
+        public void UpdateIngredient(Ingredient ingredient)
+        {
+            recipeClient.UpdateIngredient(converter.ToIngredientDto(ingredient));
+        }
+
+        public void AddRecipeIngredient(int recipeId, int ingredientId)
+        {
+            recipeClient.AddRecipeIngredient(recipeId, ingredientId);
+        }
+
+        public void DeleteRecipeIngredient(int recipeId, int ingredientId)
+        {
+            recipeClient.DeleteRecipeIngredient(recipeId, ingredientId);
+        }
+
+        public void AddRecipe(Recipe recipe)
+        {
+            recipeClient.AddRecipe(converter.ToRecipeDto(recipe));
+        }
+
+        public void DeleteRecipe(int recipeId)
+        {
+            recipeClient.DeleteRecipe(recipeId);
+        }
+
+        public void UpdateRecipe(Recipe recipe)
+        {
+            recipeClient.UpdateRecipe(converter.ToRecipeDto(recipe));
+        }
+
+        public void AddRecipeDetails(RecipeDetails details)
+        {
+            recipeClient.AddRecipeDetails(converter.ToRecipeDetailsDto(details));
+        }
+
+        public void UpdateRecipeDetails(RecipeDetails details)
+        {
+            recipeClient.UpdateRecipeDetails(converter.ToRecipeDetailsDto(details));
+        }
     }
 }

@@ -19,11 +19,47 @@
   <wsdl:message name="IUserService_GetRoles_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetRolesResponse" />
   </wsdl:message>
-  <wsdl:message name="IUserService_GetRolesByLogin_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetRolesByLogin" />
+  <wsdl:message name="IUserService_GetUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsers" />
   </wsdl:message>
-  <wsdl:message name="IUserService_GetRolesByLogin_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetRolesByLoginResponse" />
+  <wsdl:message name="IUserService_GetUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_GetUserRoles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserRoles" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_GetUserRoles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserRolesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_AddUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddUser" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_AddUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_DeleteUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUser" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_DeleteUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_UpdateUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUser" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_UpdateUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_AddUserRole_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserRole" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_AddUserRole_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserRoleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_DeleteUserRoles_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserRoles" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_DeleteUserRoles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserRolesResponse" />
   </wsdl:message>
   <wsdl:portType name="IUserService">
     <wsdl:operation name="GetUserByLogin">
@@ -34,9 +70,33 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IUserService/GetRoles" message="tns:IUserService_GetRoles_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUserService/GetRolesResponse" message="tns:IUserService_GetRoles_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetRolesByLogin">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/GetRolesByLogin" message="tns:IUserService_GetRolesByLogin_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/GetRolesByLoginResponse" message="tns:IUserService_GetRolesByLogin_OutputMessage" />
+    <wsdl:operation name="GetUsers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/GetUsers" message="tns:IUserService_GetUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/GetUsersResponse" message="tns:IUserService_GetUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserRoles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/GetUserRoles" message="tns:IUserService_GetUserRoles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/GetUserRolesResponse" message="tns:IUserService_GetUserRoles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/AddUser" message="tns:IUserService_AddUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/AddUserResponse" message="tns:IUserService_AddUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/DeleteUser" message="tns:IUserService_DeleteUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/DeleteUserResponse" message="tns:IUserService_DeleteUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/UpdateUser" message="tns:IUserService_UpdateUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/UpdateUserResponse" message="tns:IUserService_UpdateUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddUserRole">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/AddUserRole" message="tns:IUserService_AddUserRole_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/AddUserRoleResponse" message="tns:IUserService_AddUserRole_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserRoles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/DeleteUserRoles" message="tns:IUserService_DeleteUserRoles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/DeleteUserRolesResponse" message="tns:IUserService_DeleteUserRoles_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IUserService" type="tns:IUserService">
@@ -59,8 +119,62 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetRolesByLogin">
-      <soap:operation soapAction="http://tempuri.org/IUserService/GetRolesByLogin" style="document" />
+    <wsdl:operation name="GetUsers">
+      <soap:operation soapAction="http://tempuri.org/IUserService/GetUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserRoles">
+      <soap:operation soapAction="http://tempuri.org/IUserService/GetUserRoles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUser">
+      <soap:operation soapAction="http://tempuri.org/IUserService/AddUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <soap:operation soapAction="http://tempuri.org/IUserService/DeleteUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <soap:operation soapAction="http://tempuri.org/IUserService/UpdateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUserRole">
+      <soap:operation soapAction="http://tempuri.org/IUserService/AddUserRole" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserRoles">
+      <soap:operation soapAction="http://tempuri.org/IUserService/DeleteUserRoles" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

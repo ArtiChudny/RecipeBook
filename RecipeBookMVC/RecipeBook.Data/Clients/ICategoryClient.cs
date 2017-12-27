@@ -6,5 +6,8 @@ namespace RecipeBook.Data.Clients
     public interface ICategoryClient
     {
         IEnumerable<CategoryDto> GetCategories();
+        void AddCategory(CategoryDto category);
+        void DeleteCategory(int categoryId);
+        void UpdateCategory(CategoryDto category);
     }
 }

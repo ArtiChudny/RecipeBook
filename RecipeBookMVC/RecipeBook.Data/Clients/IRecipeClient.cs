@@ -12,6 +12,20 @@ namespace RecipeBook.Data.Clients
         IEnumerable<RecipeDto> GetRecipesByIngredient(string ingredientName);
         IEnumerable<RecipeDto> GetRecipesByName(string recipeName);
         IEnumerable<RecipeDto> GetRecipesByCategory(string categoryName);
-        
+
+        void AddIngredient(IngredientDto ingredient);
+        void DeleteIngredient(int ingredientId);
+        void UpdateIngredient(IngredientDto ingredient);
+
+        void AddRecipeIngredient(int recipeId, int ingredientId);
+        void DeleteRecipeIngredient(int recipeId, int ingredientId);
+
+        void AddRecipe(RecipeDto recipe);
+        void DeleteRecipe(int recipeId);
+        void UpdateRecipe(RecipeDto recipe);
+
+        void AddRecipeDetails(RecipeDetailsDto details);
+        void UpdateRecipeDetails(RecipeDetailsDto details);
+
     }
 }

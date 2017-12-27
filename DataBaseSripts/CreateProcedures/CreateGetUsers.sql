@@ -1,0 +1,6 @@
+USE RecipeBook
+GO
+CREATE PROCEDURE GetUsers
+AS
+SELECT * 
+FROM Users

@@ -83,6 +83,24 @@ namespace RecipeBook.Data.CategoryService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICategoryService/GetCategories", ReplyAction="http://tempuri.org/ICategoryService/GetCategoriesResponse")]
         System.Threading.Tasks.Task<RecipeBook.Data.CategoryService.CategoryDto[]> GetCategoriesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICategoryService/AddCategory", ReplyAction="http://tempuri.org/ICategoryService/AddCategoryResponse")]
+        void AddCategory(RecipeBook.Data.CategoryService.CategoryDto category);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICategoryService/AddCategory", ReplyAction="http://tempuri.org/ICategoryService/AddCategoryResponse")]
+        System.Threading.Tasks.Task AddCategoryAsync(RecipeBook.Data.CategoryService.CategoryDto category);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICategoryService/DeleteCategory", ReplyAction="http://tempuri.org/ICategoryService/DeleteCategoryResponse")]
+        void DeleteCategory(int categoryId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICategoryService/DeleteCategory", ReplyAction="http://tempuri.org/ICategoryService/DeleteCategoryResponse")]
+        System.Threading.Tasks.Task DeleteCategoryAsync(int categoryId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICategoryService/UpdateCategory", ReplyAction="http://tempuri.org/ICategoryService/UpdateCategoryResponse")]
+        void UpdateCategory(RecipeBook.Data.CategoryService.CategoryDto category);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICategoryService/UpdateCategory", ReplyAction="http://tempuri.org/ICategoryService/UpdateCategoryResponse")]
+        System.Threading.Tasks.Task UpdateCategoryAsync(RecipeBook.Data.CategoryService.CategoryDto category);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -118,6 +136,30 @@ namespace RecipeBook.Data.CategoryService {
         
         public System.Threading.Tasks.Task<RecipeBook.Data.CategoryService.CategoryDto[]> GetCategoriesAsync() {
             return base.Channel.GetCategoriesAsync();
+        }
+        
+        public void AddCategory(RecipeBook.Data.CategoryService.CategoryDto category) {
+            base.Channel.AddCategory(category);
+        }
+        
+        public System.Threading.Tasks.Task AddCategoryAsync(RecipeBook.Data.CategoryService.CategoryDto category) {
+            return base.Channel.AddCategoryAsync(category);
+        }
+        
+        public void DeleteCategory(int categoryId) {
+            base.Channel.DeleteCategory(categoryId);
+        }
+        
+        public System.Threading.Tasks.Task DeleteCategoryAsync(int categoryId) {
+            return base.Channel.DeleteCategoryAsync(categoryId);
+        }
+        
+        public void UpdateCategory(RecipeBook.Data.CategoryService.CategoryDto category) {
+            base.Channel.UpdateCategory(category);
+        }
+        
+        public System.Threading.Tasks.Task UpdateCategoryAsync(RecipeBook.Data.CategoryService.CategoryDto category) {
+            return base.Channel.UpdateCategoryAsync(category);
         }
     }
 }

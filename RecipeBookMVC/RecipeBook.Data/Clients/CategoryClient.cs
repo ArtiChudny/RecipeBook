@@ -16,5 +16,35 @@ namespace RecipeBook.Data.Clients
             }
             return categoriesDto;
         }
+
+        public void AddCategory(CategoryDto category)
+        {
+            using (CategoryServiceClient client = new CategoryServiceClient())
+            {
+                client.Open();
+                client.AddCategory(category);
+                client.Close();
+            }
+        }
+
+        public void DeleteCategory(int categoryId)
+        {
+            using (CategoryServiceClient client = new CategoryServiceClient())
+            {
+                client.Open();
+                client.DeleteCategory(categoryId);
+                client.Close();
+            }
+        }
+
+        public void UpdateCategory(CategoryDto category)
+        {
+            using (CategoryServiceClient client = new CategoryServiceClient())
+            {
+                client.Open();
+                client.UpdateCategory(category);
+                client.Close();
+            }
+        }
     }
 }

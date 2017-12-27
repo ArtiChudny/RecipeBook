@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -39,5 +40,65 @@ namespace RecipeBook.Service.Data.Contracts.CategoryContract
             return categoriesList;
         }
 
+        public void AddCategory(CategoryDto category)
+        {
+            sqlConnection.ConnectionString = connectionString;
+            using (var cmd = new SqlCommand("AddCategory", sqlConnection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@categoryName", category.CategoryName);
+                try
+                {
+                    sqlConnection.Open();
+                    cmd.ExecuteNonQuery();
+                    sqlConnection.Close();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+        }
+
+        public void DeleteCategory(int categoryId)
+        {
+            sqlConnection.ConnectionString = connectionString;
+            using (var cmd = new SqlCommand("DeleteCategory", sqlConnection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@categoryId", categoryId);
+                try
+                {
+                    sqlConnection.Open();
+                    cmd.ExecuteNonQuery();
+                    sqlConnection.Close();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+        }
+
+        public void UpdateCategory(CategoryDto category)
+        {
+            sqlConnection.ConnectionString = connectionString;
+            using (var cmd = new SqlCommand("UpdateCategory", sqlConnection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@categoryId", category.CategoryId);
+                cmd.Parameters.AddWithValue("@categoryName", category.CategoryName);
+                try
+                {
+                    sqlConnection.Open();
+                    cmd.ExecuteNonQuery();
+                    sqlConnection.Close();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+        }
     }
 }

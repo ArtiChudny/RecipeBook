@@ -199,11 +199,47 @@ namespace RecipeBook.Data.UserService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetRoles", ReplyAction="http://tempuri.org/IUserService/GetRolesResponse")]
         System.Threading.Tasks.Task<RecipeBook.Data.UserService.RoleDto[]> GetRolesAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetRolesByLogin", ReplyAction="http://tempuri.org/IUserService/GetRolesByLoginResponse")]
-        RecipeBook.Data.UserService.RoleDto[] GetRolesByLogin(string login);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetUsers", ReplyAction="http://tempuri.org/IUserService/GetUsersResponse")]
+        RecipeBook.Data.UserService.UserDto[] GetUsers();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetRolesByLogin", ReplyAction="http://tempuri.org/IUserService/GetRolesByLoginResponse")]
-        System.Threading.Tasks.Task<RecipeBook.Data.UserService.RoleDto[]> GetRolesByLoginAsync(string login);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetUsers", ReplyAction="http://tempuri.org/IUserService/GetUsersResponse")]
+        System.Threading.Tasks.Task<RecipeBook.Data.UserService.UserDto[]> GetUsersAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetUserRoles", ReplyAction="http://tempuri.org/IUserService/GetUserRolesResponse")]
+        RecipeBook.Data.UserService.RoleDto[] GetUserRoles(string login);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetUserRoles", ReplyAction="http://tempuri.org/IUserService/GetUserRolesResponse")]
+        System.Threading.Tasks.Task<RecipeBook.Data.UserService.RoleDto[]> GetUserRolesAsync(string login);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/AddUser", ReplyAction="http://tempuri.org/IUserService/AddUserResponse")]
+        void AddUser(RecipeBook.Data.UserService.UserDto user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/AddUser", ReplyAction="http://tempuri.org/IUserService/AddUserResponse")]
+        System.Threading.Tasks.Task AddUserAsync(RecipeBook.Data.UserService.UserDto user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/DeleteUser", ReplyAction="http://tempuri.org/IUserService/DeleteUserResponse")]
+        void DeleteUser(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/DeleteUser", ReplyAction="http://tempuri.org/IUserService/DeleteUserResponse")]
+        System.Threading.Tasks.Task DeleteUserAsync(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/UpdateUser", ReplyAction="http://tempuri.org/IUserService/UpdateUserResponse")]
+        void UpdateUser(RecipeBook.Data.UserService.UserDto user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/UpdateUser", ReplyAction="http://tempuri.org/IUserService/UpdateUserResponse")]
+        System.Threading.Tasks.Task UpdateUserAsync(RecipeBook.Data.UserService.UserDto user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/AddUserRole", ReplyAction="http://tempuri.org/IUserService/AddUserRoleResponse")]
+        void AddUserRole(int userId, int roleId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/AddUserRole", ReplyAction="http://tempuri.org/IUserService/AddUserRoleResponse")]
+        System.Threading.Tasks.Task AddUserRoleAsync(int userId, int roleId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/DeleteUserRoles", ReplyAction="http://tempuri.org/IUserService/DeleteUserRolesResponse")]
+        void DeleteUserRoles(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/DeleteUserRoles", ReplyAction="http://tempuri.org/IUserService/DeleteUserRolesResponse")]
+        System.Threading.Tasks.Task DeleteUserRolesAsync(int userId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -249,12 +285,60 @@ namespace RecipeBook.Data.UserService {
             return base.Channel.GetRolesAsync();
         }
         
-        public RecipeBook.Data.UserService.RoleDto[] GetRolesByLogin(string login) {
-            return base.Channel.GetRolesByLogin(login);
+        public RecipeBook.Data.UserService.UserDto[] GetUsers() {
+            return base.Channel.GetUsers();
         }
         
-        public System.Threading.Tasks.Task<RecipeBook.Data.UserService.RoleDto[]> GetRolesByLoginAsync(string login) {
-            return base.Channel.GetRolesByLoginAsync(login);
+        public System.Threading.Tasks.Task<RecipeBook.Data.UserService.UserDto[]> GetUsersAsync() {
+            return base.Channel.GetUsersAsync();
+        }
+        
+        public RecipeBook.Data.UserService.RoleDto[] GetUserRoles(string login) {
+            return base.Channel.GetUserRoles(login);
+        }
+        
+        public System.Threading.Tasks.Task<RecipeBook.Data.UserService.RoleDto[]> GetUserRolesAsync(string login) {
+            return base.Channel.GetUserRolesAsync(login);
+        }
+        
+        public void AddUser(RecipeBook.Data.UserService.UserDto user) {
+            base.Channel.AddUser(user);
+        }
+        
+        public System.Threading.Tasks.Task AddUserAsync(RecipeBook.Data.UserService.UserDto user) {
+            return base.Channel.AddUserAsync(user);
+        }
+        
+        public void DeleteUser(int userId) {
+            base.Channel.DeleteUser(userId);
+        }
+        
+        public System.Threading.Tasks.Task DeleteUserAsync(int userId) {
+            return base.Channel.DeleteUserAsync(userId);
+        }
+        
+        public void UpdateUser(RecipeBook.Data.UserService.UserDto user) {
+            base.Channel.UpdateUser(user);
+        }
+        
+        public System.Threading.Tasks.Task UpdateUserAsync(RecipeBook.Data.UserService.UserDto user) {
+            return base.Channel.UpdateUserAsync(user);
+        }
+        
+        public void AddUserRole(int userId, int roleId) {
+            base.Channel.AddUserRole(userId, roleId);
+        }
+        
+        public System.Threading.Tasks.Task AddUserRoleAsync(int userId, int roleId) {
+            return base.Channel.AddUserRoleAsync(userId, roleId);
+        }
+        
+        public void DeleteUserRoles(int userId) {
+            base.Channel.DeleteUserRoles(userId);
+        }
+        
+        public System.Threading.Tasks.Task DeleteUserRolesAsync(int userId) {
+            return base.Channel.DeleteUserRolesAsync(userId);
         }
     }
 }

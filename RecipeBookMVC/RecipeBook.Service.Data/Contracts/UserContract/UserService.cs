@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -32,29 +33,7 @@ namespace RecipeBook.Service.Data.Contracts.UserContract
                 }
             }
             sqlConnection.Close();
-
-            cmd = new SqlCommand("GetUserRolesByLogin", sqlConnection)
-            { CommandType = CommandType.StoredProcedure };
-            cmd.Parameters.AddWithValue("@login", login);
-
-
-            var rolelist = new List<RoleDto>();
-            sqlConnection.Open();
-            using (SqlDataReader reader = cmd.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    var role = new RoleDto()
-                    {
-                        RoleId = reader.GetFieldValue<int>(0),
-                        RoleName = reader.GetFieldValue<string>(1)
-                    };
-                    rolelist.Add(role);
-                }
-            }
-            sqlConnection.Close();
-
-            user.UserRoles = rolelist;
+            user.UserRoles = GetUserRoles(user.Login);
             return user;
         }
 
@@ -86,5 +65,192 @@ namespace RecipeBook.Service.Data.Contracts.UserContract
             return roleList;
         }
 
+        public IEnumerable<UserDto> GetUsers()
+        {
+            sqlConnection.ConnectionString = connectionString;
+            var userList = new List<UserDto>();
+
+            using (var cmd = new SqlCommand("GetUsers", sqlConnection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                sqlConnection.Open();
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var user = new UserDto()
+                        {
+                            UserId = reader.GetFieldValue<int>(0),
+                            Login = reader.GetFieldValue<string>(1),
+                            Password = reader.GetFieldValue<string>(2),
+                            Email = reader.GetFieldValue<string>(3)
+                        };
+                        userList.Add(user);
+                    }
+                };
+                sqlConnection.Close();
+                foreach (var item in userList)
+                {
+                    item.UserRoles = GetUserRoles(item.Login);
+                }
+            }
+            return userList;
+        }
+
+
+        public IEnumerable<RoleDto> GetUserRoles(string login)
+        {
+            sqlConnection.ConnectionString = connectionString;
+            var roleList = new List<RoleDto>();
+
+            using (var cmd = new SqlCommand("GetUserRolesByLogin", sqlConnection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@login", login);
+                sqlConnection.Open();
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var role = new RoleDto()
+                        {
+                            RoleId = reader.GetFieldValue<int>(0),
+                            RoleName = reader.GetFieldValue<string>(1)
+                        };
+                        roleList.Add(role);
+                    }
+                };
+                sqlConnection.Close();
+            }
+            return roleList;
+        }
+
+        public void AddUser(UserDto user)
+        {
+            sqlConnection.ConnectionString = connectionString;
+            int userId;
+            using (var cmd = new SqlCommand("AddUser", sqlConnection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@login", user.Login);
+                cmd.Parameters.AddWithValue("@password", user.Password);
+                cmd.Parameters.AddWithValue("@email", user.Email);
+                try
+                {
+                    sqlConnection.Open();
+                    userId = Convert.ToInt32(cmd.ExecuteScalar());
+                    sqlConnection.Close();
+                    foreach (var item in user.UserRoles)
+                    {
+                        AddUserRole(userId, item.RoleId);
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+
+        }
+
+        public void DeleteUser(int userId)
+        {
+            sqlConnection.ConnectionString = connectionString;
+
+            using (var cmd = new SqlCommand("DeleteUser", sqlConnection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@userId", userId);
+                try
+                {
+                    sqlConnection.Open();
+                    cmd.ExecuteNonQuery();
+                    sqlConnection.Close();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+
+            }
+        }
+
+        public void UpdateUser(UserDto user)
+        {
+            sqlConnection.ConnectionString = connectionString;
+            using (var cmd = new SqlCommand("UpdateUser", sqlConnection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@userId", user.UserId);
+                cmd.Parameters.AddWithValue("@login", user.Login);
+                cmd.Parameters.AddWithValue("@password", user.Password);
+                cmd.Parameters.AddWithValue("@email", user.Email);
+                try
+                {
+                    sqlConnection.Open();
+                    cmd.ExecuteNonQuery();
+                    sqlConnection.Close();
+                    DeleteUserRoles(user.UserId);
+                    foreach (var item in user.UserRoles)
+                    {
+                        AddUserRole(user.UserId, item.RoleId);
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+           
+        }
+
+
+        public void AddUserRole(int userId, int roleId)
+        {
+            sqlConnection.ConnectionString = connectionString;
+
+            using (var cmd = new SqlCommand("AddUserRole", sqlConnection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@userId", userId);
+                cmd.Parameters.AddWithValue("@roleId", roleId);
+                try
+                {
+                    sqlConnection.Open();
+                    cmd.ExecuteNonQuery();
+                    sqlConnection.Close();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+
+            }
+        }
+
+        public void DeleteUserRoles(int userId)
+        {
+            sqlConnection.ConnectionString = connectionString;
+
+            using (var cmd = new SqlCommand("DeleteUserRolesById", sqlConnection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@userId", userId);
+                try
+                {
+                    sqlConnection.Open();
+                    cmd.ExecuteNonQuery();
+                    sqlConnection.Close();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+
+        }
     }
 }

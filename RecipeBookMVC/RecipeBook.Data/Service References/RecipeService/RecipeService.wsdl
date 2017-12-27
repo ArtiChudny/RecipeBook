@@ -49,6 +49,66 @@
   <wsdl:message name="IRecipeService_GetRecipesByCategory_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetRecipesByCategoryResponse" />
   </wsdl:message>
+  <wsdl:message name="IRecipeService_AddIngredient_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddIngredient" />
+  </wsdl:message>
+  <wsdl:message name="IRecipeService_AddIngredient_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddIngredientResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRecipeService_DeleteIngredient_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteIngredient" />
+  </wsdl:message>
+  <wsdl:message name="IRecipeService_DeleteIngredient_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteIngredientResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRecipeService_UpdateIngredient_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateIngredient" />
+  </wsdl:message>
+  <wsdl:message name="IRecipeService_UpdateIngredient_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateIngredientResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRecipeService_AddRecipeIngredient_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddRecipeIngredient" />
+  </wsdl:message>
+  <wsdl:message name="IRecipeService_AddRecipeIngredient_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddRecipeIngredientResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRecipeService_DeleteRecipeIngredient_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRecipeIngredient" />
+  </wsdl:message>
+  <wsdl:message name="IRecipeService_DeleteRecipeIngredient_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRecipeIngredientResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRecipeService_AddRecipe_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddRecipe" />
+  </wsdl:message>
+  <wsdl:message name="IRecipeService_AddRecipe_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddRecipeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRecipeService_DeleteRecipe_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRecipe" />
+  </wsdl:message>
+  <wsdl:message name="IRecipeService_DeleteRecipe_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRecipeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRecipeService_UpdateRecipe_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRecipe" />
+  </wsdl:message>
+  <wsdl:message name="IRecipeService_UpdateRecipe_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRecipeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRecipeService_AddRecipeDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddRecipeDetails" />
+  </wsdl:message>
+  <wsdl:message name="IRecipeService_AddRecipeDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddRecipeDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRecipeService_UpdateRecipeDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRecipeDetails" />
+  </wsdl:message>
+  <wsdl:message name="IRecipeService_UpdateRecipeDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRecipeDetailsResponse" />
+  </wsdl:message>
   <wsdl:portType name="IRecipeService">
     <wsdl:operation name="GetRecipes">
       <wsdl:input wsaw:Action="http://tempuri.org/IRecipeService/GetRecipes" message="tns:IRecipeService_GetRecipes_InputMessage" />
@@ -77,6 +137,46 @@
     <wsdl:operation name="GetRecipesByCategory">
       <wsdl:input wsaw:Action="http://tempuri.org/IRecipeService/GetRecipesByCategory" message="tns:IRecipeService_GetRecipesByCategory_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IRecipeService/GetRecipesByCategoryResponse" message="tns:IRecipeService_GetRecipesByCategory_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddIngredient">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRecipeService/AddIngredient" message="tns:IRecipeService_AddIngredient_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRecipeService/AddIngredientResponse" message="tns:IRecipeService_AddIngredient_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteIngredient">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRecipeService/DeleteIngredient" message="tns:IRecipeService_DeleteIngredient_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRecipeService/DeleteIngredientResponse" message="tns:IRecipeService_DeleteIngredient_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateIngredient">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRecipeService/UpdateIngredient" message="tns:IRecipeService_UpdateIngredient_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRecipeService/UpdateIngredientResponse" message="tns:IRecipeService_UpdateIngredient_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRecipeIngredient">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRecipeService/AddRecipeIngredient" message="tns:IRecipeService_AddRecipeIngredient_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRecipeService/AddRecipeIngredientResponse" message="tns:IRecipeService_AddRecipeIngredient_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRecipeIngredient">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRecipeService/DeleteRecipeIngredient" message="tns:IRecipeService_DeleteRecipeIngredient_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRecipeService/DeleteRecipeIngredientResponse" message="tns:IRecipeService_DeleteRecipeIngredient_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRecipe">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRecipeService/AddRecipe" message="tns:IRecipeService_AddRecipe_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRecipeService/AddRecipeResponse" message="tns:IRecipeService_AddRecipe_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRecipe">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRecipeService/DeleteRecipe" message="tns:IRecipeService_DeleteRecipe_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRecipeService/DeleteRecipeResponse" message="tns:IRecipeService_DeleteRecipe_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRecipe">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRecipeService/UpdateRecipe" message="tns:IRecipeService_UpdateRecipe_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRecipeService/UpdateRecipeResponse" message="tns:IRecipeService_UpdateRecipe_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRecipeDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRecipeService/AddRecipeDetails" message="tns:IRecipeService_AddRecipeDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRecipeService/AddRecipeDetailsResponse" message="tns:IRecipeService_AddRecipeDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRecipeDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRecipeService/UpdateRecipeDetails" message="tns:IRecipeService_UpdateRecipeDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRecipeService/UpdateRecipeDetailsResponse" message="tns:IRecipeService_UpdateRecipeDetails_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IRecipeService" type="tns:IRecipeService">
@@ -137,6 +237,96 @@
     </wsdl:operation>
     <wsdl:operation name="GetRecipesByCategory">
       <soap:operation soapAction="http://tempuri.org/IRecipeService/GetRecipesByCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddIngredient">
+      <soap:operation soapAction="http://tempuri.org/IRecipeService/AddIngredient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteIngredient">
+      <soap:operation soapAction="http://tempuri.org/IRecipeService/DeleteIngredient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateIngredient">
+      <soap:operation soapAction="http://tempuri.org/IRecipeService/UpdateIngredient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRecipeIngredient">
+      <soap:operation soapAction="http://tempuri.org/IRecipeService/AddRecipeIngredient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRecipeIngredient">
+      <soap:operation soapAction="http://tempuri.org/IRecipeService/DeleteRecipeIngredient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRecipe">
+      <soap:operation soapAction="http://tempuri.org/IRecipeService/AddRecipe" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRecipe">
+      <soap:operation soapAction="http://tempuri.org/IRecipeService/DeleteRecipe" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRecipe">
+      <soap:operation soapAction="http://tempuri.org/IRecipeService/UpdateRecipe" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRecipeDetails">
+      <soap:operation soapAction="http://tempuri.org/IRecipeService/AddRecipeDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRecipeDetails">
+      <soap:operation soapAction="http://tempuri.org/IRecipeService/UpdateRecipeDetails" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

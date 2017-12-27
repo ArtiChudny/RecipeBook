@@ -1,5 +1,4 @@
-﻿
-namespace RecipeBook.Common.Models
+﻿namespace RecipeBook.Common.Models
 {
     public class User
     {

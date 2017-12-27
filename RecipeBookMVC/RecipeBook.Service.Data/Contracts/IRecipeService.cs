@@ -28,6 +28,30 @@ namespace RecipeBook.Service.Data.Contracts
         [OperationContract]
         IEnumerable<RecipeDto> GetRecipesByCategory(string categoryName);
 
+        [OperationContract]
+        void AddIngredient(IngredientDto ingredient);
+        [OperationContract]
+        void DeleteIngredient(int ingredientId);
+        [OperationContract]
+        void UpdateIngredient(IngredientDto ingredient);
+
+        [OperationContract]
+        void AddRecipeIngredient(RecipeIngredientDto recipeIngredient);
+        [OperationContract]
+        void DeleteRecipeIngredient(int recipeId, int ingredientId);
+
+        [OperationContract]
+        void AddRecipe(RecipeDto recipe);
+        [OperationContract]
+        void DeleteRecipe(int recipeId);
+        [OperationContract]
+        void UpdateRecipe(RecipeDto recipe);
+
+        [OperationContract]
+        void AddRecipeDetails(RecipeDetailsDto details);
+        [OperationContract]
+        void UpdateRecipeDetails(RecipeDetailsDto details);
+
 
     }
 }

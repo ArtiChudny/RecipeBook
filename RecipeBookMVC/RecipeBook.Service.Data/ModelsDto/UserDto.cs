@@ -15,6 +15,6 @@ namespace RecipeBook.Service.Data.ModelsDto
         [DataMember]
         public string Email { get; set; }
         [DataMember]
-        public List<RoleDto> UserRoles { get; set; }
+        public IEnumerable<RoleDto> UserRoles { get; set; }
     }
 }

@@ -5,14 +5,32 @@ namespace RecipeBook.Data.Repositories
 {
     public interface IDataRepository
     {
-        IEnumerable<Recipe> GetRecipies();
         IEnumerable<Category> GetCategories();
+        void AddCategory(Category category);
+        void DeleteCategory(int categoryId);
+        void UpdateCategory(Category category);
+
+        IEnumerable<Recipe> GetRecipies();
         IEnumerable<Ingredient> GetIngredients();
         IEnumerable<RecipeIngredient> GetRecipeIngredients(int id);
         IEnumerable<Recipe> GetRecipesByIngredient(string ingredientName);
         IEnumerable<Recipe> GetRecipesByName(string recipeName);
         IEnumerable<Recipe> GetRecipesByCategory(string categoryName);
         RecipeDetails GetDedails(int id);
+
+        void AddIngredient(Ingredient ingredient);
+        void DeleteIngredient(int ingredientId);
+        void UpdateIngredient(Ingredient ingredient);
+
+        void AddRecipeIngredient(int recipeId, int ingredientId);
+        void DeleteRecipeIngredient(int recipeId, int ingredientId);
+
+        void AddRecipe(Recipe recipe);
+        void DeleteRecipe(int recipeId);
+        void UpdateRecipe(Recipe recipe);
+
+        void AddRecipeDetails(RecipeDetails details);
+        void UpdateRecipeDetails(RecipeDetails details);
 
     }
 }
