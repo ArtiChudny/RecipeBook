@@ -1,0 +1,53 @@
+﻿@model IEnumerable<RecipeBook.Common.Models.User>
+
+@{
+    ViewBag.Title = "UserList";
+}
+
+<h2>UserList</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateUser", "Admin")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Login)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Roles)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Login)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+
+                @Html.DropDownListFor(modelItem => item.Roles, new SelectList(item.Roles, "RoleName", "RoleName"), new { @class = "form-control" })
+
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { login = item.Login }, null) |
+                @Html.ActionLink("Delete", "DeleteUser", new { id = item.UserId }, null)
+            </td>
+        </tr>
+    }
+
+</table>

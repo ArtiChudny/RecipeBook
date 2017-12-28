@@ -89,7 +89,7 @@ namespace RecipeBook.Web.Controllers
         public ActionResult Search()
         {
             ViewBag.categories = categoryProvider.GetCategories();
-            ViewBag.ingredients = recipeProvider.GetIngredients();
+            ViewBag.ingredients = recipeProvider.GetIngredients().OrderBy(x=>x.IngredientName);
             return View();
         }
     }

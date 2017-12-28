@@ -32,7 +32,8 @@ namespace RecipeBook.Service.Data.Contracts
                             RecipeId = reader.GetFieldValue<int>(0),
                             RecipeName = reader.GetFieldValue<string>(1),
                             CategoryId = reader.GetFieldValue<int>(2),
-                            PhotoUrl = reader.GetFieldValue<string>(3)
+                            PhotoUrl = reader.GetFieldValue<string>(3),
+                            Details = null
                         };
                         recipesList.Add(recipe);
                     }
@@ -399,8 +400,6 @@ namespace RecipeBook.Service.Data.Contracts
                     throw;
                 }
             }
-
-
         }
 
         public void UpdateRecipeDetails(RecipeDetailsDto details)

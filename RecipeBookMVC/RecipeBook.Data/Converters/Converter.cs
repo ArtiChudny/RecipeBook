@@ -59,26 +59,41 @@ namespace RecipeBook.Data.Converters
 
         public RecipeDetails ToRecipeDetails(RecipeDetailsDto detailsDto)
         {
-            return new RecipeDetails
+            if (detailsDto != null)
             {
-                RecipeId = detailsDto.RecipeId,
-                CookingTemperature = detailsDto.CookingTemperature,
-                CookingTime = detailsDto.CookingTime,
-                Description = detailsDto.Description,
-                Steps = detailsDto.Steps
-            };
+                return new RecipeDetails
+                {
+                    RecipeId = detailsDto.RecipeId,
+                    CookingTemperature = detailsDto.CookingTemperature,
+                    CookingTime = detailsDto.CookingTime,
+                    Description = detailsDto.Description,
+                    Steps = detailsDto.Steps
+                };
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public RecipeDetailsDto ToRecipeDetailsDto(RecipeDetails details)
         {
-            return new RecipeDetailsDto()
+            if (details != null)
             {
-                RecipeId = details.RecipeId,
-                CookingTemperature = details.CookingTemperature,
-                CookingTime = details.CookingTime,
-                Description = details.Description,
-                Steps = details.Steps
-            };
+                return new RecipeDetailsDto()
+                {
+                    RecipeId = details.RecipeId,
+                    CookingTemperature = details.CookingTemperature,
+                    CookingTime = details.CookingTime,
+                    Description = details.Description,
+                    Steps = details.Steps
+                };
+            }
+            else
+            {
+                return null;
+            }
+
         }
 
         public RecipeDto ToRecipeDto(Recipe recipe)

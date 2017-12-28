@@ -3,11 +3,11 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>Recipe Book - @ViewBag.Title</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
-    
+
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -19,8 +19,9 @@
                     <span class="icon-bar"></span>
                 </button>
                 @Html.ActionLink("Recipe Book", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-               
-                 <div style="position:absolute; right:10%; top:20%;">
+
+                <div style="position:absolute; right:10%; top:20%;">
+                    <input type='button' value='Users' onclick='window.location = "@Url.Action("UserList","Admin") "' />
                     @Html.Label(HttpContext.Current.User.Identity.Name)
                     @if (HttpContext.Current.User.Identity.IsAuthenticated)
                     {
@@ -44,7 +45,7 @@
         @RenderBody()
 
     </div>
-  
+
 
     <script src="~/Scripts/jquery-3.2.1.min.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>

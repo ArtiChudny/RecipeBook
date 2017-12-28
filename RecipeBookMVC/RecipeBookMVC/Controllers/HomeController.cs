@@ -16,12 +16,13 @@ namespace RecipeBookMVC.Controllers
             provider = _provider;
         }
 
+        [HttpGet]
         public ActionResult Index(int? _categoryId)
         {
 
             if (_categoryId == null || _categoryId == 0)
             {
-                return View(provider.GetRecipies().ToList());
+                return View(provider.GetRecipies());
             }
             else
             {
