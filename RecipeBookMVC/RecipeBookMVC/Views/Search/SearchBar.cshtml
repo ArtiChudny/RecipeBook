@@ -11,29 +11,23 @@
             Recipe name
 
             @Html.TextBoxFor(model => model.RecipeName, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.RecipeName, "", new { @class = "text-danger" })
             <hr />
         </p>
         <p>
             Category
 
             @Html.DropDownListFor(model => model.CategoryName, new SelectList(ViewBag.categories, "CategoryName", "CategoryName"), "Chose category", new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.CategoryName, "", new { @class = "text-danger" })
             <hr />
         </p>
         <p>
             Ingredient
 
             @Html.DropDownListFor(model => model.IngredientName, new SelectList(ViewBag.ingredients, "IngredientName", "IngredientName"), "Chose ingredient", new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.IngredientName, "", new { @class = "text-danger" })
             <hr />
         </p>
         <input type="submit" value="Search" class="btn btn-default" />
         <hr />
     </div>
-
-
-
 }
 
 @section Scripts

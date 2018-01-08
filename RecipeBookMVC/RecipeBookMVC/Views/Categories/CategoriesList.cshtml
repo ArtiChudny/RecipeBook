@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<RecipeBook.Common.Models.Category>
 
-<ul>
-    <li>
+<ul class="list-group">
+    <li class="list-group-item">
         @Html.RouteLink("All categories", new { controller = "Home", action = "Index", _categoryId = 0 })
     </li>
 
     @foreach (var category in Model)
     {
-        <li>
+        <li class="list-group-item">
             @Html.RouteLink(category.CategoryName, new { controller = "Home", action = "Index", _categoryId = category.CategoryId })
         </li>
     }

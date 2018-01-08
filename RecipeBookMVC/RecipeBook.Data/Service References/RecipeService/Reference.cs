@@ -450,10 +450,10 @@ namespace RecipeBook.Data.RecipeService {
         System.Threading.Tasks.Task UpdateIngredientAsync(RecipeBook.Data.RecipeService.IngredientDto ingredient);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/AddRecipeIngredient", ReplyAction="http://tempuri.org/IRecipeService/AddRecipeIngredientResponse")]
-        void AddRecipeIngredient(int recipeId, int ingredientId);
+        void AddRecipeIngredient(RecipeBook.Data.RecipeService.RecipeIngredientDto recipeIngredient);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/AddRecipeIngredient", ReplyAction="http://tempuri.org/IRecipeService/AddRecipeIngredientResponse")]
-        System.Threading.Tasks.Task AddRecipeIngredientAsync(int recipeId, int ingredientId);
+        System.Threading.Tasks.Task AddRecipeIngredientAsync(RecipeBook.Data.RecipeService.RecipeIngredientDto recipeIngredient);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/DeleteRecipeIngredient", ReplyAction="http://tempuri.org/IRecipeService/DeleteRecipeIngredientResponse")]
         void DeleteRecipeIngredient(int recipeId, int ingredientId);
@@ -461,11 +461,17 @@ namespace RecipeBook.Data.RecipeService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/DeleteRecipeIngredient", ReplyAction="http://tempuri.org/IRecipeService/DeleteRecipeIngredientResponse")]
         System.Threading.Tasks.Task DeleteRecipeIngredientAsync(int recipeId, int ingredientId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/AddRecipe", ReplyAction="http://tempuri.org/IRecipeService/AddRecipeResponse")]
-        void AddRecipe(RecipeBook.Data.RecipeService.RecipeDto recipe);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/DeleteRecipeIngredients", ReplyAction="http://tempuri.org/IRecipeService/DeleteRecipeIngredientsResponse")]
+        void DeleteRecipeIngredients(int recipeId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/DeleteRecipeIngredients", ReplyAction="http://tempuri.org/IRecipeService/DeleteRecipeIngredientsResponse")]
+        System.Threading.Tasks.Task DeleteRecipeIngredientsAsync(int recipeId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/AddRecipe", ReplyAction="http://tempuri.org/IRecipeService/AddRecipeResponse")]
-        System.Threading.Tasks.Task AddRecipeAsync(RecipeBook.Data.RecipeService.RecipeDto recipe);
+        int AddRecipe(RecipeBook.Data.RecipeService.RecipeDto recipe);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/AddRecipe", ReplyAction="http://tempuri.org/IRecipeService/AddRecipeResponse")]
+        System.Threading.Tasks.Task<int> AddRecipeAsync(RecipeBook.Data.RecipeService.RecipeDto recipe);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/DeleteRecipe", ReplyAction="http://tempuri.org/IRecipeService/DeleteRecipeResponse")]
         void DeleteRecipe(int recipeId);
@@ -599,12 +605,12 @@ namespace RecipeBook.Data.RecipeService {
             return base.Channel.UpdateIngredientAsync(ingredient);
         }
         
-        public void AddRecipeIngredient(int recipeId, int ingredientId) {
-            base.Channel.AddRecipeIngredient(recipeId, ingredientId);
+        public void AddRecipeIngredient(RecipeBook.Data.RecipeService.RecipeIngredientDto recipeIngredient) {
+            base.Channel.AddRecipeIngredient(recipeIngredient);
         }
         
-        public System.Threading.Tasks.Task AddRecipeIngredientAsync(int recipeId, int ingredientId) {
-            return base.Channel.AddRecipeIngredientAsync(recipeId, ingredientId);
+        public System.Threading.Tasks.Task AddRecipeIngredientAsync(RecipeBook.Data.RecipeService.RecipeIngredientDto recipeIngredient) {
+            return base.Channel.AddRecipeIngredientAsync(recipeIngredient);
         }
         
         public void DeleteRecipeIngredient(int recipeId, int ingredientId) {
@@ -615,11 +621,19 @@ namespace RecipeBook.Data.RecipeService {
             return base.Channel.DeleteRecipeIngredientAsync(recipeId, ingredientId);
         }
         
-        public void AddRecipe(RecipeBook.Data.RecipeService.RecipeDto recipe) {
-            base.Channel.AddRecipe(recipe);
+        public void DeleteRecipeIngredients(int recipeId) {
+            base.Channel.DeleteRecipeIngredients(recipeId);
         }
         
-        public System.Threading.Tasks.Task AddRecipeAsync(RecipeBook.Data.RecipeService.RecipeDto recipe) {
+        public System.Threading.Tasks.Task DeleteRecipeIngredientsAsync(int recipeId) {
+            return base.Channel.DeleteRecipeIngredientsAsync(recipeId);
+        }
+        
+        public int AddRecipe(RecipeBook.Data.RecipeService.RecipeDto recipe) {
+            return base.Channel.AddRecipe(recipe);
+        }
+        
+        public System.Threading.Tasks.Task<int> AddRecipeAsync(RecipeBook.Data.RecipeService.RecipeDto recipe) {
             return base.Channel.AddRecipeAsync(recipe);
         }
         

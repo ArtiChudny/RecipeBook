@@ -79,6 +79,12 @@
   <wsdl:message name="IRecipeService_DeleteRecipeIngredient_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteRecipeIngredientResponse" />
   </wsdl:message>
+  <wsdl:message name="IRecipeService_DeleteRecipeIngredients_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRecipeIngredients" />
+  </wsdl:message>
+  <wsdl:message name="IRecipeService_DeleteRecipeIngredients_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRecipeIngredientsResponse" />
+  </wsdl:message>
   <wsdl:message name="IRecipeService_AddRecipe_InputMessage">
     <wsdl:part name="parameters" element="tns:AddRecipe" />
   </wsdl:message>
@@ -157,6 +163,10 @@
     <wsdl:operation name="DeleteRecipeIngredient">
       <wsdl:input wsaw:Action="http://tempuri.org/IRecipeService/DeleteRecipeIngredient" message="tns:IRecipeService_DeleteRecipeIngredient_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IRecipeService/DeleteRecipeIngredientResponse" message="tns:IRecipeService_DeleteRecipeIngredient_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRecipeIngredients">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRecipeService/DeleteRecipeIngredients" message="tns:IRecipeService_DeleteRecipeIngredients_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRecipeService/DeleteRecipeIngredientsResponse" message="tns:IRecipeService_DeleteRecipeIngredients_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="AddRecipe">
       <wsdl:input wsaw:Action="http://tempuri.org/IRecipeService/AddRecipe" message="tns:IRecipeService_AddRecipe_InputMessage" />
@@ -282,6 +292,15 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteRecipeIngredient">
       <soap:operation soapAction="http://tempuri.org/IRecipeService/DeleteRecipeIngredient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRecipeIngredients">
+      <soap:operation soapAction="http://tempuri.org/IRecipeService/DeleteRecipeIngredients" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

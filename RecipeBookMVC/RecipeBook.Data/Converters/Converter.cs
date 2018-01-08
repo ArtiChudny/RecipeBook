@@ -125,7 +125,7 @@ namespace RecipeBook.Data.Converters
             {
                 RecipeId = recipeIngredient.RecipeId,
                 IngredientName = recipeIngredient.IngredientName,
-                Weight = recipeIngredient.IngredientName,
+                Weight = recipeIngredient.Weight,
                 IngredientId = recipeIngredient.IngredientId
             };
         }

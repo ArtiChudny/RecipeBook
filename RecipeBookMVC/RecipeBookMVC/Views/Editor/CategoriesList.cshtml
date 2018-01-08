@@ -1,0 +1,32 @@
+﻿@model IEnumerable<RecipeBook.Common.Models.Category>
+
+@{
+    var ajaxOptions = new AjaxOptions { UpdateTargetId = "results" };
+}
+<p>
+    @Html.ActionLink("Create New", "AddCategory")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditCategory", new { id = item.CategoryId }, ajaxOptions) |
+                @Ajax.ActionLink("Delete", "DeleteCategory", new { id = item.CategoryId }, ajaxOptions)
+            </td>
+        </tr>
+    }
+
+</table>
+
+

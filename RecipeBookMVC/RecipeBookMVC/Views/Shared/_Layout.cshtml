@@ -22,6 +22,7 @@
 
                 <div style="position:absolute; right:10%; top:20%;">
                     <input type='button' value='Users' onclick='window.location = "@Url.Action("UserList","Admin") "' />
+                    <input type='button' value='Edite' onclick='window.location = "@Url.Action("Index","Editor") "' />
                     @Html.Label(HttpContext.Current.User.Identity.Name)
                     @if (HttpContext.Current.User.Identity.IsAuthenticated)
                     {

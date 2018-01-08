@@ -22,10 +22,11 @@ namespace RecipeBook.Data.Repositories
         void DeleteIngredient(int ingredientId);
         void UpdateIngredient(Ingredient ingredient);
 
-        void AddRecipeIngredient(int recipeId, int ingredientId);
+        void AddRecipeIngredient(RecipeIngredient ingredient);
         void DeleteRecipeIngredient(int recipeId, int ingredientId);
+        void DeleteRecipeIngredients(int recipeId);
 
-        void AddRecipe(Recipe recipe);
+        int AddRecipe(Recipe recipe);
         void DeleteRecipe(int recipeId);
         void UpdateRecipe(Recipe recipe);
 

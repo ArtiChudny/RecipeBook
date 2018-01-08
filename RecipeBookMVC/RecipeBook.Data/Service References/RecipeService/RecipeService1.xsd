@@ -134,8 +134,7 @@
   <xs:element name="AddRecipeIngredient">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="recipeId" type="xs:int" />
-        <xs:element minOccurs="0" name="ingredientId" type="xs:int" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/RecipeBook.Service.Data.ModelsDto" minOccurs="0" name="recipeIngredient" nillable="true" type="q10:RecipeIngredientDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -157,16 +156,30 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="DeleteRecipeIngredients">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="recipeId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteRecipeIngredientsResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="AddRecipe">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/RecipeBook.Service.Data.ModelsDto" minOccurs="0" name="recipe" nillable="true" type="q10:RecipeDto" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/RecipeBook.Service.Data.ModelsDto" minOccurs="0" name="recipe" nillable="true" type="q11:RecipeDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddRecipeResponse">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AddRecipeResult" type="xs:int" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="DeleteRecipe">
@@ -184,7 +197,7 @@
   <xs:element name="UpdateRecipe">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/RecipeBook.Service.Data.ModelsDto" minOccurs="0" name="recipe" nillable="true" type="q11:RecipeDto" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/RecipeBook.Service.Data.ModelsDto" minOccurs="0" name="recipe" nillable="true" type="q12:RecipeDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -196,7 +209,7 @@
   <xs:element name="AddRecipeDetails">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/RecipeBook.Service.Data.ModelsDto" minOccurs="0" name="details" nillable="true" type="q12:RecipeDetailsDto" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/RecipeBook.Service.Data.ModelsDto" minOccurs="0" name="details" nillable="true" type="q13:RecipeDetailsDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -208,7 +221,7 @@
   <xs:element name="UpdateRecipeDetails">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/RecipeBook.Service.Data.ModelsDto" minOccurs="0" name="details" nillable="true" type="q13:RecipeDetailsDto" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/RecipeBook.Service.Data.ModelsDto" minOccurs="0" name="details" nillable="true" type="q14:RecipeDetailsDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

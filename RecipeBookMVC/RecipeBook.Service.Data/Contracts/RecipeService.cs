@@ -310,7 +310,7 @@ namespace RecipeBook.Service.Data.Contracts
             }
         }
 
-        public void AddRecipe(RecipeDto recipe)
+        public int AddRecipe(RecipeDto recipe)
         {
             int recipeId;
             sqlConnection.ConnectionString = connectionString;
@@ -327,11 +327,13 @@ namespace RecipeBook.Service.Data.Contracts
                     recipe.Details.RecipeId = recipeId;
                     sqlConnection.Close();
                     AddRecipeDetails(recipe.Details);
+                    return recipeId;
                 }
                 catch (Exception)
                 {
                     throw;
                 }
+
             }
         }
 
@@ -346,6 +348,7 @@ namespace RecipeBook.Service.Data.Contracts
                 {
                     sqlConnection.Open();
                     cmd.ExecuteNonQuery();
+                    sqlConnection.Close();
                 }
                 catch (Exception)
                 {
@@ -425,6 +428,26 @@ namespace RecipeBook.Service.Data.Contracts
                 }
             }
         }
-    }
 
+        public void DeleteRecipeIngredients(int recipeId)
+        {
+            sqlConnection.ConnectionString = connectionString;
+            using (var cmd = new SqlCommand("DeleteRecipeIngredients", sqlConnection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@recipeId", recipeId);
+                try
+                {
+                    sqlConnection.Open();
+                    cmd.ExecuteNonQuery();
+                    sqlConnection.Close();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+        }
+
+    }
 }

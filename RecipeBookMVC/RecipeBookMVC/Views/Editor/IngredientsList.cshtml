@@ -1,0 +1,31 @@
+﻿@model IEnumerable<RecipeBook.Common.Models.Ingredient>
+
+@{
+    var ajaxOptions = new AjaxOptions { UpdateTargetId = "results" };
+}
+
+<p>
+    @Html.ActionLink("Create New", "AddIngredient")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IngredientName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IngredientName)
+            </td>
+            <td>
+                @Ajax.ActionLink("Edit", "EditIngredient", new { id = item.IngredientId }, ajaxOptions) |
+                @Ajax.ActionLink("Delete", "DeleteIngredient", new { id = item.IngredientId }, ajaxOptions)
+            </td>
+        </tr>
+    }
+
+</table>

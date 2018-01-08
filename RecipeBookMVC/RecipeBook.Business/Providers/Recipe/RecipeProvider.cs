@@ -59,9 +59,9 @@ namespace RecipeBook.Business.Providers
             dataProvider.AddIngredient(ingredient);
         }
 
-        public void AddRecipe(Recipe recipe)
+        public int AddRecipe(Recipe recipe)
         {
-            dataProvider.AddRecipe(recipe);
+            return dataProvider.AddRecipe(recipe);
         }
 
         public void AddRecipeDetails(RecipeDetails details)
@@ -69,9 +69,9 @@ namespace RecipeBook.Business.Providers
             dataProvider.AddRecipeDetails(details);
         }
 
-        public void AddRecipeIngredient(int recipeId, int ingredientId)
+        public void AddRecipeIngredient(RecipeIngredient ingredient)
         {
-            dataProvider.AddRecipeIngredient(recipeId, ingredientId);
+            dataProvider.AddRecipeIngredient(ingredient);
         }
 
         public void DeleteIngredient(int ingredientId)
@@ -102,6 +102,11 @@ namespace RecipeBook.Business.Providers
         public void UpdateRecipeDetails(RecipeDetails details)
         {
             dataProvider.UpdateRecipeDetails(details);
+        }
+
+        public void DeleteRecipeIngredients(int recipeId)
+        {
+            dataProvider.DeleteRecipeIngredients(recipeId);
         }
     }
 }

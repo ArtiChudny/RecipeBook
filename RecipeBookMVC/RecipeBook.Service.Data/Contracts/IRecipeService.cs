@@ -39,9 +39,11 @@ namespace RecipeBook.Service.Data.Contracts
         void AddRecipeIngredient(RecipeIngredientDto recipeIngredient);
         [OperationContract]
         void DeleteRecipeIngredient(int recipeId, int ingredientId);
+        [OperationContract]
+        void DeleteRecipeIngredients(int recipeId);
 
         [OperationContract]
-        void AddRecipe(RecipeDto recipe);
+        int AddRecipe(RecipeDto recipe);
         [OperationContract]
         void DeleteRecipe(int recipeId);
         [OperationContract]

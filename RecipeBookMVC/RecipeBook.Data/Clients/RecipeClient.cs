@@ -100,14 +100,16 @@ namespace RecipeBook.Data.Clients
             }
         }
 
-        public void AddRecipe(RecipeDto recipe)
+        public int AddRecipe(RecipeDto recipe)
         {
+            int RecipeId;
             using (RecipeServiceClient client = new RecipeServiceClient())
             {
                 client.Open();
-                client.AddRecipe(recipe);
+                RecipeId = client.AddRecipe(recipe);
                 client.Close();
             }
+            return RecipeId;
         }
 
         public void AddRecipeDetails(RecipeDetailsDto details)
@@ -120,12 +122,12 @@ namespace RecipeBook.Data.Clients
             }
         }
 
-        public void AddRecipeIngredient(int recipeId, int ingredientId)
+        public void AddRecipeIngredient(RecipeIngredientDto ingredient)
         {
             using (RecipeServiceClient client = new RecipeServiceClient())
             {
                 client.Open();
-                client.AddRecipeIngredient(recipeId, ingredientId);
+                client.AddRecipeIngredient(ingredient);
                 client.Close();
             }
         }
@@ -145,7 +147,7 @@ namespace RecipeBook.Data.Clients
             using (RecipeServiceClient client = new RecipeServiceClient())
             {
                 client.Open();
-                client.DeleteIngredient(recipeId);
+                client.DeleteRecipe(recipeId);
                 client.Close();
             }
         }
@@ -186,6 +188,16 @@ namespace RecipeBook.Data.Clients
             {
                 client.Open();
                 client.UpdateRecipeDetails(details);
+                client.Close();
+            }
+        }
+
+        public void DeleteRecipeIngredients(int recipeId)
+        {
+            using (RecipeServiceClient client = new RecipeServiceClient())
+            {
+                client.Open();
+                client.DeleteRecipeIngredients(recipeId);
                 client.Close();
             }
         }

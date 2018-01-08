@@ -1,0 +1,140 @@
+﻿@model RecipeBook.Web.Models.RecipeViewModel
+
+@{
+    ViewBag.Title = "EditRecipe ";
+}
+
+<h2>Edit recipe @Model.RecipeName</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @Html.HiddenFor(model => model.RecipeId, new { htmlAttributes = new { @class = "form-control" } })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RecipeName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.RecipeName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RecipeName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PhotoUrl, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PhotoUrl, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PhotoUrl, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Category", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.CategoryId, new SelectList(ViewBag.categories, "CategoryId", "CategoryName"), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CookingTime, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CookingTime, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CookingTime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CookingTemperature, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CookingTemperature, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CookingTemperature, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Steps, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Steps, 7, 50, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Steps, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div id="ingredientBlock" class="form-group">
+            @for (int i = 0; i < Model.Ingredients.Count(); i++)
+            {
+                <div class="ingredientItem">
+                    @Html.Label("Ingredient №" + (i + 1), htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.Ingredients[i].IngredientId, new SelectList(ViewBag.ingredients, "IngredientId", "IngredientName", Model.Ingredients[i].IngredientId), new { @class = "form-control" })
+                    </div>
+                    @Html.Label("Weight", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Ingredients[i].Weight, new { htmlAttributes = new { @class = "form-control" } })
+                        <hr style="width:30%; float:left">
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <a style="cursor:pointer" class="glyphicon glyphicon-plus" id="addLink">Add new ingredient</a>
+                <p></p>
+                <hr style="width:30%; float:left;" />
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save changes" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+
+        $(function () {
+            var n = document.getElementById('ingredientBlock').getElementsByTagName('select').length;
+            $('#addLink').click(function () {
+                var ingredientBlockHTML =
+                "<div class='ingredientItem'>" +
+                "<label class='control-label col-md-2'>Ingredient №" + (n + 1) + " </label>" +
+                "<div class='col-md-10'>" +
+                "<select class='form-control' data-val='true' id='Ingredients_" + n + "__IngredientId' name='Ingredients[" + n + "].IngredientId'>" +
+                "</select>" +
+                "</div>" +
+                "<label class='control-label col-md-2'>Weight</label>" +
+                "<div class='col-md-10'>" +
+                "<input class='form-control' type='text' name='Ingredients[" + n + "].Weight'/>" +
+                 "<hr style='width:30%; float:left;'>" +
+                "</div>" +
+                "</div>";
+                var ingredientBlock = $(ingredientBlockHTML);
+                ingredientBlock.find("select").html($(".ingredientItem select").eq(0).html());
+                $('#ingredientBlock').append(ingredientBlock);
+                n++;
+            })
+        })
+    </script>
+}

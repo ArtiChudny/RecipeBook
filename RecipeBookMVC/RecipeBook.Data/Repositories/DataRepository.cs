@@ -165,9 +165,9 @@ namespace RecipeBook.Data.Repositories
             recipeClient.UpdateIngredient(converter.ToIngredientDto(ingredient));
         }
 
-        public void AddRecipeIngredient(int recipeId, int ingredientId)
+        public void AddRecipeIngredient(RecipeIngredient ingredient)
         {
-            recipeClient.AddRecipeIngredient(recipeId, ingredientId);
+            recipeClient.AddRecipeIngredient(converter.ToRecipeIngredientDto(ingredient));
         }
 
         public void DeleteRecipeIngredient(int recipeId, int ingredientId)
@@ -175,9 +175,9 @@ namespace RecipeBook.Data.Repositories
             recipeClient.DeleteRecipeIngredient(recipeId, ingredientId);
         }
 
-        public void AddRecipe(Recipe recipe)
+        public int AddRecipe(Recipe recipe)
         {
-            recipeClient.AddRecipe(converter.ToRecipeDto(recipe));
+            return recipeClient.AddRecipe(converter.ToRecipeDto(recipe));
         }
 
         public void DeleteRecipe(int recipeId)
@@ -198,6 +198,11 @@ namespace RecipeBook.Data.Repositories
         public void UpdateRecipeDetails(RecipeDetails details)
         {
             recipeClient.UpdateRecipeDetails(converter.ToRecipeDetailsDto(details));
+        }
+
+        public void DeleteRecipeIngredients(int recipeId)
+        {
+            recipeClient.DeleteRecipeIngredients(recipeId);
         }
     }
 }

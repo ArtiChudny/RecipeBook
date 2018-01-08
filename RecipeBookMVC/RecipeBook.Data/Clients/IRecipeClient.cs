@@ -17,10 +17,11 @@ namespace RecipeBook.Data.Clients
         void DeleteIngredient(int ingredientId);
         void UpdateIngredient(IngredientDto ingredient);
 
-        void AddRecipeIngredient(int recipeId, int ingredientId);
+        void AddRecipeIngredient(RecipeIngredientDto ingredient);
         void DeleteRecipeIngredient(int recipeId, int ingredientId);
+        void DeleteRecipeIngredients(int recipeId);
 
-        void AddRecipe(RecipeDto recipe);
+        int AddRecipe(RecipeDto recipe);
         void DeleteRecipe(int recipeId);
         void UpdateRecipe(RecipeDto recipe);
 
