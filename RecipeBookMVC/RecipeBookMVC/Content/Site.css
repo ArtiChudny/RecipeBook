@@ -16,5 +16,33 @@ textarea {
     max-width: 280px;
 }
 
+.float-right {
+    float: right;
+}
 
+.inline-block {
+    display: inline-block;
+}
 
+.btn-add{
+    position:absolute;
+    right:0;
+    top:0;
+}
+
+.list-header {
+    box-sizing:border-box;
+    height:30px;
+    position:relative;
+    margin: 20px 1% 20px 0;
+}
+
+.home-element{
+    display:inline-block;
+    box-sizing:border-box;
+    width:250px;
+    height:200px;
+    border:1px solid blue;
+    border-radius:20%;
+    margin-right:20px;
+}

@@ -4,14 +4,13 @@
     ViewBag.Title = "EditCategory";
 }
 
-<h2>EditCategory</h2>
+<h2>Edit category @Model.CategoryName</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Category</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.CategoryId)
@@ -32,6 +31,4 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+

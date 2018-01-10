@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Linq;
 using log4net;
+using PagedList;
 using RecipeBook.Business.Providers;
 using RecipeBook.Common.Models;
 using RecipeBook.Web.Models;
@@ -11,6 +12,7 @@ namespace RecipeBook.Web.Controllers
 {
     public class EditorController : Controller
     {
+        int pageSize = 10;
         private IRecipeProvider recipeProvider;
         private ICategoryProvider categoryProvider;
 
@@ -20,7 +22,7 @@ namespace RecipeBook.Web.Controllers
             categoryProvider = _categoryProvider;
         }
 
- 
+
         public ActionResult Index(int? id)
         {
             ViewBag.Id = id;
@@ -28,12 +30,13 @@ namespace RecipeBook.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult IngredientsList()
+        public ActionResult IngredientsList(int? page)
         {
             try
             {
-                IEnumerable<Ingredient> ingredients = recipeProvider.GetIngredients().OrderBy(x => x.IngredientName);
-                return PartialView("IngredientsList", ingredients);
+                int pageNumber = (page ?? 1);
+                var ingredients = recipeProvider.GetIngredients().OrderBy(x => x.IngredientName);
+                return PartialView("IngredientsList", ingredients.ToPagedList(pageNumber, pageSize));
             }
             catch (Exception)
             {
@@ -54,7 +57,7 @@ namespace RecipeBook.Web.Controllers
             try
             {
                 recipeProvider.AddIngredient(ingredient);
-                return RedirectToAction("Index", new {id=3 });
+                return RedirectToAction("Index", new { id = 3 });
             }
             catch (Exception)
             {
@@ -73,6 +76,7 @@ namespace RecipeBook.Web.Controllers
         [HttpPost]
         public ActionResult EditIngredient(Ingredient ingredient)
         {
+
             if (ModelState.IsValid)
             {
                 try
@@ -99,6 +103,7 @@ namespace RecipeBook.Web.Controllers
             {
                 recipeProvider.DeleteIngredient(id);
                 return RedirectToAction("IngredientsList");
+
             }
             catch (Exception)
             {
@@ -109,9 +114,20 @@ namespace RecipeBook.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult CategoriesList()
+        public ActionResult CategoriesList(int? page)
         {
-            return PartialView("CategoriesList", categoryProvider.GetCategories());
+            try
+            {
+                int pageNumber = (page ?? 1);
+                var categories = categoryProvider.GetCategories();
+                return PartialView("CategoriesList", categories.ToPagedList(pageNumber, pageSize));
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
         }
 
         [HttpGet]
@@ -127,7 +143,7 @@ namespace RecipeBook.Web.Controllers
             {
                 categoryProvider.AddCategory(category);
 
-                return RedirectToAction("Index", new {id=1});
+                return RedirectToAction("Index", new { id = 1 });
             }
             catch (Exception)
             {
@@ -173,12 +189,14 @@ namespace RecipeBook.Web.Controllers
             }
         }
 
-        public ActionResult RecipesList()
+        [HttpGet]
+        public ActionResult RecipesList(int? page)
         {
             try
             {
+                int pageNumber = (page ?? 1);
                 var users = recipeProvider.GetRecipies().OrderByDescending(x => x.RecipeId);
-                return PartialView(users);
+                return PartialView("RecipesList",users.ToPagedList(pageNumber,pageSize));
             }
             catch (Exception)
             {
@@ -209,7 +227,7 @@ namespace RecipeBook.Web.Controllers
             {
                 ViewBag.categories = categoryProvider.GetCategories().OrderBy(x => x.CategoryName);
                 ViewBag.ingredients = recipeProvider.GetIngredients().OrderBy(x => x.IngredientName);
-                return View();
+                return View("AddRecipe");
             }
             catch (Exception)
             {
@@ -256,7 +274,7 @@ namespace RecipeBook.Web.Controllers
                 else
                 {
                     return View(model);
-                }                     
+                }
             }
             catch (Exception)
             {
@@ -271,8 +289,8 @@ namespace RecipeBook.Web.Controllers
         {
             try
             {
-                ViewBag.categories = categoryProvider.GetCategories().OrderBy(x=>x.CategoryName);
-                ViewBag.ingredients = recipeProvider.GetIngredients().OrderBy(x=>x.IngredientName);
+                ViewBag.categories = categoryProvider.GetCategories().OrderBy(x => x.CategoryName);
+                ViewBag.ingredients = recipeProvider.GetIngredients().OrderBy(x => x.IngredientName);
                 var recipe = recipeProvider.GetRecipies().Where(x => x.RecipeId == id).SingleOrDefault();
                 var recipeDetails = recipeProvider.GetDetails(id);
                 var ingredients = recipeProvider.GetRecipeIngredients(id);

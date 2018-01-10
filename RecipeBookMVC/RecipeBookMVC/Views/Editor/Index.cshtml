@@ -5,29 +5,24 @@
 }
 
 <div class="col-md-2">
-    <p><h3>EditorPanel</h3></p>
+    <p><h3>Editor Panel</h3></p>
     <ul class="list-group">
-        <li class="list-group-item">
-            @Ajax.ActionLink("Categories", "CategoriesList", ajaxOptions)
-        </li>
-        <li class="list-group-item">
-            @Ajax.ActionLink("Recipes", "RecipesList", ajaxOptions)
-        </li>
-        <li class="list-group-item">
-            @Ajax.ActionLink("Ingredients", "IngredientsList", ajaxOptions)
-        </li>
+        @Ajax.ActionLink("Categories", "CategoriesList", "", ajaxOptions, new { @class = "list-group-item " })
+        @Ajax.ActionLink("Recipes", "RecipesList", "", ajaxOptions, new { @class = "list-group-item " })
+        @Ajax.ActionLink("Ingredients", "IngredientsList", "", ajaxOptions, new { @class = "list-group-item " })
+
     </ul>
 </div>
 
 
-<div class="col-md-6 col-md-offset-1" id="results">
+<div class="col-md-7 col-md-offset-1" id="results">
     @{if (ViewBag.Id == 1)
         {
-            @Html.Action("CategoriesList")         
+            @Html.Action("CategoriesList")
         }
-        if (ViewBag.Id == 2 || ViewBag.Id==null)
+        if (ViewBag.Id == 2 || ViewBag.Id == null)
         {
-            @Html.Action("RecipesList")         
+            @Html.Action("RecipesList")
         }
         if (ViewBag.Id == 3)
         {

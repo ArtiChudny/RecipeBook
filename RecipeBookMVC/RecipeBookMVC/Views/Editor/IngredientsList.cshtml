@@ -1,31 +1,35 @@
-﻿@model IEnumerable<RecipeBook.Common.Models.Ingredient>
-
+﻿@model PagedList.IPagedList<RecipeBook.Common.Models.Ingredient>
+@using PagedList.Mvc;
 @{
     var ajaxOptions = new AjaxOptions { UpdateTargetId = "results" };
 }
 
-<p>
-    @Html.ActionLink("Create New", "AddIngredient")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.IngredientName)
-        </th>
-        <th></th>
-    </tr>
+<div class="list-header">
+    <h3>All ingredients </h3>
+    @Ajax.ActionLink("Add new", "AddIngredient", "", ajaxOptions, new { @class = "btn btn-primary btn-add" })
+</div>
+
+<table class="table table-striped  table-condensed table-hover ">
 
     @foreach (var item in Model)
-    {
+            {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.IngredientName)
             </td>
             <td>
-                @Ajax.ActionLink("Edit", "EditIngredient", new { id = item.IngredientId }, ajaxOptions) |
-                @Ajax.ActionLink("Delete", "DeleteIngredient", new { id = item.IngredientId }, ajaxOptions)
+                <div class="float-right">
+                    @Ajax.ActionLink("Edit", "EditIngredient", new { id = item.IngredientId }, ajaxOptions, new { @class = "btn btn-warning" })
+                    @Ajax.ActionLink("Delete", "DeleteIngredient", new { id = item.IngredientId }, ajaxOptions, new { @class = "btn btn-danger" })
+                </div>
             </td>
         </tr>
     }
 
 </table>
+
+
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("IngredientsList", new { page = page }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "results" }))
+

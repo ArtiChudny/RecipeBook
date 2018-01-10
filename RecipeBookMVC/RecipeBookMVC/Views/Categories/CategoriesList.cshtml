@@ -1,15 +1,17 @@
 ﻿@model IEnumerable<RecipeBook.Common.Models.Category>
 
+@{
+    var ajaxOptions = new AjaxOptions { UpdateTargetId = "mainPage" };
+}
+
 <ul class="list-group">
-    <li class="list-group-item">
-        @Html.RouteLink("All categories", new { controller = "Home", action = "Index", _categoryId = 0 })
-    </li>
+    @Ajax.ActionLink("All recipes", "RecipeList", "Home", new { id = 0 }, ajaxOptions, new { @class = "list-group-item active" })
+    @*@Html.RouteLink("All categories", new { controller = "Home", action = "RecipeList", id = 0 }, new { @class = "list-group-item active " })*@
 
     @foreach (var category in Model)
     {
-        <li class="list-group-item">
-            @Html.RouteLink(category.CategoryName, new { controller = "Home", action = "Index", _categoryId = category.CategoryId })
-        </li>
+        @Ajax.ActionLink(category.CategoryName, "RecipeList","Home", new { id = category.CategoryId }, ajaxOptions, new { @class = "list-group-item"})
+        @*@Html.RouteLink(category.CategoryName, new { controller = "Home", action = "Index", _categoryId = category.CategoryId }, new { @class = "list-group-item " })*@
     }
 </ul>
 

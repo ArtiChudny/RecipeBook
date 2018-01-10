@@ -6,6 +6,7 @@
     <title>Recipe Book - @ViewBag.Title</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 
 </head>
@@ -21,8 +22,9 @@
                 @Html.ActionLink("Recipe Book", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
 
                 <div style="position:absolute; right:10%; top:20%;">
-                    <input type='button' value='Users' onclick='window.location = "@Url.Action("UserList","Admin") "' />
-                    <input type='button' value='Edite' onclick='window.location = "@Url.Action("Index","Editor") "' />
+
+                    @Html.ActionLink("Users", "UserList","Admin")|
+                    @Html.ActionLink("Edite", "Index", "Editor")|
                     @Html.Label(HttpContext.Current.User.Identity.Name)
                     @if (HttpContext.Current.User.Identity.IsAuthenticated)
                     {
@@ -44,10 +46,7 @@
 
     <div class="container body-content">
         @RenderBody()
-
     </div>
-
-
     <script src="~/Scripts/jquery-3.2.1.min.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
