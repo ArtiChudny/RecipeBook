@@ -20,3 +20,5 @@ E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Business\bin\Release\StructureMa
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Business\obj\Release\RecipeBook.Business.csprojResolveAssemblyReference.cache
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Business\obj\Release\RecipeBook.Business.dll
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Business\obj\Release\RecipeBook.Business.pdb
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Business\bin\Release\Newtonsoft.Json.dll
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Business\bin\Release\Newtonsoft.Json.xml

@@ -7,6 +7,8 @@ namespace RecipeBook.Web.Models
     {
         public RecipeDetails recipeDetails { get; set; }
         public IEnumerable<RecipeIngredient> recipeIngredients { get; set; }
+        public string ImageUrl { get; set; }
+        public string RecipeName { get; set; }
     }
 
 }

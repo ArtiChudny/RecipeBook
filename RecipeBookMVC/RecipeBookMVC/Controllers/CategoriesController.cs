@@ -1,7 +1,6 @@
 ﻿using System.Web.Mvc;
 using RecipeBook.Business.Providers;
 
-
 namespace RecipeBookMVC.Controllers
 {
 
@@ -18,7 +17,8 @@ namespace RecipeBookMVC.Controllers
 
         public ActionResult CategoriesList()
         {
-            return View(provider.GetCategories());
+            var categories = provider.GetCategories();
+            return PartialView("CategoriesList",categories);
         }
 
 

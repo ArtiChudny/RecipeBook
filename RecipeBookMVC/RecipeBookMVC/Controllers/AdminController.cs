@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using log4net;
+using PagedList;
 using RecipeBook.Business.Providers;
 using RecipeBook.Common.Models;
 using RecipeBook.Web.Models;
@@ -12,17 +13,20 @@ namespace RecipeBook.Web.Controllers
     public class AdminController : Controller
     {
         private IUserProvider userProvider;
+        int pageSize = 10;
 
         public AdminController(IUserProvider _userProvider)
         {
             userProvider = _userProvider;
         }
         [HttpGet]
-        public ActionResult UserList()
+        public ActionResult UserList(int? page)
         {
             try
             {
-                return View(userProvider.GetUsers());
+                int pageNumber = (page ?? 1);
+                var users = userProvider.GetUsers();
+                return View(users.ToPagedList(pageNumber,pageSize));
             }
             catch (System.Exception)
             {

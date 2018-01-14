@@ -122,3 +122,7 @@ E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\obj\Debug\RecipeBook.Web.dll
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\obj\Debug\RecipeBook.Web.pdb
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\Newtonsoft.Json.dll
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\Newtonsoft.Json.xml
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\PagedList.dll
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\PagedList.Mvc.dll
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\PagedList.xml
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\PagedList.Mvc.xml

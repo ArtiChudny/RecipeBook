@@ -3,46 +3,66 @@
     ViewBag.Title = "Details";
 }
 
+<div class="col-md-6">
 
-<div>
-    <h2>Ingredients</h2>
-    @foreach (var item in Model.recipeIngredients)
-    {
-        <ul>
-            <li>
-                @Html.DisplayFor(modelItem => item.IngredientName) : @Html.DisplayFor(modelItem => item.Weight)
-            </li>
-        </ul>
-    }
-</div>
+    <h2>@Model.RecipeName</h2>
+    <h3>Description:</h3>
+    <p>@Html.DisplayFor(model => model.recipeDetails.Description)</p>
+
+    <div>
+        <hr />
+        <h3>Details:</h3>
+        <p>
+            <span class="glyphicon glyphicon-time"></span>
+            Cooking time: @Html.DisplayFor(model => model.recipeDetails.CookingTime)
+        </p>
+        <p>
+            <span class="glyphicon glyphicon-fire"></span>
+            Cooking temperature : @Html.DisplayFor(model => model.recipeDetails.CookingTemperature)
+        </p>
 
 
-<h2>Details</h2>
-<ul>
-    <li>
-        @Html.DisplayNameFor(model => model.recipeDetails.CookingTime) : @Html.DisplayFor(model => model.recipeDetails.CookingTime)
-    </li>
-</ul>
+        <hr />
+    </div>
 
-<ul>
-    <li>
-        @Html.DisplayNameFor(model => model.recipeDetails.CookingTemperature) : @Html.DisplayFor(model => model.recipeDetails.CookingTemperature)
-    </li>
-</ul>
+    <div>
+        <h3>Ingredients:</h3>
+        <br />
+        <table class="table table-condensed">
+            <tr class="active">
+                <th>Ingredient</th>
+                <th>Weight</th>
+            </tr>
+            @foreach (var item in Model.recipeIngredients)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IngredientName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Weight)
+                    </td>
+                </tr>
+            }
+        </table>
+        <hr />
+    </div>
+    <h3>Steps:</h3>
+    <pre>@Model.recipeDetails.Steps </pre>
 
-<ul>
-    <li>
-        @Html.DisplayNameFor(model => model.recipeDetails.Description) : @Html.DisplayFor(model => model.recipeDetails.Description)
-    </li>
-</ul>
 
-<ul>
-    <li>
-        @Html.DisplayNameFor(model => model.recipeDetails.Steps) : @Html.DisplayFor(model => model.recipeDetails.Steps)
-    </li>
-</ul>
+    <p>
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+    </div>
+    <div class="col-md-6 col-md-offset-1 details-image-block">
 
-<p>
-
-    @Html.ActionLink("Back to List", "Index")
-</p>
+        @if (Model.ImageUrl.IsEmpty())
+        {
+            <img src="~/Images/no_image_available.jpg" />
+        }
+        else
+        {
+            <img src="@Model.ImageUrl" />
+        }
+    </div>

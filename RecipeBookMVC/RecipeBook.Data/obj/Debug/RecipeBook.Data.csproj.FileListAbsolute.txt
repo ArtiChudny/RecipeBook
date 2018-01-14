@@ -37,6 +37,5 @@ E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Data\bin\Debug\StructureMap.xml
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Data\bin\Debug\StructureMap.Net4.pdb
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Data\bin\Debug\StructureMap.Web.pdb
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Data\bin\Debug\StructureMap.Web.xml
-E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Data\obj\Debug\RecipeBook.Data.csprojResolveAssemblyReference.cache
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Data\obj\Debug\RecipeBook.Data.dll
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Data\obj\Debug\RecipeBook.Data.pdb

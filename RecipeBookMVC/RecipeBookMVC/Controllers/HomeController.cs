@@ -15,20 +15,10 @@ namespace RecipeBookMVC.Controllers
         {
             provider = _provider;
         }
-
-        [HttpGet]
-        public ActionResult Index(int? _categoryId)
+    
+        public ActionResult Index()
         {
-
-            if (_categoryId == null || _categoryId == 0)
-            {
-                return View(provider.GetRecipies());
-            }
-            else
-            {
-                return View(provider.GetRecipiesByCategory(_categoryId));
-            }
-
+            return View();
         }
     
         public ActionResult Details(int _recipeId)
@@ -36,8 +26,25 @@ namespace RecipeBookMVC.Controllers
             DetailsViewModel details = new DetailsViewModel();
             details.recipeDetails = provider.GetDetails(_recipeId);
             details.recipeIngredients = provider.GetRecipeIngredients(_recipeId);
-
+            var recipe = provider.GetRecipies().Where(x => x.RecipeId == _recipeId).Single();
+            details.ImageUrl = recipe.PhotoUrl;
+            details.RecipeName = recipe.RecipeName;
             return View(details);
+        }
+
+        [HttpGet]
+        public ActionResult RecipeList(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                var recipes = provider.GetRecipies().OrderByDescending(x=>x.RecipeId);
+                return PartialView("RecipeList",recipes);
+            }
+            else
+            {
+                var recipes = provider.GetRecipiesByCategory(id);
+                return PartialView("RecipeList",recipes);
+            }
         }
 
     }

@@ -6,4 +6,3 @@ E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Common\obj\Debug\RecipeBook.Comm
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Common\obj\Debug\RecipeBook.Common.pdb
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Common\bin\Debug\RecipeBook.Common.dll
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Common\bin\Debug\RecipeBook.Common.pdb
-E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Common\obj\Debug\RecipeBook.Common.csprojResolveAssemblyReference.cache
