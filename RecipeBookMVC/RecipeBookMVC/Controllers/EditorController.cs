@@ -57,9 +57,9 @@ namespace RecipeBook.Web.Controllers
         [HttpPost]
         public ActionResult AddIngredient(Ingredient ingredient)
         {
-            if (ingredient.IngredientName==null)
+            if (ingredient.IngredientName == null)
             {
-                ModelState.AddModelError("", "Field Name is required");
+                ModelState.AddModelError("IngredientName", "Field Name is required");
             }
             if (ModelState.IsValid)
             {
@@ -78,13 +78,13 @@ namespace RecipeBook.Web.Controllers
             {
                 return View();
             }
-            
+
         }
 
         [HttpGet]
         public ActionResult EditIngredient(int id)
         {
-            Ingredient ingredient = recipeProvider.GetIngredients().Where(x => x.IngredientId == id).Single();
+            var ingredient = recipeProvider.GetIngredients().Where(x => x.IngredientId == id).Single();
             return View(ingredient);
         }
 
@@ -93,7 +93,7 @@ namespace RecipeBook.Web.Controllers
         {
             if (ingredient.IngredientName == null)
             {
-                ModelState.AddModelError("", "Field Name is required");
+                ModelState.AddModelError("IngredientName", "Field Name is required");
             }
 
             if (ModelState.IsValid)
@@ -160,14 +160,13 @@ namespace RecipeBook.Web.Controllers
         {
             if (category.CategoryName == null)
             {
-                ModelState.AddModelError("", "Field Name is required");
+                ModelState.AddModelError("CategoryName", "Field Name is required");
             }
             if (ModelState.IsValid)
             {
                 try
                 {
                     categoryProvider.AddCategory(category);
-
                     return RedirectToAction("Index", new { id = 1 });
                 }
                 catch (Exception)
@@ -180,13 +179,13 @@ namespace RecipeBook.Web.Controllers
             {
                 return View();
             }
-            
+
         }
 
         [HttpGet]
         public ActionResult EditCategory(int id)
         {
-            Category category = categoryProvider.GetCategories().Where(x => x.CategoryId == id).FirstOrDefault();
+            var category = categoryProvider.GetCategories().Where(x => x.CategoryId == id).FirstOrDefault();
             return View(category);
         }
 
@@ -195,7 +194,7 @@ namespace RecipeBook.Web.Controllers
         {
             if (category.CategoryName == null)
             {
-                ModelState.AddModelError("", "Field Name is required");
+                ModelState.AddModelError("CategoryName", "Field Name is required");
             }
             if (ModelState.IsValid)
             {
@@ -212,7 +211,7 @@ namespace RecipeBook.Web.Controllers
             }
             else
             {
-                return View();
+                return View(category);
             }
         }
 
@@ -238,7 +237,7 @@ namespace RecipeBook.Web.Controllers
             {
                 int pageNumber = (page ?? 1);
                 var users = recipeProvider.GetRecipies().OrderByDescending(x => x.RecipeId);
-                return PartialView("RecipesList",users.ToPagedList(pageNumber,pageSize));
+                return PartialView("RecipesList", users.ToPagedList(pageNumber, pageSize));
             }
             catch (Exception)
             {
@@ -281,9 +280,28 @@ namespace RecipeBook.Web.Controllers
         [HttpPost]
         public ActionResult AddRecipe(RecipeViewModel model, HttpPostedFileBase upload)
         {
-            try
+            var ingredients = model.Ingredients.ToList();
+            int n = 0;
+            foreach (var item in model.Ingredients)
             {
-                if (ModelState.IsValid)
+                if (item.IngredientId == 0 || item.Weight == null)
+                {
+                    ModelState.AddModelError("Ingredients", "There should be no empty fields!");
+                    break;
+                }
+                if (ingredients.Exists(x => x.IngredientId == item.IngredientId))
+                {
+                    n++;
+                }
+            }
+            if (n > 1)
+            {
+                ModelState.AddModelError("Ingredients", "There should not be the same ingredients!");
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
                 {
                     RecipeDetails details = new RecipeDetails()
                     {
@@ -298,7 +316,6 @@ namespace RecipeBook.Web.Controllers
                         CategoryId = model.CategoryId,
                         Details = details
                     };
-
                     if (upload != null)
                     {
                         string fileName = Path.GetFileName(upload.FileName);
@@ -309,7 +326,6 @@ namespace RecipeBook.Web.Controllers
                     {
                         recipe.PhotoUrl = null;
                     }
-
                     int NewRecipeId = recipeProvider.AddRecipe(recipe);
                     foreach (var item in model.Ingredients)
                     {
@@ -318,15 +334,16 @@ namespace RecipeBook.Web.Controllers
                     }
                     return RedirectToAction("Index", new { id = 2 });
                 }
-                else
+                catch (Exception)
                 {
-                    return View(model);
+                    throw;
                 }
             }
-            catch (Exception)
+            else
             {
-
-                throw;
+                ViewBag.categories = categoryProvider.GetCategories().OrderBy(x => x.CategoryName);
+                ViewBag.ingredients = recipeProvider.GetIngredients().OrderBy(x => x.IngredientName);
+                return View(model);
             }
 
         }
@@ -367,11 +384,28 @@ namespace RecipeBook.Web.Controllers
         [HttpPost]
         public ActionResult EditRecipe(RecipeViewModel model, HttpPostedFileBase upload)
         {
-            try
+            var ingredients = model.Ingredients.ToList();
+            int n = 0;
+            foreach (var item in model.Ingredients)
             {
-                if (ModelState.IsValid)
+                if (item.IngredientId == 0 || item.Weight == null)
                 {
-                   
+                    ModelState.AddModelError("Ingredients", "There should be no empty fields!");
+                    break;
+                }
+                if (ingredients.Exists(x => x.IngredientId == item.IngredientId))
+                {
+                    n++;
+                }
+            }
+            if (n > 1)
+            {
+                ModelState.AddModelError("Ingredients", "There should not be the same ingredients!");
+            }
+            if (ModelState.IsValid)
+            {
+                try
+                {
                     RecipeDetails details = new RecipeDetails()
                     {
                         RecipeId = model.RecipeId,
@@ -409,17 +443,21 @@ namespace RecipeBook.Web.Controllers
 
                     return RedirectToAction("Index", new { id = 2 });
                 }
-                else
+
+                catch (Exception)
                 {
-                    return View(model);
+                    throw;
                 }
-
             }
-            catch (Exception)
+            else
             {
-
-                throw;
+                ViewBag.categories = categoryProvider.GetCategories().OrderBy(x => x.CategoryName);
+                ViewBag.ingredients = recipeProvider.GetIngredients().OrderBy(x => x.IngredientName);
+                return View(model);
             }
+
+
+
 
         }
 

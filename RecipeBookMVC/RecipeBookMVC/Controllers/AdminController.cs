@@ -53,8 +53,7 @@ namespace RecipeBook.Web.Controllers
         {
             try
             {
-                IEnumerable<Role> roles = userProvider.GetRoles().ToArray();
-                ViewBag.roles = roles;
+                ViewBag.roles = userProvider.GetRoles().ToArray(); 
                 User user = userProvider.GetUserByLogin(login);
                 UserViewModel model = new UserViewModel()
                 {
@@ -74,13 +73,13 @@ namespace RecipeBook.Web.Controllers
         [HttpPost]
         public ActionResult Edit(UserViewModel model)
         {
-            try
+            if (model.Roles == null)
             {
-                if (model.Roles == null)
-                {
-                    ModelState.AddModelError("", "Select at least one role");
-                }
-                if (ModelState.IsValid)
+                ModelState.AddModelError("", "Select at least one role");
+            }
+            if (ModelState.IsValid)
+            {
+                try
                 {
                     List<Role> userRoles = new List<Role>();
                     foreach (var item in model.Roles)
@@ -104,15 +103,19 @@ namespace RecipeBook.Web.Controllers
                     userProvider.UpdateUser(user);
                     return RedirectToAction("UserList");
                 }
-                else
+                catch (System.Exception)
                 {
-                    return View();
+
+                    throw;
                 }
             }
-            catch (System.Exception)
+            else
             {
-                throw;
+                ViewBag.roles = userProvider.GetRoles();
+                return View(model);
             }
+          
+       
         }
 
         [HttpGet]
@@ -120,8 +123,7 @@ namespace RecipeBook.Web.Controllers
         {
             try
             {
-                IEnumerable<Role> roles = userProvider.GetRoles().ToArray();
-                ViewBag.roles = roles;
+                ViewBag.roles = userProvider.GetRoles();
                 return View();
             }
             catch (System.Exception)
@@ -134,10 +136,6 @@ namespace RecipeBook.Web.Controllers
         [HttpPost]
         public ActionResult CreateUser(RegistrationViewModel model)
         {
-            if (model.Roles == null)
-            {
-                ModelState.AddModelError("", "Select at least one role");
-            }
             if (ModelState.IsValid)
             {
                 try
@@ -151,7 +149,6 @@ namespace RecipeBook.Web.Controllers
                         };
                         userRoles.Add(role);
                     }
-
                     User user = new User()
                     {
                         Login = model.Login,
@@ -159,7 +156,6 @@ namespace RecipeBook.Web.Controllers
                         Email = model.Email,
                         Roles = userRoles.ToArray()
                     };
-
                     userProvider.AddUser(user);
                     return RedirectToAction("UserList");
                 }
@@ -171,6 +167,7 @@ namespace RecipeBook.Web.Controllers
             }
             else
             {
+                ViewBag.roles = userProvider.GetRoles();
                 return View("CreateUser", model);
             }
 

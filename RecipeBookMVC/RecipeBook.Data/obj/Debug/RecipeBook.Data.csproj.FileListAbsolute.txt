@@ -39,3 +39,4 @@ E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Data\bin\Debug\StructureMap.Web.
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Data\bin\Debug\StructureMap.Web.xml
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Data\obj\Debug\RecipeBook.Data.dll
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Data\obj\Debug\RecipeBook.Data.pdb
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Data\obj\Debug\RecipeBook.Data.csprojResolveAssemblyReference.cache

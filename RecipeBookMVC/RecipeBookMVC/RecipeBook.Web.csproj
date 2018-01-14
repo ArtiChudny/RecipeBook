@@ -171,8 +171,6 @@
     <Compile Include="Models\AuthorizationAttributes\EditorAttribute.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\DetailsViewModel.cs" />
-    <Compile Include="Models\HomeViewModel.cs" />
-    <Compile Include="Models\JsonAttribute.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\Principal\UserPrincipal.cs" />
     <Compile Include="Models\RecipeViewModel.cs" />

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using RecipeBook.Common.Models;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace RecipeBook.Web.Models
 {
@@ -23,7 +21,7 @@ namespace RecipeBook.Web.Models
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        [Required(AllowEmptyStrings = true, ErrorMessage = "Field email is required!")]
+        [Required(AllowEmptyStrings = true, ErrorMessage = "Select at least one role!")]
         public int[] Roles { get; set; }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using RecipeBook.Common.Models;
 
 namespace RecipeBook.Web.Models
@@ -21,7 +20,7 @@ namespace RecipeBook.Web.Models
         [Required(AllowEmptyStrings = true, ErrorMessage = "Field Steps is required!")]
         public string Steps { get; set; }
 
-        [Required(AllowEmptyStrings = true, ErrorMessage = "Chose at least one ingredient!")]
+        [Required(AllowEmptyStrings = true, ErrorMessage = "Select at least one ingredient!")]
         public RecipeIngredient[] Ingredients { get; set; }
     }
 }
