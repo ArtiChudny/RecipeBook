@@ -9,11 +9,11 @@ values
 
 insert into Recipes(CategoryId,RecipeName,PhotoUrl)
 values 
-('1','Borsch',''),
-('1','Shchi',''),
-('2','Greek salad',''),
-('3','Pancakes',''),
-('4','Cutlets','')
+('1','Borsch','/Images/b0b543de.jpg'),
+('1','Shchi','/Images/k-2942-00.jpg'),
+('2','Greek salad','/Images/grecheskiy_salat.jpg'),
+('3','Pancakes','/Images/1a6211b440f113809d52d2a603b77fda.jpg'),
+('4','Cutlets','/Images/Kotletyi-iz-telyatinyi.jpg')
 
 
 insert into Ingredients(IngredientName)
@@ -35,20 +35,20 @@ values
 
 insert into RecipesIngredients (RecipeId,IngredientId,Weight)
 values
-('1','1','300'),
-('1','2','400'),
-('1','3','200'),
-('1','4','400'),
-('1','6','4'),
-('1','9','1'),
-('1','10','1'),
+('1','1','300g'),
+('1','2','400g'),
+('1','3','200g'),
+('1','4','400g'),
+('1','6','4 pcs'),
+('1','9','1 pcs'),
+('1','10','1 pcs'),
 
-('2','1','500'),
-('2','3','300'),
-('2','4','400'),
-('2','6','4'),
-('2','9','1'),
-('2','10','1'),
+('2','1','500g'),
+('2','3','300g'),
+('2','4','400g'),
+('2','6','4 pcs'),
+('2','9','1 pcs'),
+('2','10','1 pcs'),
 
 ('3','10','400g'),
 ('3','11','400g'),
@@ -56,21 +56,21 @@ values
 ('3','13','300g'),
 ('3','14','100g'),
 
-('4','5','200'),
-('4','7','0.5'),
-('4','8','3'),
+('4','5','200g'),
+('4','7','0.5l'),
+('4','8','3 pcs'),
 
-('5','4','800'),
-('5','5','50'),
-('5','8','1'),
-('5','9','1')
+('5','4','800g'),
+('5','5','50g'),
+('5','8','1 pcs'),
+('5','9','1 pcs')
 
 insert into RecipeDetails (RecipeId,CookingTemperature, CookingTime, RecipeDescription, Steps)
 values
 
 ('1','100','60 min','Borsch','Steps'),
 ('2','100','60 min','Shchi','Steps'),
-('3', '','20 min','Greek Salad','Steps'),
+('3', '-','20 min','Greek Salad','Steps'),
 ('4','120','20 min','Pancake','Steps'),
 ('5','120','20 min','Cutlets','Steps')
 

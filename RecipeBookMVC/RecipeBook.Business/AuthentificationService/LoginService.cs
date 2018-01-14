@@ -26,8 +26,14 @@ namespace RecipeBook.Business.AuthentificationService
             }
             var user = userProvider.GetUserByLogin(login);
 
+            if (user == null)
+            {
+                return LoginResult.InvalidCredentials;
+            }
+
             if (validationService.IsValidUser(login, password))
             {
+
                 var userData = JsonConvert.SerializeObject(user);
                 var ticket = new FormsAuthenticationTicket(2, login, DateTime.Now, DateTime.Now.AddHours(1), false, userData);
                 var encTicket = FormsAuthentication.Encrypt(ticket);
@@ -36,6 +42,7 @@ namespace RecipeBook.Business.AuthentificationService
                 return LoginResult.NoError;
             }
             else return LoginResult.InvalidCredentials;
+
 
         }
 

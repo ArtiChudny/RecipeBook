@@ -7,7 +7,7 @@
 <h2>Add new recipe</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("AddRecipe", "Editor", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -22,13 +22,15 @@
                 @Html.ValidationMessageFor(model => model.RecipeName, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.PhotoUrl, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="form-group upload-block">
+            @Html.Label("Image", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PhotoUrl, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PhotoUrl, "", new { @class = "text-danger" })
-            </div>
+                <label for="image-upload" class="file-upload">
+                    <span class="glyphicon glyphicon-upload"></span> Upload
+                </label>
+                <input id="image-upload" type="file" name="upload" />
+                <input type="text" id="filename" class="filename" disabled>
+            </div>            
         </div>
 
         <div class="form-group">
@@ -71,6 +73,8 @@
             </div>
         </div>
         <div id="ingredientBlock" class="form-group">
+            <h3 class="col-md-offset-3">Ingredients:</h3>
+            <br />
             <div class="ingredientItem">
                 @Html.Label("Ingredient №1", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -79,22 +83,22 @@
                 @Html.Label("Weight", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Ingredients[0].Weight, new { htmlAttributes = new { @class = "form-control" } })
-                    <hr style="width:30%; float:left">
+                    <br />
                 </div>
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <a style="cursor:pointer" class="glyphicon glyphicon-plus" id="addLink">Add new ingredient</a>
-                <p></p>
+                <input type="button" value="+ Add new ingredient" id="addLink" class="btn btn-success btn-block" />
+                <br />
                 <hr style="width:30%; float:left;" />
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-primary btn-block" />
             </div>
         </div>
 
@@ -124,7 +128,7 @@
             "<label class='control-label col-md-2'>Weight</label>" +
             "<div class='col-md-10'>" +
             "<input class='form-control' type='text' name='Ingredients[" + i + "].Weight'/>" +
-             "<hr style='width:30%; float:left;'>" +
+             "<br />" +
             "</div>" +
             "</div>";
 
@@ -133,5 +137,12 @@
                 $('#ingredientBlock').append(ingredientBlock);
             })
         })
+
+        $(document).ready(function () {
+            $(".upload-block input[type=file]").change(function () {
+                var filename = $(this).val().replace(/.*\\/, "");
+                $("#filename").val(filename);
+            });
+        });
     </script>
 }

@@ -59,3 +59,9 @@ E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\ru\System.Web.Mvc.resourc
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\obj\Release\RecipeBook.Web.csprojResolveAssemblyReference.cache
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\obj\Release\RecipeBook.Web.dll
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\obj\Release\RecipeBook.Web.pdb
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\Newtonsoft.Json.dll
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\PagedList.dll
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\PagedList.Mvc.dll
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\Newtonsoft.Json.xml
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\PagedList.xml
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBookMVC\bin\PagedList.Mvc.xml

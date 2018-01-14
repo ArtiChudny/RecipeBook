@@ -3,39 +3,16 @@
 @{
     ViewBag.Title = "Main Page";
 }
-
+<hr/>
 <div class="col-md-2">
-    <h3>Categories</h3>
+    <h3 class="text-center">Categories</h3>
     @Html.Action("CategoriesList", "Categories")
-    <input type='button' value='Advanced Search' onclick='window.location = "@Url.Action("Search","Search") "' />
+    @Html.RouteLink("Advanced search", new { controller = "Search", action = "Search" }, new { @class = "btn btn-primary btn-block" })
+
 </div>
 
 
-<div class="col-md-8">
-    <div class="col-md-12">
-
-        @foreach (var item in Model)
-        {
-
-            <dl style="display: inline-block;margin-right:20px;">
-                <dd>
-                    @Html.DisplayFor(modelItem => item.RecipeName)
-                </dd>
-                <dd>
-                    @if (item.PhotoUrl.IsEmpty())
-                {
-                        <img src="/no-image-available.png" />
-                    }
-                    else
-                    {
-                        <img src="@item.PhotoUrl" />
-                    }
-                </dd>
-                <dd>
-                    @Html.RouteLink("Details", new { controller = "Home", action = "Details", _recipeId = item.RecipeId })
-                </dd>
-            </dl>
-
-        }
-    </div>
+<div class="col-md-9 col-md-offset-1" id="mainPage">
+    @Html.Action("RecipeList","Home")
 </div>
+

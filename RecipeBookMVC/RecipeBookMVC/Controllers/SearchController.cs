@@ -1,11 +1,11 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using System.Linq;
 using System.Collections.Generic;
 using log4net;
 using RecipeBook.Common.Models;
 using RecipeBook.Business.Providers;
 using RecipeBook.Web.Models;
-using System;
 
 namespace RecipeBook.Web.Controllers
 {
@@ -19,21 +19,20 @@ namespace RecipeBook.Web.Controllers
             categoryProvider = _categoryProvider;
         }
 
-
+        [HttpGet]
         public ActionResult SearchByIngredient()
         {
-            return PartialView("SearchResult");
+            return PartialView("SearchResult", null);
         }
 
         [HttpPost]
         public ActionResult SearchByIngredient(SearchViewModel model)
         {
-            if (model == null)
+            if ((model.RecipeName == null && model.CategoryName == null && model.IngredientName == null) || model == null)
             {
-                throw new NullReferenceException();
+                return PartialView("SearchResult", null);
             }
-
-            IEnumerable<Recipe> recipes;
+            IEnumerable<Recipe> recipes = null;
 
             if (model.RecipeName == null || model.IngredientName == null || model.CategoryName == null)
             {
@@ -71,7 +70,7 @@ namespace RecipeBook.Web.Controllers
                 if (model.CategoryName == null)
                 {
                     recipes = recipeProvider.GetRecipesByIngredient(model.IngredientName).Where(x => x.RecipeName == model.RecipeName);
-                    return PartialView("SearchResult", recipes);
+                    return PartialView("SearchResult");
                 }
 
             }
@@ -82,15 +81,15 @@ namespace RecipeBook.Web.Controllers
                 recipes = recipes.Where(x => x.RecipeName.Contains(model.RecipeName));
                 return PartialView("SearchResult", recipes);
             }
-           
+
             return PartialView("SearchResult");
         }
 
         public ActionResult Search()
         {
             ViewBag.categories = categoryProvider.GetCategories();
-            ViewBag.ingredients = recipeProvider.GetIngredients().OrderBy(x=>x.IngredientName);
-            return View();
+            ViewBag.ingredients = recipeProvider.GetIngredients().OrderBy(x => x.IngredientName);
+            return View("Search");
         }
     }
 }

@@ -21,30 +21,30 @@ namespace RecipeBook.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(string login, string password)
+        public ActionResult Login(LoginViewModel model)
         {
-            var result = loginService.Login(login, password);
-            if (result == LoginResult.NoError)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            var model = new LoginViewModel();
 
-            if (result == LoginResult.EmptyCredentials)
+            if (ModelState.IsValid)
             {
-                model.Message = "Empty credentials";
+                var result = loginService.Login(model.Login, model.Password);
+                if (result == LoginResult.InvalidCredentials)
+                {
+                    model.Message = "Invalid credentials";
+                    return View();
+                }
+                if (result == LoginResult.NoError)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
             }
-            if (result == LoginResult.InvalidCredentials)
-            {
-                model.Message = "Invalid credentials";
-            }
-            return View(model);
+            return View();
         }
 
         public ActionResult Logout()
         {
             loginService.Logout();
-            return RedirectToAction("Login", "Login");
+            return RedirectToAction("Index", "Home");
         }
     }
 }

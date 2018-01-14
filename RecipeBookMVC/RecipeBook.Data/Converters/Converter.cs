@@ -1,9 +1,12 @@
-﻿using RecipeBook.Common.Models;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using RecipeBook.Common.Models;
 using RecipeBook.Data.RecipeService;
 using RecipeBook.Data.CategoryService;
 using RecipeBook.Data.UserService;
-using System.Collections.Generic;
+
+
 
 namespace RecipeBook.Data.Converters
 {
@@ -132,11 +135,15 @@ namespace RecipeBook.Data.Converters
 
         public Role ToRole(RoleDto roleDto)
         {
-            return new Role
+            if (roleDto != null)
             {
-                RoleId = roleDto.RoleId,
-                RoleName = roleDto.RoleName
-            };
+                return new Role
+                {
+                    RoleId = roleDto.RoleId,
+                    RoleName = roleDto.RoleName
+                };
+            }
+            else return null;
         }
 
         public RoleDto ToRoleDto(Role role)
@@ -150,37 +157,51 @@ namespace RecipeBook.Data.Converters
 
         public IEnumerable<Role> ToRoles(IEnumerable<RoleDto> rolesDto)
         {
-            List<Role> roles = new List<Role>();
-            foreach (var item in rolesDto)
+            if (rolesDto != null)
             {
-                roles.Add(ToRole(item));
+                List<Role> roles = new List<Role>();
+                foreach (var item in rolesDto)
+                {
+                    roles.Add(ToRole(item));
+                }
+                return roles;
             }
-            return roles;
+            else return null;
         }
 
         public IEnumerable<RoleDto> ToRolesDto(IEnumerable<Role> roles)
         {
-            List<RoleDto> rolesDto = new List<RoleDto>();
             if (roles != null)
             {
+                List<RoleDto> rolesDto = new List<RoleDto>();
                 foreach (var item in roles)
                 {
                     rolesDto.Add(ToRoleDto(item));
                 }
+                return rolesDto;
             }
-            return rolesDto;
+            else return null;
+            
         }
 
         public User ToUser(UserDto userDto)
         {
-            return new User
+            if (userDto != null)
             {
-                UserId = userDto.UserId,
-                Login = userDto.Login,
-                Password = userDto.Password,
-                Email = userDto.Email,
-                Roles = ToRoles(userDto.UserRoles).ToArray()
-            };
+                return new User
+                {
+                    UserId = userDto.UserId,
+                    Login = userDto.Login,
+                    Password = userDto.Password,
+                    Email = userDto.Email,
+                    Roles = ToRoles(userDto.UserRoles).ToArray()
+                };
+            }
+            else
+            {
+                throw new ArgumentNullException();
+            }
+           
         }
 
         public UserDto ToUserDto(User user)

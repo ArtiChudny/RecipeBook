@@ -1,15 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Web;
 using System.Web.Mvc;
 using System.Linq;
+using System.IO;
 using log4net;
 using PagedList;
 using RecipeBook.Business.Providers;
 using RecipeBook.Common.Models;
 using RecipeBook.Web.Models;
 
+
 namespace RecipeBook.Web.Controllers
 {
+    [Authorize(Roles = "Editor")]
     public class EditorController : Controller
     {
         int pageSize = 10;
@@ -54,16 +57,28 @@ namespace RecipeBook.Web.Controllers
         [HttpPost]
         public ActionResult AddIngredient(Ingredient ingredient)
         {
-            try
+            if (ingredient.IngredientName==null)
             {
-                recipeProvider.AddIngredient(ingredient);
-                return RedirectToAction("Index", new { id = 3 });
+                ModelState.AddModelError("", "Field Name is required");
             }
-            catch (Exception)
+            if (ModelState.IsValid)
             {
+                try
+                {
+                    recipeProvider.AddIngredient(ingredient);
+                    return RedirectToAction("Index", new { id = 3 });
+                }
+                catch (Exception)
+                {
 
-                throw;
+                    throw;
+                }
             }
+            else
+            {
+                return View();
+            }
+            
         }
 
         [HttpGet]
@@ -76,6 +91,10 @@ namespace RecipeBook.Web.Controllers
         [HttpPost]
         public ActionResult EditIngredient(Ingredient ingredient)
         {
+            if (ingredient.IngredientName == null)
+            {
+                ModelState.AddModelError("", "Field Name is required");
+            }
 
             if (ModelState.IsValid)
             {
@@ -139,17 +158,29 @@ namespace RecipeBook.Web.Controllers
         [HttpPost]
         public ActionResult AddCategory(Category category)
         {
-            try
+            if (category.CategoryName == null)
             {
-                categoryProvider.AddCategory(category);
-
-                return RedirectToAction("Index", new { id = 1 });
+                ModelState.AddModelError("", "Field Name is required");
             }
-            catch (Exception)
+            if (ModelState.IsValid)
             {
+                try
+                {
+                    categoryProvider.AddCategory(category);
 
-                throw;
+                    return RedirectToAction("Index", new { id = 1 });
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
             }
+            else
+            {
+                return View();
+            }
+            
         }
 
         [HttpGet]
@@ -162,15 +193,26 @@ namespace RecipeBook.Web.Controllers
         [HttpPost]
         public ActionResult EditCategory(Category category)
         {
-            try
+            if (category.CategoryName == null)
             {
-                categoryProvider.UpdateCategory(category);
-                return RedirectToAction("Index", new { id = 1 });
+                ModelState.AddModelError("", "Field Name is required");
             }
-            catch (Exception)
+            if (ModelState.IsValid)
             {
+                try
+                {
+                    categoryProvider.UpdateCategory(category);
+                    return RedirectToAction("Index", new { id = 1 });
+                }
+                catch (Exception)
+                {
 
-                throw;
+                    throw;
+                }
+            }
+            else
+            {
+                return View();
             }
         }
 
@@ -237,17 +279,12 @@ namespace RecipeBook.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddRecipe(RecipeViewModel model)
+        public ActionResult AddRecipe(RecipeViewModel model, HttpPostedFileBase upload)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-
-                    if (model.PhotoUrl == null)
-                    {
-                        model.PhotoUrl = string.Empty;
-                    }
                     RecipeDetails details = new RecipeDetails()
                     {
                         Description = model.Description,
@@ -259,9 +296,19 @@ namespace RecipeBook.Web.Controllers
                     {
                         RecipeName = model.RecipeName,
                         CategoryId = model.CategoryId,
-                        PhotoUrl = model.PhotoUrl,
                         Details = details
                     };
+
+                    if (upload != null)
+                    {
+                        string fileName = Path.GetFileName(upload.FileName);
+                        upload.SaveAs(Server.MapPath("~/Images/" + fileName));
+                        recipe.PhotoUrl = "/Images/" + fileName;
+                    }
+                    else
+                    {
+                        recipe.PhotoUrl = null;
+                    }
 
                     int NewRecipeId = recipeProvider.AddRecipe(recipe);
                     foreach (var item in model.Ingredients)
@@ -318,16 +365,13 @@ namespace RecipeBook.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditRecipe(RecipeViewModel model)
+        public ActionResult EditRecipe(RecipeViewModel model, HttpPostedFileBase upload)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    if (model.PhotoUrl == null)
-                    {
-                        model.PhotoUrl = string.Empty;
-                    }
+                   
                     RecipeDetails details = new RecipeDetails()
                     {
                         RecipeId = model.RecipeId,
@@ -344,6 +388,16 @@ namespace RecipeBook.Web.Controllers
                         PhotoUrl = model.PhotoUrl,
                         Details = details
                     };
+                    if (upload != null)
+                    {
+                        string fileName = Path.GetFileName(upload.FileName);
+                        upload.SaveAs(Server.MapPath("~/Images/" + fileName));
+                        recipe.PhotoUrl = "/Images/" + fileName;
+                    }
+                    else
+                    {
+                        recipe.PhotoUrl = model.PhotoUrl;
+                    }
                     recipeProvider.UpdateRecipe(recipe);
                     recipeProvider.UpdateRecipeDetails(details);
                     recipeProvider.DeleteRecipeIngredients(recipe.RecipeId);

@@ -2,3 +2,4 @@ E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Common\bin\Release\RecipeBook.Co
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Common\bin\Release\RecipeBook.Common.pdb
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Common\obj\Release\RecipeBook.Common.dll
 E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Common\obj\Release\RecipeBook.Common.pdb
+E:\LocalGit\RecipeBook\RecipeBookMVC\RecipeBook.Common\obj\Release\RecipeBook.Common.csprojResolveAssemblyReference.cache
