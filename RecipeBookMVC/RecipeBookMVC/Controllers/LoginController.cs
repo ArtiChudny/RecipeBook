@@ -23,13 +23,12 @@ namespace RecipeBook.Web.Controllers
         [HttpPost]
         public ActionResult Login(LoginViewModel model)
         {
-
             if (ModelState.IsValid)
             {
                 var result = loginService.Login(model.Login, model.Password);
                 if (result == LoginResult.InvalidCredentials)
                 {
-                    model.Message = "Invalid credentials";
+                    ModelState.AddModelError("Password", "Unable to log in. Check your login and password.");
                     return View();
                 }
                 if (result == LoginResult.NoError)

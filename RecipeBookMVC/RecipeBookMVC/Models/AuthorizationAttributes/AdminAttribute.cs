@@ -15,12 +15,12 @@ namespace RecipeBook.Web.Models.AuthorizationAttributes
                 {
                     if (!user.IsInRole("Admin"))
                     {
-                        filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Login", action = "Denied", requiredRole = "Admin" }));
+                        filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Access", action = "Denied", requiredRole = "Admin" }));
                     }
                 }
                 else
                 {
-                    filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Login", action = "Login" }));
+                    filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Access", action = "Login" }));
                 }
             }
         }

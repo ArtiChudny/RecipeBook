@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using log4net;
 using RecipeBook.Service.Data.ModelsDto;
 
 namespace RecipeBook.Service.Data.Contracts
 {
     public class RecipeService : IRecipeService
     {
+        private readonly ILog log = LogManager.GetLogger("Logger");
         SqlConnection sqlConnection = new SqlConnection();
         string connectionString = ConfigurationManager.ConnectionStrings["RecipeBookDB"].ConnectionString;
 
@@ -20,25 +22,33 @@ namespace RecipeBook.Service.Data.Contracts
             using (var cmd = new SqlCommand("GetRecipes", sqlConnection))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-
-                sqlConnection.Open();
-
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                try
                 {
-                    while (reader.Read())
+                    sqlConnection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        var recipe = new RecipeDto()
+                        while (reader.Read())
                         {
-                            RecipeId = reader.GetFieldValue<int>(0),
-                            RecipeName = reader.GetFieldValue<string>(1),
-                            CategoryId = reader.GetFieldValue<int>(2),
-                            PhotoUrl = reader.GetFieldValue<string>(3),
-                            Details = null
-                        };
-                        recipesList.Add(recipe);
-                    }
-                };
-                sqlConnection.Close();
+                            var recipe = new RecipeDto()
+                            {
+                                RecipeId = reader.GetFieldValue<int>(0),
+                                RecipeName = reader.GetFieldValue<string>(1),
+                                CategoryId = reader.GetFieldValue<int>(2),
+                                PhotoUrl = reader.GetFieldValue<string>(3),
+                                Details = null
+                            };
+                            recipesList.Add(recipe);
+                        }
+                    };
+                    sqlConnection.Close();
+                }
+                catch (Exception ex)
+                {
+                    log.Error(ex);
+                    throw new Exception("Database error");
+                }
+
+
             }
             return recipesList;
         }
@@ -46,137 +56,180 @@ namespace RecipeBook.Service.Data.Contracts
         public RecipeDetailsDto GetDedails(int id)
         {
             sqlConnection.ConnectionString = connectionString;
-            SqlCommand cmd = new SqlCommand("GetDetails", sqlConnection)
-            { CommandType = CommandType.StoredProcedure };
-            cmd.Parameters.AddWithValue("@RecipeId", id);
-
             var recipeDetails = new RecipeDetailsDto();
 
-            sqlConnection.Open();
-            using (SqlDataReader reader = cmd.ExecuteReader())
+            using (var cmd = new SqlCommand("GetDetails", sqlConnection))
             {
-                while (reader.Read())
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@RecipeId", id);
+                try
                 {
-                    recipeDetails.RecipeId = reader.GetFieldValue<int>(0);
-                    recipeDetails.Description = reader.GetFieldValue<string>(1);
-                    recipeDetails.CookingTime = reader.GetFieldValue<string>(2);
-                    recipeDetails.CookingTemperature = reader.GetFieldValue<string>(3);
-                    recipeDetails.Steps = reader.GetFieldValue<string>(4);
+                    sqlConnection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            recipeDetails.RecipeId = reader.GetFieldValue<int>(0);
+                            recipeDetails.Description = reader.GetFieldValue<string>(1);
+                            recipeDetails.CookingTime = reader.GetFieldValue<string>(2);
+                            recipeDetails.CookingTemperature = reader.GetFieldValue<string>(3);
+                            recipeDetails.Steps = reader.GetFieldValue<string>(4);
+                        }
+                    }
+                    sqlConnection.Close();
+                }
+                catch (Exception ex)
+                {
+                    log.Error(ex);
+                    throw ex;
                 }
             }
-            sqlConnection.Close();
             return recipeDetails;
         }
 
         public IEnumerable<RecipeIngredientDto> GetRecipeIngredients(int id)
         {
             sqlConnection.ConnectionString = connectionString;
-            SqlCommand cmd = new SqlCommand("GetRecipeIngredients", sqlConnection)
-            { CommandType = CommandType.StoredProcedure };
-            cmd.Parameters.AddWithValue("@Id", id);
-
             var recipeIngredientsList = new List<RecipeIngredientDto>();
 
-            sqlConnection.Open();
-            using (SqlDataReader reader = cmd.ExecuteReader())
+            using (var cmd = new SqlCommand("GetRecipeIngredients", sqlConnection))
             {
-                while (reader.Read())
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Id", id);
+                try
                 {
-                    var recipeIngredient = new RecipeIngredientDto()
+                    sqlConnection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        RecipeId = reader.GetFieldValue<int>(0),
-                        IngredientName = reader.GetFieldValue<string>(1),
-                        Weight = reader.GetFieldValue<string>(2),
-                        IngredientId = reader.GetFieldValue<int>(3)
+                        while (reader.Read())
+                        {
+                            var recipeIngredient = new RecipeIngredientDto()
+                            {
+                                RecipeId = reader.GetFieldValue<int>(0),
+                                IngredientName = reader.GetFieldValue<string>(1),
+                                Weight = reader.GetFieldValue<string>(2),
+                                IngredientId = reader.GetFieldValue<int>(3)
+                            };
+                            recipeIngredientsList.Add(recipeIngredient);
+                        }
                     };
-                    recipeIngredientsList.Add(recipeIngredient);
+                    sqlConnection.Close();
                 }
-            };
-            sqlConnection.Close();
+                catch (Exception ex)
+                {
+                    log.Error(ex);
+                    throw ex;
+                }
+            }
             return recipeIngredientsList;
         }
 
         public IEnumerable<RecipeDto> GetRecipesByIngredient(string ingredientName)
         {
             sqlConnection.ConnectionString = connectionString;
-            SqlCommand cmd = new SqlCommand("GetRecipesByIngredient", sqlConnection)
-            { CommandType = CommandType.StoredProcedure };
-            cmd.Parameters.AddWithValue("@ingredient", ingredientName);
-
             var recipesList = new List<RecipeDto>();
-
-            sqlConnection.Open();
-            using (SqlDataReader reader = cmd.ExecuteReader())
+            using (var cmd = new SqlCommand("GetRecipesByIngredient", sqlConnection))
             {
-                while (reader.Read())
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ingredient", ingredientName);
+                try
                 {
-                    var recipe = new RecipeDto()
+                    sqlConnection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        RecipeId = reader.GetFieldValue<int>(0),
-                        RecipeName = reader.GetFieldValue<string>(1),
-                        CategoryId = reader.GetFieldValue<int>(2),
-                        PhotoUrl = reader.GetFieldValue<string>(3),
+                        while (reader.Read())
+                        {
+                            var recipe = new RecipeDto()
+                            {
+                                RecipeId = reader.GetFieldValue<int>(0),
+                                RecipeName = reader.GetFieldValue<string>(1),
+                                CategoryId = reader.GetFieldValue<int>(2),
+                                PhotoUrl = reader.GetFieldValue<string>(3),
+                            };
+                            recipesList.Add(recipe);
+                        }
                     };
-                    recipesList.Add(recipe);
+                    sqlConnection.Close();
                 }
-            };
-            sqlConnection.Close();
+                catch (Exception ex)
+                {
+                    log.Error(ex);
+                    throw ex;
+                }
+            }
             return recipesList;
         }
 
         public IEnumerable<RecipeDto> GetRecipesByName(string recipeName)
         {
             sqlConnection.ConnectionString = connectionString;
-            SqlCommand cmd = new SqlCommand("GetRecipeByName", sqlConnection)
-            { CommandType = CommandType.StoredProcedure };
-            cmd.Parameters.AddWithValue("@name", recipeName);
-
             var recipesList = new List<RecipeDto>();
-
-            sqlConnection.Open();
-            using (SqlDataReader reader = cmd.ExecuteReader())
+            using (var cmd = new SqlCommand("GetRecipeByName", sqlConnection))
             {
-                while (reader.Read())
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@name", recipeName);
+                try
                 {
-                    var recipe = new RecipeDto()
+                    sqlConnection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        RecipeId = reader.GetFieldValue<int>(0),
-                        RecipeName = reader.GetFieldValue<string>(1),
-                        CategoryId = reader.GetFieldValue<int>(2),
-                        PhotoUrl = reader.GetFieldValue<string>(3),
+                        while (reader.Read())
+                        {
+                            var recipe = new RecipeDto()
+                            {
+                                RecipeId = reader.GetFieldValue<int>(0),
+                                RecipeName = reader.GetFieldValue<string>(1),
+                                CategoryId = reader.GetFieldValue<int>(2),
+                                PhotoUrl = reader.GetFieldValue<string>(3),
+                            };
+                            recipesList.Add(recipe);
+                        }
                     };
-                    recipesList.Add(recipe);
+                    sqlConnection.Close();
                 }
-            };
-            sqlConnection.Close();
+                catch (Exception ex)
+                {
+                    log.Error(ex);
+                    throw ex;
+                }
+            }
             return recipesList;
         }
 
         public IEnumerable<RecipeDto> GetRecipesByCategory(string categoryName)
         {
             sqlConnection.ConnectionString = connectionString;
-            SqlCommand cmd = new SqlCommand("GetRecipesByCategory", sqlConnection)
-            { CommandType = CommandType.StoredProcedure };
-            cmd.Parameters.AddWithValue("@category", categoryName);
-
             var recipesList = new List<RecipeDto>();
 
-            sqlConnection.Open();
-            using (SqlDataReader reader = cmd.ExecuteReader())
+            using (var cmd = new SqlCommand("GetRecipesByCategory", sqlConnection))
             {
-                while (reader.Read())
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@category", categoryName);
+                try
                 {
-                    var recipe = new RecipeDto()
+                    sqlConnection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        RecipeId = reader.GetFieldValue<int>(0),
-                        RecipeName = reader.GetFieldValue<string>(1),
-                        CategoryId = reader.GetFieldValue<int>(2),
-                        PhotoUrl = reader.GetFieldValue<string>(3),
+                        while (reader.Read())
+                        {
+                            var recipe = new RecipeDto()
+                            {
+                                RecipeId = reader.GetFieldValue<int>(0),
+                                RecipeName = reader.GetFieldValue<string>(1),
+                                CategoryId = reader.GetFieldValue<int>(2),
+                                PhotoUrl = reader.GetFieldValue<string>(3),
+                            };
+                            recipesList.Add(recipe);
+                        }
                     };
-                    recipesList.Add(recipe);
+                    sqlConnection.Close();
                 }
-            };
-            sqlConnection.Close();
+                catch (Exception ex)
+                {
+                    log.Error(ex);
+                    throw ex;
+                }
+            }
             return recipesList;
         }
 
@@ -189,20 +242,28 @@ namespace RecipeBook.Service.Data.Contracts
             {
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                sqlConnection.Open();
-
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                try
                 {
-                    while (reader.Read())
+                    sqlConnection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        var ingredient = new IngredientDto()
+                        while (reader.Read())
                         {
-                            IngredientId = reader.GetFieldValue<int>(0),
-                            IngredientName = reader.GetFieldValue<string>(1),
-                        };
-                        ingredientList.Add(ingredient);
-                    }
-                };
+                            var ingredient = new IngredientDto()
+                            {
+                                IngredientId = reader.GetFieldValue<int>(0),
+                                IngredientName = reader.GetFieldValue<string>(1),
+                            };
+                            ingredientList.Add(ingredient);
+                        }
+                    };
+                }
+                catch (Exception ex)
+                {
+                    log.Error(ex);
+                    throw ex;
+                }
+
                 sqlConnection.Close();
             }
             return ingredientList;
@@ -221,9 +282,10 @@ namespace RecipeBook.Service.Data.Contracts
                     sqlConnection.Open();
                     cmd.ExecuteNonQuery();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    throw;
+                    log.Error(ex);
+                    throw ex;
                 }
             }
         }
@@ -240,9 +302,10 @@ namespace RecipeBook.Service.Data.Contracts
                     sqlConnection.Open();
                     cmd.ExecuteNonQuery();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    throw;
+                    log.Error(ex);
+                    throw ex;
                 }
             }
         }
@@ -260,9 +323,10 @@ namespace RecipeBook.Service.Data.Contracts
                     sqlConnection.Open();
                     cmd.ExecuteNonQuery();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    throw;
+                    log.Error(ex);
+                    throw ex;
                 }
             }
         }
@@ -282,9 +346,10 @@ namespace RecipeBook.Service.Data.Contracts
                     cmd.ExecuteNonQuery();
                     sqlConnection.Close();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    throw;
+                    log.Error(ex);
+                    throw ex;
                 }
             }
         }
@@ -303,9 +368,10 @@ namespace RecipeBook.Service.Data.Contracts
                     cmd.ExecuteNonQuery();
                     sqlConnection.Close();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    throw;
+                    log.Error(ex);
+                    throw ex;
                 }
             }
         }
@@ -329,9 +395,10 @@ namespace RecipeBook.Service.Data.Contracts
                     AddRecipeDetails(recipe.Details);
                     return recipeId;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    throw;
+                    log.Error(ex);
+                    throw ex;
                 }
 
             }
@@ -350,9 +417,10 @@ namespace RecipeBook.Service.Data.Contracts
                     cmd.ExecuteNonQuery();
                     sqlConnection.Close();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    throw;
+                    log.Error(ex);
+                    throw ex;
                 }
             }
         }
@@ -374,9 +442,10 @@ namespace RecipeBook.Service.Data.Contracts
                     sqlConnection.Close();
                     UpdateRecipeDetails(recipe.Details);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    throw;
+                    log.Error(ex);
+                    throw ex;
                 }
             }
         }
@@ -398,9 +467,10 @@ namespace RecipeBook.Service.Data.Contracts
                     cmd.ExecuteNonQuery();
                     sqlConnection.Close();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    throw;
+                    log.Error(ex);
+                    throw ex;
                 }
             }
         }
@@ -422,9 +492,10 @@ namespace RecipeBook.Service.Data.Contracts
                     cmd.ExecuteNonQuery();
                     sqlConnection.Close();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    throw;
+                    log.Error(ex);
+                    throw ex;
                 }
             }
         }
@@ -442,9 +513,10 @@ namespace RecipeBook.Service.Data.Contracts
                     cmd.ExecuteNonQuery();
                     sqlConnection.Close();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    throw;
+                    log.Error(ex);
+                    throw ex;
                 }
             }
         }

@@ -3,7 +3,7 @@
 @{
     var ajaxOptions = new AjaxOptions { UpdateTargetId = "mainPage" };
 }
-
+<h3 class="text-center">Categories</h3>
 <ul class="list-group">
     @Ajax.ActionLink("All recipes", "RecipeList", "Home", new { id = 0 }, ajaxOptions, new { @class = "list-group-item active" })
 

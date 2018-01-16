@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using log4net;
 using RecipeBook.Service.Data.ModelsDto;
 
 namespace RecipeBook.Service.Data.Contracts.CategoryContract
 {
     public class CategoryService : ICategoryService
     {
+        private readonly ILog log = LogManager.GetLogger("Logger");
         SqlConnection sqlConnection = new SqlConnection();
         string connectionString = ConfigurationManager.ConnectionStrings["RecipeBookDB"].ConnectionString;
 
@@ -20,21 +22,28 @@ namespace RecipeBook.Service.Data.Contracts.CategoryContract
             using (var cmd = new SqlCommand("GetCategories", sqlConnection))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-
-                sqlConnection.Open();
-
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                try
                 {
-                    while (reader.Read())
+                    sqlConnection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        var category = new CategoryDto()
+                        while (reader.Read())
                         {
-                            CategoryId = reader.GetFieldValue<int>(0),
-                            CategoryName = reader.GetFieldValue<string>(1)
-                        };
-                        categoriesList.Add(category);
-                    }
-                };
+                            var category = new CategoryDto()
+                            {
+                                CategoryId = reader.GetFieldValue<int>(0),
+                                CategoryName = reader.GetFieldValue<string>(1)
+                            };
+                            categoriesList.Add(category);
+                        }
+                    };
+                }
+                catch (Exception ex)
+                {
+                    log.Error(ex);
+                    throw ex;
+                }
+
                 sqlConnection.Close();
             }
             return categoriesList;
@@ -53,9 +62,10 @@ namespace RecipeBook.Service.Data.Contracts.CategoryContract
                     cmd.ExecuteNonQuery();
                     sqlConnection.Close();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    throw;
+                    log.Error(ex);
+                    throw ex;
                 }
             }
         }
@@ -73,9 +83,10 @@ namespace RecipeBook.Service.Data.Contracts.CategoryContract
                     cmd.ExecuteNonQuery();
                     sqlConnection.Close();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    throw;
+                    log.Error(ex);
+                    throw ex;
                 }
             }
         }
@@ -94,9 +105,10 @@ namespace RecipeBook.Service.Data.Contracts.CategoryContract
                     cmd.ExecuteNonQuery();
                     sqlConnection.Close();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    throw;
+                    log.Error(ex);
+                    throw ex;
                 }
             }
         }

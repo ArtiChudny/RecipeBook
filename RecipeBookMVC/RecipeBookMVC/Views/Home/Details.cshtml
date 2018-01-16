@@ -4,7 +4,7 @@
 }
 
 <div class="col-md-6">
-
+    @Html.HiddenFor(x => x.RecipeId);
     <h2>@Model.RecipeName</h2>
     <h3>Description:</h3>
     <p>@Html.DisplayFor(model => model.recipeDetails.Description)</p>
@@ -50,19 +50,28 @@
     <h3>Steps:</h3>
     <pre>@Model.recipeDetails.Steps </pre>
 
+    <a class="btn btn-primary" href="~/Home/ExportToWord/?_id=@Model.RecipeId">
+        <span class="glyphicon glyphicon-download"></span> Download recipe
+    </a>
+    <hr />
 
-    <p>
-        @Html.ActionLink("Back to List", "Index")
-    </p>
+    <div>
+        <a href="/Home/Index">
+            <span class="glyphicon glyphicon-chevron-left"></span> Back to list
+        </a>
     </div>
-    <div class="col-md-6 col-md-offset-1 details-image-block">
+</div>
 
-        @if (Model.ImageUrl.IsEmpty())
-        {
-            <img src="~/Images/no_image_available.jpg" />
-        }
-        else
-        {
-            <img src="@Model.ImageUrl" />
-        }
-    </div>
+<div class="col-md-6 col-md-offset-1 details-image-block">
+
+    @if (Model.ImageUrl.IsEmpty())
+    {
+        <img src="~/Images/no_image_available.jpg" />
+    }
+    else
+    {
+        <img src="@Model.ImageUrl" />
+    }
+
+</div>
+

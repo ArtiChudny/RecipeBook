@@ -5,9 +5,9 @@ namespace RecipeBook.Web.Controllers
     public class AccessController : Controller
     {
         // GET: Access
-        public ActionResult Index()
+        public ActionResult Denied(string message)
         {
-            return View();
+            return View(message);
         }
     }
 }

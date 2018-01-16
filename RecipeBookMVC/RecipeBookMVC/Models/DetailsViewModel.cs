@@ -5,6 +5,7 @@ namespace RecipeBook.Web.Models
 {
     public class DetailsViewModel
     {
+        public int RecipeId { get; set; }
         public RecipeDetails recipeDetails { get; set; }
         public IEnumerable<RecipeIngredient> recipeIngredients { get; set; }
         public string ImageUrl { get; set; }

@@ -4,13 +4,11 @@ namespace RecipeBook.Web.Models
 {
     public class LoginViewModel
     {
-        [Required(ErrorMessage = "Field is required")]
+        [Required(ErrorMessage = "Enter the login")]
         public string Login { get; set; }
 
-        [Required(ErrorMessage = "Field is required")]
+        [Required(ErrorMessage = "Enter the password")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-
-        public string Message { get; set; }
     }
 }

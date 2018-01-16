@@ -9,13 +9,13 @@ using RecipeBook.Business.Providers;
 using RecipeBook.Common.Models;
 using RecipeBook.Web.Models;
 
-
 namespace RecipeBook.Web.Controllers
 {
     [Authorize(Roles = "Editor")]
     public class EditorController : Controller
     {
         int pageSize = 10;
+        private readonly ILog log = LogManager.GetLogger("Logger");
         private IRecipeProvider recipeProvider;
         private ICategoryProvider categoryProvider;
 
@@ -41,10 +41,10 @@ namespace RecipeBook.Web.Controllers
                 var ingredients = recipeProvider.GetIngredients().OrderBy(x => x.IngredientName);
                 return PartialView("IngredientsList", ingredients.ToPagedList(pageNumber, pageSize));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                log.Error(ex);
+                return View("Error", (object)"Sorry, something went wrong. Try again later.");
             }
         }
 
@@ -68,10 +68,10 @@ namespace RecipeBook.Web.Controllers
                     recipeProvider.AddIngredient(ingredient);
                     return RedirectToAction("Index", new { id = 3 });
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
-                    throw;
+                    log.Error(ex);
+                    return View("Error", (object)"Sorry, something went wrong. Try again later.");
                 }
             }
             else
@@ -103,10 +103,10 @@ namespace RecipeBook.Web.Controllers
                     recipeProvider.UpdateIngredient(ingredient);
                     return RedirectToAction("Index", new { id = 3 });
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
-                    throw;
+                    log.Error(ex);
+                    return View("Error", (object)"Sorry, something went wrong. Try again later.");
                 }
             }
             else
@@ -124,10 +124,10 @@ namespace RecipeBook.Web.Controllers
                 return RedirectToAction("IngredientsList");
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                log.Error(ex);
+                return View("Error", (object)"Sorry, something went wrong. Try again later.");
             }
 
         }
@@ -141,10 +141,10 @@ namespace RecipeBook.Web.Controllers
                 var categories = categoryProvider.GetCategories();
                 return PartialView("CategoriesList", categories.ToPagedList(pageNumber, pageSize));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                log.Error(ex);
+                return View("Error", (object)"Sorry, something went wrong. Try again later.");
             }
 
         }
@@ -169,10 +169,10 @@ namespace RecipeBook.Web.Controllers
                     categoryProvider.AddCategory(category);
                     return RedirectToAction("Index", new { id = 1 });
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
-                    throw;
+                    log.Error(ex);
+                    return View("Error", (object)"Sorry, something went wrong. Try again later.");
                 }
             }
             else
@@ -203,10 +203,10 @@ namespace RecipeBook.Web.Controllers
                     categoryProvider.UpdateCategory(category);
                     return RedirectToAction("Index", new { id = 1 });
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
-                    throw;
+                    log.Error(ex);
+                    return View("Error", (object)"Sorry, something went wrong. Try again later.");
                 }
             }
             else
@@ -223,10 +223,10 @@ namespace RecipeBook.Web.Controllers
                 categoryProvider.DeleteCategory(id);
                 return RedirectToAction("CategoriesList");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                log.Error(ex);
+                return View("Error", (object)"Sorry, something went wrong. Try again later.");
             }
         }
 
@@ -239,10 +239,10 @@ namespace RecipeBook.Web.Controllers
                 var users = recipeProvider.GetRecipies().OrderByDescending(x => x.RecipeId);
                 return PartialView("RecipesList", users.ToPagedList(pageNumber, pageSize));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                log.Error(ex);
+                return View("Error", (object)"Sorry, something went wrong. Try again later.");
             }
 
         }
@@ -254,10 +254,10 @@ namespace RecipeBook.Web.Controllers
                 recipeProvider.DeleteRecipe(id);
                 return RedirectToAction("RecipesList");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                log.Error(ex);
+                return View("Error", (object)"Sorry, something went wrong. Try again later.");
             }
         }
 
@@ -270,10 +270,10 @@ namespace RecipeBook.Web.Controllers
                 ViewBag.ingredients = recipeProvider.GetIngredients().OrderBy(x => x.IngredientName);
                 return View("AddRecipe");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                log.Error(ex);
+                return View("Error", (object)"Sorry, something went wrong. Try again later.");
             }
         }
 
@@ -334,9 +334,10 @@ namespace RecipeBook.Web.Controllers
                     }
                     return RedirectToAction("Index", new { id = 2 });
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    throw;
+                    log.Error(ex);
+                    return View("Error", (object)"Sorry, something went wrong. Try again later.");
                 }
             }
             else
@@ -374,10 +375,10 @@ namespace RecipeBook.Web.Controllers
 
                 return View(model);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                log.Error(ex);
+                return View("Error", (object)"Sorry, something went wrong. Try again later.");
             }
         }
 
@@ -444,9 +445,10 @@ namespace RecipeBook.Web.Controllers
                     return RedirectToAction("Index", new { id = 2 });
                 }
 
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    throw;
+                    log.Error(ex);
+                    return View("Error", (object)"Sorry, something went wrong. Try again later.");
                 }
             }
             else
@@ -455,10 +457,6 @@ namespace RecipeBook.Web.Controllers
                 ViewBag.ingredients = recipeProvider.GetIngredients().OrderBy(x => x.IngredientName);
                 return View(model);
             }
-
-
-
-
         }
 
     }

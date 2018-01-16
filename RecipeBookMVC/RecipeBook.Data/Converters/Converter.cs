@@ -7,7 +7,6 @@ using RecipeBook.Data.CategoryService;
 using RecipeBook.Data.UserService;
 
 
-
 namespace RecipeBook.Data.Converters
 {
     public class Converter : IConverter
@@ -166,7 +165,10 @@ namespace RecipeBook.Data.Converters
                 }
                 return roles;
             }
-            else return null;
+            else
+            {
+                return null;
+            } 
         }
 
         public IEnumerable<RoleDto> ToRolesDto(IEnumerable<Role> roles)
@@ -180,7 +182,10 @@ namespace RecipeBook.Data.Converters
                 }
                 return rolesDto;
             }
-            else return null;
+            else
+            {
+                return null;
+            } 
             
         }
 
@@ -199,7 +204,7 @@ namespace RecipeBook.Data.Converters
             }
             else
             {
-                throw new ArgumentNullException();
+                return null;
             }
            
         }

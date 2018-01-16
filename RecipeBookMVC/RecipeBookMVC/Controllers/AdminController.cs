@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using log4net;
@@ -9,9 +10,10 @@ using RecipeBook.Web.Models;
 
 namespace RecipeBook.Web.Controllers
 {
-    [Authorize(Roles ="Admin")]
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
+        private readonly ILog log = LogManager.GetLogger("Logger");
         private IUserProvider userProvider;
         int pageSize = 10;
 
@@ -26,11 +28,12 @@ namespace RecipeBook.Web.Controllers
             {
                 int pageNumber = (page ?? 1);
                 var users = userProvider.GetUsers();
-                return View(users.ToPagedList(pageNumber,pageSize));
+                return View(users.ToPagedList(pageNumber, pageSize));
             }
-            catch (System.Exception)
+            catch (Exception ex)
             {
-                throw;
+                log.Error(ex);
+                return View("Error", (object)"Sorry, something went wrong. Try again later.");
             }
 
         }
@@ -42,9 +45,10 @@ namespace RecipeBook.Web.Controllers
                 userProvider.DeleteUser(id);
                 return RedirectToAction("UserList");
             }
-            catch (System.Exception)
+            catch (Exception ex)
             {
-                throw;
+                log.Error(ex);
+                return View("Error", (object)"Sorry, something went wrong. Try again later.");
             }
         }
 
@@ -53,7 +57,7 @@ namespace RecipeBook.Web.Controllers
         {
             try
             {
-                ViewBag.roles = userProvider.GetRoles().ToArray(); 
+                ViewBag.roles = userProvider.GetRoles().ToArray();
                 User user = userProvider.GetUserByLogin(login);
                 UserViewModel model = new UserViewModel()
                 {
@@ -64,9 +68,10 @@ namespace RecipeBook.Web.Controllers
                 };
                 return View(model);
             }
-            catch (System.Exception)
+            catch (Exception ex)
             {
-                throw;
+                log.Error(ex);
+                return View("Error", (object)"Sorry, something went wrong. Try again later.");
             }
         }
 
@@ -103,10 +108,10 @@ namespace RecipeBook.Web.Controllers
                     userProvider.UpdateUser(user);
                     return RedirectToAction("UserList");
                 }
-                catch (System.Exception)
+                catch (Exception ex)
                 {
-
-                    throw;
+                    log.Error(ex);
+                    return View("Error", (object)"Sorry, something went wrong. Try again later.");
                 }
             }
             else
@@ -114,8 +119,8 @@ namespace RecipeBook.Web.Controllers
                 ViewBag.roles = userProvider.GetRoles();
                 return View(model);
             }
-          
-       
+
+
         }
 
         [HttpGet]
@@ -126,9 +131,10 @@ namespace RecipeBook.Web.Controllers
                 ViewBag.roles = userProvider.GetRoles();
                 return View();
             }
-            catch (System.Exception)
+            catch (Exception ex)
             {
-                throw;
+                log.Error(ex);
+                return View("Error", (object)"Sorry, something went wrong. Try again later.");
             }
 
         }
@@ -159,9 +165,10 @@ namespace RecipeBook.Web.Controllers
                     userProvider.AddUser(user);
                     return RedirectToAction("UserList");
                 }
-                catch (System.Exception)
+                catch (Exception ex)
                 {
-                    throw;
+                    log.Error(ex);
+                    return View("Error", (object)"Sorry, something went wrong. Try again later.");
                 }
 
             }

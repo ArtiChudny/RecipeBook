@@ -24,25 +24,26 @@ namespace RecipeBook.Business.AuthentificationService
             {
                 return LoginResult.EmptyCredentials;
             }
-            var user = userProvider.GetUserByLogin(login);
+            try
+            {
+                var user = userProvider.GetUserByLogin(login);
 
-            if (user == null)
+                if (validationService.IsValidUser(login, password))
+                {
+                    var userData = JsonConvert.SerializeObject(user);
+                    var ticket = new FormsAuthenticationTicket(2, login, DateTime.Now, DateTime.Now.AddHours(1), false, userData);
+                    var encTicket = FormsAuthentication.Encrypt(ticket);
+                    var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket);
+                    HttpContext.Current.Response.Cookies.Add(authCookie);
+                    return LoginResult.NoError;
+                }
+            }
+            catch (Exception ex)
             {
                 return LoginResult.InvalidCredentials;
+                throw ex;
             }
-
-            if (validationService.IsValidUser(login, password))
-            {
-
-                var userData = JsonConvert.SerializeObject(user);
-                var ticket = new FormsAuthenticationTicket(2, login, DateTime.Now, DateTime.Now.AddHours(1), false, userData);
-                var encTicket = FormsAuthentication.Encrypt(ticket);
-                var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket);
-                HttpContext.Current.Response.Cookies.Add(authCookie);
-                return LoginResult.NoError;
-            }
-            else return LoginResult.InvalidCredentials;
-
+            return LoginResult.InvalidCredentials;
 
         }
 

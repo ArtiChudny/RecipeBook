@@ -188,7 +188,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Categories\CategoriesList.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\Access\Denied.cshtml" />
@@ -212,6 +211,7 @@
     <Content Include="Views\Editor\EditCategory.cshtml" />
     <Content Include="Views\Editor\EditRecipe.cshtml" />
     <Content Include="Views\Home\RecipeList.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
