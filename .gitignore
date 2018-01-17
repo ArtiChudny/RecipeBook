@@ -3,6 +3,7 @@
 
 RecipeBookMVC/Logs/
 
+#
 # User-specific files
 *.suo
 *.user

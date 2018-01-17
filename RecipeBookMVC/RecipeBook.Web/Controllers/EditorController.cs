@@ -282,21 +282,29 @@ namespace RecipeBook.Web.Controllers
         {
             var ingredients = model.Ingredients.ToList();
             int n = 0;
-            foreach (var item in model.Ingredients)
+            for (int i = 0; i < ingredients.Count; i++)
             {
-                if (item.IngredientId == 0 || item.Weight == null)
+                if (ingredients[i].IngredientId ==0 || ingredients[i].Weight == null)
                 {
-                    ModelState.AddModelError("Ingredients", "There should be no empty fields!");
+                    ModelState.AddModelError("Ingredients", "Ingredients should not repeat!");
                     break;
                 }
-                if (ingredients.Exists(x => x.IngredientId == item.IngredientId))
+                else
                 {
-                    n++;
+                    foreach (var item in ingredients)
+                    {
+                        if (item.IngredientId == ingredients[i].IngredientId)
+                        {
+                            n++;
+                        }
+                    }
+                    if (n > 1)
+                    {
+                        ModelState.AddModelError("Ingredients", "There should not be the same ingredients!");
+                        break;
+                    }
+                    n = 0;
                 }
-            }
-            if (n > 1)
-            {
-                ModelState.AddModelError("Ingredients", "There should not be the same ingredients!");
             }
 
             if (ModelState.IsValid)
@@ -324,7 +332,7 @@ namespace RecipeBook.Web.Controllers
                     }
                     else
                     {
-                        recipe.PhotoUrl = null;
+                        recipe.PhotoUrl = "";
                     }
                     int NewRecipeId = recipeProvider.AddRecipe(recipe);
                     foreach (var item in model.Ingredients)
@@ -387,21 +395,29 @@ namespace RecipeBook.Web.Controllers
         {
             var ingredients = model.Ingredients.ToList();
             int n = 0;
-            foreach (var item in model.Ingredients)
+            for (int i = 0; i < ingredients.Count; i++)
             {
-                if (item.IngredientId == 0 || item.Weight == null)
+                if (ingredients[i].IngredientId == 0 || ingredients[i].Weight == null)
                 {
-                    ModelState.AddModelError("Ingredients", "There should be no empty fields!");
+                    ModelState.AddModelError("Ingredients", "Ingredients should not repeat!");
                     break;
                 }
-                if (ingredients.Exists(x => x.IngredientId == item.IngredientId))
+                else
                 {
-                    n++;
+                    foreach (var item in ingredients)
+                    {
+                        if (item.IngredientId == ingredients[i].IngredientId)
+                        {
+                            n++;
+                        }
+                    }
+                    if (n > 1)
+                    {
+                        ModelState.AddModelError("Ingredients", "There should not be the same ingredients!");
+                        break;
+                    }
+                    n = 0;
                 }
-            }
-            if (n > 1)
-            {
-                ModelState.AddModelError("Ingredients", "There should not be the same ingredients!");
             }
             if (ModelState.IsValid)
             {

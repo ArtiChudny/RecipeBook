@@ -1,4 +1,4 @@
-USE RecipeBook
+﻿USE RecipeBook
 
 insert into Categories(CategoryName)
 values
@@ -68,11 +68,34 @@ values
 insert into RecipeDetails (RecipeId,CookingTemperature, CookingTime, RecipeDescription, Steps)
 values
 
-('1','100','60 min','Borsch','Steps'),
-('2','100','60 min','Shchi','Steps'),
-('3', '-','20 min','Greek Salad','Steps'),
-('4','120','20 min','Pancake','Steps'),
-('5','120','20 min','Cutlets','Steps')
+('1','100','60 min','Borsch','1. Boil the pork for at least 1.5 hours, strain the broth through clothing, seperate the meat from the bone and carve it.
+2. Peel the raw pork, cut it in thin two-inch strips and stew for half an hour.
+3. Add cubed potatoes in the boiling broth. Add the stewed beet when the broth begins to boil again. Add bay leaf.
+4. Cut the carrot the same way as the beet root, fry it all over and add into borsch.
+5. Slice the onion, fry on both sides, add tomato paste. Mix everything and fry for some more time.
+6. Take the fried onion off the stove and add mashed garlic.
+7. Shred the cabbage finely and add (but not much) into borsch when the potato is almost cooked.
+8. Cover the saucepan and boil borshch for 5 minutes. Then add fried onion with garlic and seasonings. Mix everything.'),
+
+('2','100','60 min','Shchi','1. Melt butter in medium soup pot or Dutch oven. Add onions and carrots and sauté over medium heat, until golden, 3-5 min. Add potatoes, cabbage, bay leaves, and meet. Cover and simmer 20 minutes.
+2. Add the diced tomatoes with any juice and mix well. Taste the soup and season as desired with salt and pepper. Continue to simmer until the tomatoes are heated through, 3-5 minutes. 
+3. Serve the soup garnished with dill and sour cream, if desired.'), 
+                                                                                     
+('3', '-','20 min','Greek Salad','1. In a large salad bowl, combine the  olives, bell peppers, tomatoes, cucumber, olives and cheese.
+2. Whisk together the olive oil, lemon juice and black pepper. Pour dressing over salad, toss and serve.'),
+
+('4','120','20 min','Pancake','1. Beat egg until fluffy.
+2. Add milk and melted margarine.
+3. Add dry ingredients and mix well.
+4. Heat a heavy griddle or fry pan which is greased with a little butter on a paper towel.
+5. Pour a small amount of batter (approx 1/4 cup) into pan and tip to spread out or spread with spoon.
+6. When bubbles appear on surface and begin to break, turn over and cook the other side.'),
+
+('5','120','20 min','Cutlets','1. Grind the onion.
+2. Mix the minced meat, egg, salt, pepper, onion.
+3. Roll minced meat in flour and form a cutlet. 
+4. Put cutlets on a heated frying pan with oil.
+5. Fry over medium heat until gold brown.')
 
 insert into Roles(RoleName)
 values

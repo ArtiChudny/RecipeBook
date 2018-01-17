@@ -85,7 +85,6 @@ namespace RecipeBookMVC.Controllers
 
                 using (StringWriter sw = new StringWriter())
                 {
-
                     sw.Write(recipe.RecipeName);
                     sw.WriteLine();
                     sw.Write("\nCooking time: " + details.CookingTime);
@@ -93,14 +92,14 @@ namespace RecipeBookMVC.Controllers
                     sw.Write("Cooking temperature: " + details.CookingTemperature);
                     sw.WriteLine();
                     sw.Write("\nIngredients:\n");
-                    sw.Write("____________________________________\n");
+                    sw.Write("____________________________________\n");        
                     foreach (var item in ingredients)
                     {
                         sw.Write(item.IngredientName + " : " + item.Weight);
                         sw.WriteLine();
                     }
                     sw.Write("____________________________________");
-                    sw.Write("\n\nSteps:\n");
+                    sw.Write("\n\nSteps:\n\n");
                     sw.Write(details.Steps);
 
                     Response.Output.Write(sw.ToString());

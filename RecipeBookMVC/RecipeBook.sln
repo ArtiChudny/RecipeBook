@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeBook.Web", "RecipeBookMVC\RecipeBook.Web.csproj", "{56D08EC1-98EA-438C-8D93-9448A3D9D2DF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeBook.Web", "RecipeBook.Web\RecipeBook.Web.csproj", "{56D08EC1-98EA-438C-8D93-9448A3D9D2DF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeBook.Business", "RecipeBook.Business\RecipeBook.Business.csproj", "{6A387C77-CD82-4D2D-BA71-68479BD5FAD0}"
 EndProject

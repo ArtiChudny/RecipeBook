@@ -4,7 +4,7 @@
 }
 
 <div class="col-md-6">
-    @Html.HiddenFor(x => x.RecipeId);
+    @Html.HiddenFor(x => x.RecipeId)
     <h2>@Model.RecipeName</h2>
     <h3>Description:</h3>
     <p>@Html.DisplayFor(model => model.recipeDetails.Description)</p>
@@ -48,8 +48,9 @@
         <hr />
     </div>
     <h3>Steps:</h3>
-    <pre>@Model.recipeDetails.Steps </pre>
+    <pre class="steps">@Model.recipeDetails.Steps </pre>
 
+    <hr />
     <a class="btn btn-primary" href="~/Home/ExportToWord/?_id=@Model.RecipeId">
         <span class="glyphicon glyphicon-download"></span> Download recipe
     </a>
