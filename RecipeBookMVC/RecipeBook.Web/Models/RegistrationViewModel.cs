@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using RecipeBook.Common.Models;
 
 namespace RecipeBook.Web.Models
 {
@@ -22,6 +21,5 @@ namespace RecipeBook.Web.Models
 
         [Required(ErrorMessage = "Chose at least one role!")]
         public int[] Roles { get; set; }
-        //public IEnumerable<Role> Roles { get; set; }
     }
 }

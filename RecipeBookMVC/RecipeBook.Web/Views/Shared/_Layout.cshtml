@@ -25,17 +25,17 @@
 
                     @if (HttpContext.Current.User.Identity.IsAuthenticated)
                     {
-                         if (HttpContext.Current.User.IsInRole("Admin"))
+                        if (HttpContext.Current.User.IsInRole("Admin"))
                         {
                             <a href="/Admin/UserList"><span class="glyphicon glyphicon-user "></span> Users </a>
                             <text>|</text>
                         }
-                        if (HttpContext.Current.User.IsInRole("Editor"))
+                        if (HttpContext.Current.User.IsInRole("Editor") || HttpContext.Current.User.IsInRole("Admin"))
                         {
                             <a href="/Editor/Index"><span class="glyphicon glyphicon-edit text-primary"></span> Edit </a>
                             <text>|</text>
                         }
-                      
+
                         @Html.ActionLink("Logout", "Logout", "Login")
                         <text> | </text>
                         @Html.Label(HttpContext.Current.User.Identity.Name, new { @class = "text-muted" })
@@ -46,7 +46,7 @@
                     {
                         @Html.ActionLink("Login", "Login", "Login")
                     }
-                  
+
 
                 </div>
 

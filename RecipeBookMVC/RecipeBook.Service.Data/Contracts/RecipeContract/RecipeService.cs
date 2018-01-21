@@ -25,8 +25,8 @@ namespace RecipeBook.Service.Data.Contracts
                 try
                 {
                     sqlConnection.Open();
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    
                         while (reader.Read())
                         {
                             var recipe = new RecipeDto()
@@ -39,7 +39,7 @@ namespace RecipeBook.Service.Data.Contracts
                             };
                             recipesList.Add(recipe);
                         }
-                    };
+                    
                     sqlConnection.Close();
                 }
                 catch (Exception ex)

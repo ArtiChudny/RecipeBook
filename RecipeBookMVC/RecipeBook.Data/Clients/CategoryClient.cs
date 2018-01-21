@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using RecipeBook.Data.CategoryService;
 
 namespace RecipeBook.Data.Clients
@@ -9,10 +10,17 @@ namespace RecipeBook.Data.Clients
         {
             List<CategoryDto> categoriesDto = new List<CategoryDto>();
             using (CategoryServiceClient client = new CategoryServiceClient())
-            {//trycatch
-                client.Open();
-                categoriesDto.AddRange(client.GetCategories());
-                client.Close();
+            {
+                try
+                {
+                    client.Open();
+                    categoriesDto.AddRange(client.GetCategories());
+                    client.Close();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Service error", ex);
+                }
             }
             return categoriesDto;
         }
@@ -21,9 +29,16 @@ namespace RecipeBook.Data.Clients
         {
             using (CategoryServiceClient client = new CategoryServiceClient())
             {
-                client.Open();
-                client.AddCategory(category);
-                client.Close();
+                try
+                {
+                    client.Open();
+                    client.AddCategory(category);
+                    client.Close();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Service error", ex);
+                }
             }
         }
 
@@ -31,9 +46,17 @@ namespace RecipeBook.Data.Clients
         {
             using (CategoryServiceClient client = new CategoryServiceClient())
             {
-                client.Open();
-                client.DeleteCategory(categoryId);
-                client.Close();
+                try
+                {
+                    client.Open();
+                    client.DeleteCategory(categoryId);
+                    client.Close();
+
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Service error", ex);
+                }
             }
         }
 
@@ -41,9 +64,16 @@ namespace RecipeBook.Data.Clients
         {
             using (CategoryServiceClient client = new CategoryServiceClient())
             {
-                client.Open();
-                client.UpdateCategory(category);
-                client.Close();
+                try
+                {
+                    client.Open();
+                    client.UpdateCategory(category);
+                    client.Close();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Service error", ex);
+                }
             }
         }
     }

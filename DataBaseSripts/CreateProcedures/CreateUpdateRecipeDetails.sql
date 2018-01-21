@@ -1,5 +1,5 @@
 CREATE PROCEDURE UpdateRecipeDetails
-@recipeId int, @description nvarchar(100), @time nvarchar(50), @temperature nvarchar(50), @steps nvarchar(1000)
+@recipeId int, @description nvarchar(50), @time nvarchar(50), @temperature nvarchar(50), @steps nvarchar(100)
 AS
 UPDATE RecipeDetails
 SET

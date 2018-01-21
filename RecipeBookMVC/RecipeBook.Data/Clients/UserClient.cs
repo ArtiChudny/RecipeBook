@@ -10,9 +10,16 @@ namespace RecipeBook.Data.Clients
         {
             using (UserServiceClient client = new UserServiceClient())
             {
-                client.Open();
-                client.AddUser(user);
-                client.Close();
+                try
+                {
+                    client.Open();
+                    client.AddUser(user);
+                    client.Close();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Service error", ex);
+                }
             }
         }
 
@@ -20,9 +27,16 @@ namespace RecipeBook.Data.Clients
         {
             using (UserServiceClient client = new UserServiceClient())
             {
-                client.Open();
-                client.AddUserRole(userId,roleId);
-                client.Close();
+                try
+                {
+                    client.Open();
+                    client.AddUserRole(userId, roleId);
+                    client.Close();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Service error", ex);
+                }
             }
         }
 
@@ -30,9 +44,16 @@ namespace RecipeBook.Data.Clients
         {
             using (UserServiceClient client = new UserServiceClient())
             {
-                client.Open();
-                client.DeleteUser(userId);
-                client.Close();
+                try
+                {
+                    client.Open();
+                    client.DeleteUser(userId);
+                    client.Close();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Service error", ex);
+                }
             }
         }
 
@@ -40,9 +61,16 @@ namespace RecipeBook.Data.Clients
         {
             using (UserServiceClient client = new UserServiceClient())
             {
-                client.Open();
-                client.DeleteUserRoles(userId);
-                client.Close();
+                try
+                {
+                    client.Open();
+                    client.DeleteUserRoles(userId);
+                    client.Close();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Service error", ex);
+                }
             }
         }
 
@@ -51,9 +79,16 @@ namespace RecipeBook.Data.Clients
             List<RoleDto> rolesDto = new List<RoleDto>();
             using (UserServiceClient client = new UserServiceClient())
             {
-                client.Open();
-                rolesDto.AddRange(client.GetRoles());
-                client.Close();
+                try
+                {
+                    client.Open();
+                    rolesDto.AddRange(client.GetRoles());
+                    client.Close();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Service error", ex);
+                }
             }
             return rolesDto;
 
@@ -64,9 +99,16 @@ namespace RecipeBook.Data.Clients
             UserDto userDto = new UserDto();
             using (UserServiceClient client = new UserServiceClient())
             {
-                client.Open();
-                userDto = client.GetUserByLogin(login);
-                client.Close();
+                try
+                {
+                    client.Open();
+                    userDto = client.GetUserByLogin(login);
+                    client.Close();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Service error", ex);
+                }
             }
             return userDto;
         }
@@ -76,9 +118,17 @@ namespace RecipeBook.Data.Clients
             List<RoleDto> userRolesDto = new List<RoleDto>();
             using (UserServiceClient client = new UserServiceClient())
             {
-                client.Open();
-                userRolesDto.AddRange(client.GetUserRoles(login));
-                client.Close();
+                try
+                {
+                    client.Open();
+                    userRolesDto.AddRange(client.GetUserRoles(login));
+                    client.Close();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Service error", ex);
+                }
+
             }
             return userRolesDto;
         }
@@ -88,9 +138,16 @@ namespace RecipeBook.Data.Clients
             List<UserDto> usersDto = new List<UserDto>();
             using (UserServiceClient client = new UserServiceClient())
             {
-                client.Open();
-                usersDto.AddRange(client.GetUsers());
-                client.Close();
+                try
+                {
+                    client.Open();
+                    usersDto.AddRange(client.GetUsers());
+                    client.Close();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Service error", ex);
+                }
             }
             return usersDto;
         }
@@ -99,9 +156,16 @@ namespace RecipeBook.Data.Clients
         {
             using (UserServiceClient client = new UserServiceClient())
             {
-                client.Open();
-                client.UpdateUser(user);
-                client.Close();
+                try
+                {
+                    client.Open();
+                    client.UpdateUser(user);
+                    client.Close();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Service error", ex);
+                }
             }
           
         }

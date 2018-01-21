@@ -185,8 +185,17 @@ namespace RecipeBook.Web.Controllers
         [HttpGet]
         public ActionResult EditCategory(int id)
         {
-            var category = categoryProvider.GetCategories().Where(x => x.CategoryId == id).FirstOrDefault();
-            return View(category);
+            try
+            {
+                var category = categoryProvider.GetCategories().Where(x => x.CategoryId == id).FirstOrDefault();
+                return View(category);
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex);
+                return View("Error", (object)"Sorry, something went wrong. Try again later.");
+            }
+
         }
 
         [HttpPost]
@@ -281,19 +290,19 @@ namespace RecipeBook.Web.Controllers
         public ActionResult AddRecipe(RecipeViewModel model, HttpPostedFileBase upload)
         {
             var ingredients = model.Ingredients.ToList();
-            int n = 0;
-            for (int i = 0; i < ingredients.Count; i++)
+            foreach (var item in ingredients)
             {
-                if (ingredients[i].IngredientId ==0 || ingredients[i].Weight == null)
+                if (item.IngredientId == 0 || item.Weight == null)
                 {
-                    ModelState.AddModelError("Ingredients", "Ingredients should not repeat!");
+                    ModelState.AddModelError("Ingredients", "There should not be empty fields!");
                     break;
                 }
                 else
                 {
-                    foreach (var item in ingredients)
+                    int n = 0;
+                    foreach (var _item in ingredients)
                     {
-                        if (item.IngredientId == ingredients[i].IngredientId)
+                        if (_item.IngredientId == item.IngredientId)
                         {
                             n++;
                         }
@@ -394,19 +403,19 @@ namespace RecipeBook.Web.Controllers
         public ActionResult EditRecipe(RecipeViewModel model, HttpPostedFileBase upload)
         {
             var ingredients = model.Ingredients.ToList();
-            int n = 0;
-            for (int i = 0; i < ingredients.Count; i++)
+            foreach (var item in ingredients)
             {
-                if (ingredients[i].IngredientId == 0 || ingredients[i].Weight == null)
+                if (item.IngredientId == 0 || item.Weight == null)
                 {
-                    ModelState.AddModelError("Ingredients", "Ingredients should not repeat!");
+                    ModelState.AddModelError("Ingredients", "There should not be empty fields!");
                     break;
                 }
                 else
                 {
-                    foreach (var item in ingredients)
+                    int n = 0;
+                    foreach (var _item in ingredients)
                     {
-                        if (item.IngredientId == ingredients[i].IngredientId)
+                        if (_item.IngredientId == item.IngredientId)
                         {
                             n++;
                         }

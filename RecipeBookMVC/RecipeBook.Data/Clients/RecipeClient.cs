@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using RecipeBook.Data.RecipeService;
 
 namespace RecipeBook.Data.Clients
@@ -11,9 +12,16 @@ namespace RecipeBook.Data.Clients
             RecipeDetailsDto detailsDto = new RecipeDetailsDto();
             using (RecipeServiceClient client = new RecipeServiceClient())
             {
-                client.Open();
-                detailsDto = client.GetDedails(id);
-                client.Close();
+                try
+                {
+                    client.Open();
+                    detailsDto = client.GetDedails(id);
+                    client.Close();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Service error", ex);
+                }
             }
             return detailsDto;
         }
@@ -23,9 +31,16 @@ namespace RecipeBook.Data.Clients
             List<IngredientDto> ingredientsDto = new List<IngredientDto>();
             using (RecipeServiceClient client = new RecipeServiceClient())
             {
-                client.Open();
-                ingredientsDto.AddRange(client.GetIngredients());
-                client.Close();
+                try
+                {
+                    client.Open();
+                    ingredientsDto.AddRange(client.GetIngredients());
+                    client.Close();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Service error", ex);
+                }
             }
             return ingredientsDto;
         }
@@ -35,9 +50,16 @@ namespace RecipeBook.Data.Clients
             List<RecipeIngredientDto> ingredientsDto = new List<RecipeIngredientDto>();
             using (RecipeServiceClient client = new RecipeServiceClient())
             {
-                client.Open();
-                ingredientsDto.AddRange(client.GetRecipeIngredients(id));
-                client.Close();
+                try
+                {
+                    client.Open();
+                    ingredientsDto.AddRange(client.GetRecipeIngredients(id));
+                    client.Close();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Service error", ex);
+                }
             }
             return ingredientsDto;
         }
@@ -47,9 +69,16 @@ namespace RecipeBook.Data.Clients
             List<RecipeDto> recipiesDto = new List<RecipeDto>();
             using (RecipeServiceClient client = new RecipeServiceClient())
             {
-                client.Open();
-                recipiesDto.AddRange(client.GetRecipes());
-                client.Close();
+                try
+                {
+                    client.Open();
+                    recipiesDto.AddRange(client.GetRecipes());
+                    client.Close();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Service error", ex);
+                }
             }
             return recipiesDto;
         }
@@ -59,9 +88,16 @@ namespace RecipeBook.Data.Clients
             List<RecipeDto> recipesDto = new List<RecipeDto>();
             using (RecipeServiceClient client = new RecipeServiceClient())
             {
-                client.Open();
-                recipesDto.AddRange(client.GetRecipesByCategory(categoryName));
-                client.Close();
+                try
+                {
+                    client.Open();
+                    recipesDto.AddRange(client.GetRecipesByCategory(categoryName));
+                    client.Close();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Service error", ex);
+                }
             }
             return recipesDto;
         }
@@ -71,9 +107,16 @@ namespace RecipeBook.Data.Clients
             List<RecipeDto> recipesDto = new List<RecipeDto>();
             using (RecipeServiceClient client = new RecipeServiceClient())
             {
-                client.Open();
-                recipesDto.AddRange(client.GetRecipesByIngredient(ingredientName));
-                client.Close();
+                try
+                {
+                    client.Open();
+                    recipesDto.AddRange(client.GetRecipesByIngredient(ingredientName));
+                    client.Close();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Service error", ex);
+                }
             }
             return recipesDto;
         }
@@ -83,9 +126,16 @@ namespace RecipeBook.Data.Clients
             List<RecipeDto> recipesDto = new List<RecipeDto>();
             using (RecipeServiceClient client = new RecipeServiceClient())
             {
-                client.Open();
-                recipesDto.AddRange(client.GetRecipesByName(recipeName));
-                client.Close();
+                try
+                {
+                    client.Open();
+                    recipesDto.AddRange(client.GetRecipesByName(recipeName));
+                    client.Close();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Service error", ex);
+                }
             }
             return recipesDto;
         }
@@ -94,9 +144,16 @@ namespace RecipeBook.Data.Clients
         {
             using (RecipeServiceClient client = new RecipeServiceClient())
             {
-                client.Open();
-                client.AddIngredient(ingredient);
-                client.Close();
+                try
+                {
+                    client.Open();
+                    client.AddIngredient(ingredient);
+                    client.Close();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Service error", ex);
+                }
             }
         }
 
@@ -105,9 +162,16 @@ namespace RecipeBook.Data.Clients
             int RecipeId;
             using (RecipeServiceClient client = new RecipeServiceClient())
             {
-                client.Open();
-                RecipeId = client.AddRecipe(recipe);
-                client.Close();
+                try
+                {
+                    client.Open();
+                    RecipeId = client.AddRecipe(recipe);
+                    client.Close();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Service error", ex);
+                }
             }
             return RecipeId;
         }
@@ -116,9 +180,16 @@ namespace RecipeBook.Data.Clients
         {
             using (RecipeServiceClient client = new RecipeServiceClient())
             {
-                client.Open();
-                client.AddRecipeDetails(details);
-                client.Close();
+                try
+                {
+                    client.Open();
+                    client.AddRecipeDetails(details);
+                    client.Close();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Service error", ex);
+                }
             }
         }
 
@@ -126,9 +197,16 @@ namespace RecipeBook.Data.Clients
         {
             using (RecipeServiceClient client = new RecipeServiceClient())
             {
-                client.Open();
-                client.AddRecipeIngredient(ingredient);
-                client.Close();
+                try
+                {
+                    client.Open();
+                    client.AddRecipeIngredient(ingredient);
+                    client.Close();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Service error", ex);
+                }
             }
         }
 
@@ -136,9 +214,16 @@ namespace RecipeBook.Data.Clients
         {
             using (RecipeServiceClient client = new RecipeServiceClient())
             {
-                client.Open();
-                client.DeleteIngredient(ingredientId);
-                client.Close();
+                try
+                {
+                    client.Open();
+                    client.DeleteIngredient(ingredientId);
+                    client.Close();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Service error", ex);
+                }
             }
         }
 
@@ -146,9 +231,16 @@ namespace RecipeBook.Data.Clients
         {
             using (RecipeServiceClient client = new RecipeServiceClient())
             {
-                client.Open();
-                client.DeleteRecipe(recipeId);
-                client.Close();
+                try
+                {
+                    client.Open();
+                    client.DeleteRecipe(recipeId);
+                    client.Close();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Service error", ex);
+                }
             }
         }
 
@@ -156,9 +248,16 @@ namespace RecipeBook.Data.Clients
         {
             using (RecipeServiceClient client = new RecipeServiceClient())
             {
-                client.Open();
-                client.DeleteRecipeIngredient(recipeId, ingredientId);
-                client.Close();
+                try
+                {
+                    client.Open();
+                    client.DeleteRecipeIngredient(recipeId, ingredientId);
+                    client.Close();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Service error", ex);
+                }
             }
         }
 
@@ -166,9 +265,16 @@ namespace RecipeBook.Data.Clients
         {
             using (RecipeServiceClient client = new RecipeServiceClient())
             {
-                client.Open();
-                client.UpdateIngredient(ingredient);
-                client.Close();
+                try
+                {
+                    client.Open();
+                    client.UpdateIngredient(ingredient);
+                    client.Close();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Service error", ex);
+                }
             }
         }
 
@@ -176,9 +282,16 @@ namespace RecipeBook.Data.Clients
         {
             using (RecipeServiceClient client = new RecipeServiceClient())
             {
-                client.Open();
-                client.UpdateRecipe(recipe);
-                client.Close();
+                try
+                {
+                    client.Open();
+                    client.UpdateRecipe(recipe);
+                    client.Close();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Service error", ex);
+                }
             }
         }
 
@@ -186,9 +299,16 @@ namespace RecipeBook.Data.Clients
         {
             using (RecipeServiceClient client = new RecipeServiceClient())
             {
-                client.Open();
-                client.UpdateRecipeDetails(details);
-                client.Close();
+                try
+                {
+                    client.Open();
+                    client.UpdateRecipeDetails(details);
+                    client.Close();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Service error", ex);
+                }
             }
         }
 
@@ -196,9 +316,16 @@ namespace RecipeBook.Data.Clients
         {
             using (RecipeServiceClient client = new RecipeServiceClient())
             {
-                client.Open();
-                client.DeleteRecipeIngredients(recipeId);
-                client.Close();
+                try
+                {
+                    client.Open();
+                    client.DeleteRecipeIngredients(recipeId);
+                    client.Close();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Service error", ex);
+                }
             }
         }
     }

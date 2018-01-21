@@ -32,11 +32,10 @@ namespace RecipeBook.Web.Controllers
             if ((model.RecipeName == null && model.CategoryName == null && model.IngredientName == null) || model == null)
             {
                 return PartialView("SearchResult", null);
-            }
-            IEnumerable<Recipe> recipes = null;
-
+            }        
             try
             {
+                IEnumerable<Recipe> recipes;
                 if (model.RecipeName == null || model.IngredientName == null || model.CategoryName == null)
                 {
                     if (model.CategoryName == null && model.IngredientName == null)

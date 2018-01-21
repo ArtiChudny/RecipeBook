@@ -43,6 +43,10 @@ namespace RecipeBook.Business.AuthentificationService
                 return LoginResult.InvalidCredentials;
                 throw ex;
             }
+            finally
+            {
+
+            }
             return LoginResult.InvalidCredentials;
 
         }
