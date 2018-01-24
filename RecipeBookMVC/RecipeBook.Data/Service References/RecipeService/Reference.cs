@@ -496,6 +496,12 @@ namespace RecipeBook.Data.RecipeService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/UpdateRecipeDetails", ReplyAction="http://tempuri.org/IRecipeService/UpdateRecipeDetailsResponse")]
         System.Threading.Tasks.Task UpdateRecipeDetailsAsync(RecipeBook.Data.RecipeService.RecipeDetailsDto details);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/IsServerConnected", ReplyAction="http://tempuri.org/IRecipeService/IsServerConnectedResponse")]
+        bool IsServerConnected();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecipeService/IsServerConnected", ReplyAction="http://tempuri.org/IRecipeService/IsServerConnectedResponse")]
+        System.Threading.Tasks.Task<bool> IsServerConnectedAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -667,6 +673,14 @@ namespace RecipeBook.Data.RecipeService {
         
         public System.Threading.Tasks.Task UpdateRecipeDetailsAsync(RecipeBook.Data.RecipeService.RecipeDetailsDto details) {
             return base.Channel.UpdateRecipeDetailsAsync(details);
+        }
+        
+        public bool IsServerConnected() {
+            return base.Channel.IsServerConnected();
+        }
+        
+        public System.Threading.Tasks.Task<bool> IsServerConnectedAsync() {
+            return base.Channel.IsServerConnectedAsync();
         }
     }
 }

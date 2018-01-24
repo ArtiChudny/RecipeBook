@@ -70,9 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthentificationService\ILoginService.cs" />
-    <Compile Include="AuthentificationService\IValidationService.cs" />
     <Compile Include="AuthentificationService\LoginService.cs" />
-    <Compile Include="AuthentificationService\ValidationService.cs" />
     <Compile Include="Container\BusinessRegistry.cs" />
     <Compile Include="Providers\Category\ICategoryProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

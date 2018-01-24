@@ -28,5 +28,7 @@ namespace RecipeBook.Data.Clients
         void AddRecipeDetails(RecipeDetailsDto details);
         void UpdateRecipeDetails(RecipeDetailsDto details);
 
+        bool IsServerConnected();
+
     }
 }

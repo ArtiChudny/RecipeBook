@@ -10,26 +10,27 @@ namespace RecipeBook.Business.AuthentificationService
     public class LoginService : ILoginService
     {
         private IUserProvider userProvider;
-        private IValidationService validationService;
 
-        public LoginService(IUserProvider _userProvider, IValidationService _validationService)
+        public LoginService(IUserProvider _userProvider)
         {
             userProvider = _userProvider;
-            validationService = _validationService;
         }
 
         public LoginResult Login(string login, string password)
         {
-            if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
-            {
-                return LoginResult.EmptyCredentials;
-            }
             try
             {
                 var user = userProvider.GetUserByLogin(login);
-
-                if (validationService.IsValidUser(login, password))
+                if (user==null)
                 {
+                    return LoginResult.InvalidCredentials;
+                }
+                else
+                {
+                    if (!(user.Login == login && user.Password == password))
+                    {
+                        return LoginResult.InvalidCredentials;
+                    }
                     var userData = JsonConvert.SerializeObject(user);
                     var ticket = new FormsAuthenticationTicket(2, login, DateTime.Now, DateTime.Now.AddHours(1), false, userData);
                     var encTicket = FormsAuthentication.Encrypt(ticket);
@@ -40,15 +41,8 @@ namespace RecipeBook.Business.AuthentificationService
             }
             catch (Exception ex)
             {
-                return LoginResult.InvalidCredentials;
-                throw ex;
+                throw new Exception("Authentification error", ex);
             }
-            finally
-            {
-
-            }
-            return LoginResult.InvalidCredentials;
-
         }
 
         public void Logout()

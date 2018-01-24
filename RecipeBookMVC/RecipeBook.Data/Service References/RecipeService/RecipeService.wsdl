@@ -115,6 +115,12 @@
   <wsdl:message name="IRecipeService_UpdateRecipeDetails_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateRecipeDetailsResponse" />
   </wsdl:message>
+  <wsdl:message name="IRecipeService_IsServerConnected_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsServerConnected" />
+  </wsdl:message>
+  <wsdl:message name="IRecipeService_IsServerConnected_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsServerConnectedResponse" />
+  </wsdl:message>
   <wsdl:portType name="IRecipeService">
     <wsdl:operation name="GetRecipes">
       <wsdl:input wsaw:Action="http://tempuri.org/IRecipeService/GetRecipes" message="tns:IRecipeService_GetRecipes_InputMessage" />
@@ -187,6 +193,10 @@
     <wsdl:operation name="UpdateRecipeDetails">
       <wsdl:input wsaw:Action="http://tempuri.org/IRecipeService/UpdateRecipeDetails" message="tns:IRecipeService_UpdateRecipeDetails_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IRecipeService/UpdateRecipeDetailsResponse" message="tns:IRecipeService_UpdateRecipeDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsServerConnected">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRecipeService/IsServerConnected" message="tns:IRecipeService_IsServerConnected_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRecipeService/IsServerConnectedResponse" message="tns:IRecipeService_IsServerConnected_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IRecipeService" type="tns:IRecipeService">
@@ -346,6 +356,15 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateRecipeDetails">
       <soap:operation soapAction="http://tempuri.org/IRecipeService/UpdateRecipeDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsServerConnected">
+      <soap:operation soapAction="http://tempuri.org/IRecipeService/IsServerConnected" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

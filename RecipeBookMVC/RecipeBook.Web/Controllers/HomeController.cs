@@ -20,7 +20,15 @@ namespace RecipeBookMVC.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            if (provider.IsServerConnected())
+            {
+                return View();
+            }
+            else
+            {
+                return View("Error", (object)"Sorry, site isn't avalable now. Try again later.");
+            }
+
         }
 
         public ActionResult Details(int _recipeId)
@@ -39,7 +47,6 @@ namespace RecipeBookMVC.Controllers
             catch (Exception ex)
             {
                 log.Error(ex);
-
                 return View("Error", (object)"Sorry, something went wrong. Try again later.");
             }
 

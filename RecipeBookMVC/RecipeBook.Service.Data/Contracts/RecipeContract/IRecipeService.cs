@@ -54,6 +54,8 @@ namespace RecipeBook.Service.Data.Contracts
         [OperationContract]
         void UpdateRecipeDetails(RecipeDetailsDto details);
 
+        [OperationContract]
+        bool IsServerConnected();
 
     }
 }

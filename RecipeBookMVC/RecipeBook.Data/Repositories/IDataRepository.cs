@@ -33,5 +33,6 @@ namespace RecipeBook.Data.Repositories
         void AddRecipeDetails(RecipeDetails details);
         void UpdateRecipeDetails(RecipeDetails details);
 
+        bool IsServerConnected();
     }
 }

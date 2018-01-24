@@ -12,7 +12,6 @@ namespace RecipeBook.Business.Container
             For<IRecipeProvider>().Use<RecipeProvider>();
             For<IUserProvider>().Use<UserProvider>();
             For<ILoginService>().Use<LoginService>();
-            For<IValidationService>().Use<IValidationService>();
         }
     }
 }

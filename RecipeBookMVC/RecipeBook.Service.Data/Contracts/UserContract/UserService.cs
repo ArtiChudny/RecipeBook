@@ -10,73 +10,82 @@ namespace RecipeBook.Service.Data.Contracts.UserContract
 {
     public class UserService : IUserService
     {
-        private readonly ILog log = LogManager.GetLogger("Logger");
-        SqlConnection sqlConnection = new SqlConnection();
-        string connectionString = ConfigurationManager.ConnectionStrings["RecipeBookDB"].ConnectionString;
+        private readonly ILog log = LogManager.GetLogger("ServiceLogger");
+        private string connectionString = ConfigurationManager.ConnectionStrings["RecipeBookDB"].ConnectionString;
 
         public UserDto GetUserByLogin(string login)
         {
-            var user = new UserDto();
-            sqlConnection.ConnectionString = connectionString;
-            using (var cmd = new SqlCommand("GetUserByLogin", sqlConnection))
+            using (var sqlConnection = new SqlConnection(connectionString))
             {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@UserLogin", login);
-                try
+                using (var cmd = new SqlCommand("GetUserByLogin", sqlConnection))
                 {
-                    sqlConnection.Open();
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    var user = new UserDto();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@UserLogin", login);
+                    try
                     {
-                        while (reader.Read())
+                        sqlConnection.Open();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            user.UserId = reader.GetFieldValue<int>(0);
-                            user.Login = reader.GetFieldValue<string>(1);
-                            user.Password = reader.GetFieldValue<string>(2);
-                            user.Email = reader.GetFieldValue<string>(3);
+                            while (reader.Read())
+                            {
+                                user.UserId = reader.GetFieldValue<int>(0);
+                                user.Login = reader.GetFieldValue<string>(1);
+                                user.Password = reader.GetFieldValue<string>(2);
+                                user.Email = reader.GetFieldValue<string>(3);
+                            }
                         }
+                        user.UserRoles = GetUserRoles(user.Login);
+                        return user;
                     }
-                    sqlConnection.Close();
-                    user.UserRoles = GetUserRoles(user.Login);
-                }
-                catch (Exception ex)
-                {
-                    log.Error(ex);
-                    throw ex;
+                    catch (Exception ex)
+                    {
+                        log.Error(ex);
+                        return user = null;
+                        throw ex;
+                    }
+                    finally
+                    {
+                        sqlConnection.Close();
+                    }
                 }
             }
-            return user;
+
         }
 
         public IEnumerable<RoleDto> GetRoles()
         {
-            sqlConnection.ConnectionString = connectionString;
             var roleList = new List<RoleDto>();
-
-            using (var cmd = new SqlCommand("GetRoles", sqlConnection))
+            using (var sqlConnection = new SqlConnection(connectionString))
             {
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                try
+                using (var cmd = new SqlCommand("GetRoles", sqlConnection))
                 {
-                    sqlConnection.Open();
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    try
                     {
-                        while (reader.Read())
+                        sqlConnection.Open();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            var role = new RoleDto()
+                            while (reader.Read())
                             {
-                                RoleId = reader.GetFieldValue<int>(0),
-                                RoleName = reader.GetFieldValue<string>(1)
-                            };
-                            roleList.Add(role);
+                                var role = new RoleDto()
+                                {
+                                    RoleId = reader.GetFieldValue<int>(0),
+                                    RoleName = reader.GetFieldValue<string>(1)
+                                };
+                                roleList.Add(role);
+                            }
                         }
-                    };
-                    sqlConnection.Close();
-                }
-                catch (Exception ex)
-                {
-                    log.Error(ex);
-                    throw ex;
+                    }
+                    catch (Exception ex)
+                    {
+                        log.Error(ex);
+                        throw ex;
+                    }
+                    finally
+                    {
+                        sqlConnection.Close();
+                    }
                 }
             }
             return roleList;
@@ -84,40 +93,43 @@ namespace RecipeBook.Service.Data.Contracts.UserContract
 
         public IEnumerable<UserDto> GetUsers()
         {
-            sqlConnection.ConnectionString = connectionString;
             var userList = new List<UserDto>();
-
-            using (var cmd = new SqlCommand("GetUsers", sqlConnection))
+            using (var sqlConnection = new SqlConnection(connectionString))
             {
-                cmd.CommandType = CommandType.StoredProcedure;
-                try
+                using (var cmd = new SqlCommand("GetUsers", sqlConnection))
                 {
-                    sqlConnection.Open();
-
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    try
                     {
-                        while (reader.Read())
+                        sqlConnection.Open();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            var user = new UserDto()
+                            while (reader.Read())
                             {
-                                UserId = reader.GetFieldValue<int>(0),
-                                Login = reader.GetFieldValue<string>(1),
-                                Password = reader.GetFieldValue<string>(2),
-                                Email = reader.GetFieldValue<string>(3)
-                            };
-                            userList.Add(user);
+                                var user = new UserDto()
+                                {
+                                    UserId = reader.GetFieldValue<int>(0),
+                                    Login = reader.GetFieldValue<string>(1),
+                                    Password = reader.GetFieldValue<string>(2),
+                                    Email = reader.GetFieldValue<string>(3)
+                                };
+                                userList.Add(user);
+                            }
                         }
-                    };
-                    sqlConnection.Close();
-                    foreach (var item in userList)
-                    {
-                        item.UserRoles = GetUserRoles(item.Login);
+                        foreach (var item in userList)
+                        {
+                            item.UserRoles = GetUserRoles(item.Login);
+                        }
                     }
-                }
-                catch (Exception ex)
-                {
-                    log.Error(ex);
-                    throw ex;
+                    catch (Exception ex)
+                    {
+                        log.Error(ex);
+                        throw ex;
+                    }
+                    finally
+                    {
+                        sqlConnection.Close();
+                    }
                 }
             }
             return userList;
@@ -126,34 +138,38 @@ namespace RecipeBook.Service.Data.Contracts.UserContract
 
         public IEnumerable<RoleDto> GetUserRoles(string login)
         {
-            sqlConnection.ConnectionString = connectionString;
             var roleList = new List<RoleDto>();
-
-            using (var cmd = new SqlCommand("GetUserRolesByLogin", sqlConnection))
+            using (var sqlConnection = new SqlConnection(connectionString))
             {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@login", login);
-                try
+                using (var cmd = new SqlCommand("GetUserRolesByLogin", sqlConnection))
                 {
-                    sqlConnection.Open();
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@login", login);
+                    try
                     {
-                        while (reader.Read())
+                        sqlConnection.Open();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            var role = new RoleDto()
+                            while (reader.Read())
                             {
-                                RoleId = reader.GetFieldValue<int>(0),
-                                RoleName = reader.GetFieldValue<string>(1)
-                            };
-                            roleList.Add(role);
-                        }
-                    };
-                    sqlConnection.Close();
-                }
-                catch (Exception ex)
-                {
-                    log.Error(ex);
-                    throw ex;
+                                var role = new RoleDto()
+                                {
+                                    RoleId = reader.GetFieldValue<int>(0),
+                                    RoleName = reader.GetFieldValue<string>(1)
+                                };
+                                roleList.Add(role);
+                            }
+                        };
+                    }
+                    catch (Exception ex)
+                    {
+                        log.Error(ex);
+                        throw ex;
+                    }
+                    finally
+                    {
+                        sqlConnection.Close();
+                    }
                 }
             }
             return roleList;
@@ -161,29 +177,33 @@ namespace RecipeBook.Service.Data.Contracts.UserContract
 
         public void AddUser(UserDto user)
         {
-            sqlConnection.ConnectionString = connectionString;
-
-            using (var cmd = new SqlCommand("AddUser", sqlConnection))
+            using (var sqlConnection = new SqlConnection(connectionString))
             {
-                int userId;
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@login", user.Login);
-                cmd.Parameters.AddWithValue("@password", user.Password);
-                cmd.Parameters.AddWithValue("@email", user.Email);
-                try
+                using (var cmd = new SqlCommand("AddUser", sqlConnection))
                 {
-                    sqlConnection.Open();
-                    userId = Convert.ToInt32(cmd.ExecuteScalar());
-                    sqlConnection.Close();
-                    foreach (var item in user.UserRoles)
+                    int userId;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@login", user.Login);
+                    cmd.Parameters.AddWithValue("@password", user.Password);
+                    cmd.Parameters.AddWithValue("@email", user.Email);
+                    try
                     {
-                        AddUserRole(userId, item.RoleId);
+                        sqlConnection.Open();
+                        userId = Convert.ToInt32(cmd.ExecuteScalar());
+                        foreach (var item in user.UserRoles)
+                        {
+                            AddUserRole(userId, item.RoleId);
+                        }
                     }
-                }
-                catch (Exception ex)
-                {
-                    log.Error(ex);
-                    throw ex;
+                    catch (Exception ex)
+                    {
+                        log.Error(ex);
+                        throw ex;
+                    }
+                    finally
+                    {
+                        sqlConnection.Close();
+                    }
                 }
             }
 
@@ -191,52 +211,60 @@ namespace RecipeBook.Service.Data.Contracts.UserContract
 
         public void DeleteUser(int userId)
         {
-            sqlConnection.ConnectionString = connectionString;
-
-            using (var cmd = new SqlCommand("DeleteUser", sqlConnection))
+            using (var sqlConnection = new SqlConnection(connectionString))
             {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@userId", userId);
-                try
+                using (var cmd = new SqlCommand("DeleteUser", sqlConnection))
                 {
-                    sqlConnection.Open();
-                    cmd.ExecuteNonQuery();
-                    sqlConnection.Close();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@userId", userId);
+                    try
+                    {
+                        sqlConnection.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        log.Error(ex);
+                        throw ex;
+                    }
+                    finally
+                    {
+                        sqlConnection.Close();
+                    }
                 }
-                catch (Exception ex)
-                {
-                    log.Error(ex);
-                    throw ex;
-                }
-
             }
         }
 
         public void UpdateUser(UserDto user)
         {
-            sqlConnection.ConnectionString = connectionString;
-            using (var cmd = new SqlCommand("UpdateUser", sqlConnection))
+            using (var sqlConnection = new SqlConnection(connectionString))
             {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@userId", user.UserId);
-                cmd.Parameters.AddWithValue("@login", user.Login);
-                cmd.Parameters.AddWithValue("@password", user.Password);
-                cmd.Parameters.AddWithValue("@email", user.Email);
-                try
+                using (var cmd = new SqlCommand("UpdateUser", sqlConnection))
                 {
-                    sqlConnection.Open();
-                    cmd.ExecuteNonQuery();
-                    sqlConnection.Close();
-                    DeleteUserRoles(user.UserId);
-                    foreach (var item in user.UserRoles)
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@userId", user.UserId);
+                    cmd.Parameters.AddWithValue("@login", user.Login);
+                    cmd.Parameters.AddWithValue("@password", user.Password);
+                    cmd.Parameters.AddWithValue("@email", user.Email);
+                    try
                     {
-                        AddUserRole(user.UserId, item.RoleId);
+                        sqlConnection.Open();
+                        cmd.ExecuteNonQuery();
+                        DeleteUserRoles(user.UserId);
+                        foreach (var item in user.UserRoles)
+                        {
+                            AddUserRole(user.UserId, item.RoleId);
+                        }
                     }
-                }
-                catch (Exception ex)
-                {
-                    log.Error(ex);
-                    throw ex;
+                    catch (Exception ex)
+                    {
+                        log.Error(ex);
+                        throw ex;
+                    }
+                    finally
+                    {
+                        sqlConnection.Close();
+                    }
                 }
             }
 
@@ -245,46 +273,53 @@ namespace RecipeBook.Service.Data.Contracts.UserContract
 
         public void AddUserRole(int userId, int roleId)
         {
-            sqlConnection.ConnectionString = connectionString;
-
-            using (var cmd = new SqlCommand("AddUserRole", sqlConnection))
+            using (var sqlConnection = new SqlConnection(connectionString))
             {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@userId", userId);
-                cmd.Parameters.AddWithValue("@roleId", roleId);
-                try
+                using (var cmd = new SqlCommand("AddUserRole", sqlConnection))
                 {
-                    sqlConnection.Open();
-                    cmd.ExecuteNonQuery();
-                    sqlConnection.Close();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@userId", userId);
+                    cmd.Parameters.AddWithValue("@roleId", roleId);
+                    try
+                    {
+                        sqlConnection.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        log.Error(ex);
+                        throw ex;
+                    }
+                    finally
+                    {
+                        sqlConnection.Close();
+                    }
                 }
-                catch (Exception ex)
-                {
-                    log.Error(ex);
-                    throw ex;
-                }
-
             }
         }
 
         public void DeleteUserRoles(int userId)
         {
-            sqlConnection.ConnectionString = connectionString;
-
-            using (var cmd = new SqlCommand("DeleteUserRolesById", sqlConnection))
+            using (var sqlConnection = new SqlConnection(connectionString))
             {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@userId", userId);
-                try
+                using (var cmd = new SqlCommand("DeleteUserRolesById", sqlConnection))
                 {
-                    sqlConnection.Open();
-                    cmd.ExecuteNonQuery();
-                    sqlConnection.Close();
-                }
-                catch (Exception ex)
-                {
-                    log.Error(ex);
-                    throw ex;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@userId", userId);
+                    try
+                    {
+                        sqlConnection.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        log.Error(ex);
+                        throw ex;
+                    }
+                    finally
+                    {
+                        sqlConnection.Close();
+                    }
                 }
             }
 

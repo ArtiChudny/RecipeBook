@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using RecipeBook.Data.Converters;
 using RecipeBook.Common.Models;
 using RecipeBook.Data.Clients;
 using RecipeBook.Data.RecipeService;
 using RecipeBook.Data.CategoryService;
+
 
 namespace RecipeBook.Data.Repositories
 {
@@ -203,6 +205,11 @@ namespace RecipeBook.Data.Repositories
         public void DeleteRecipeIngredients(int recipeId)
         {
             recipeClient.DeleteRecipeIngredients(recipeId);
+        }
+
+        public bool IsServerConnected()
+        {
+            return recipeClient.IsServerConnected();
         }
     }
 }

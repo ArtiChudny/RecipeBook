@@ -6,7 +6,6 @@ namespace RecipeBook.Data.Clients
 {
     public class RecipeClient : IRecipeClient
     {
-
         public RecipeDetailsDto GetDedails(int id)
         {
             RecipeDetailsDto detailsDto = new RecipeDetailsDto();
@@ -321,6 +320,25 @@ namespace RecipeBook.Data.Clients
                     client.Open();
                     client.DeleteRecipeIngredients(recipeId);
                     client.Close();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Service error", ex);
+                }
+            }
+        }
+
+        public bool IsServerConnected()
+        {
+            using (RecipeServiceClient client = new RecipeServiceClient())
+            {
+                try
+                {
+                    bool flag;
+                    client.Open();
+                    flag = client.IsServerConnected();
+                    client.Close();
+                    return flag;
                 }
                 catch (Exception ex)
                 {

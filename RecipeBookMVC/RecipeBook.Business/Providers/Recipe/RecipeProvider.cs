@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using RecipeBook.Common.Models;
 using RecipeBook.Data.Repositories;
@@ -107,6 +108,11 @@ namespace RecipeBook.Business.Providers
         public void DeleteRecipeIngredients(int recipeId)
         {
             dataProvider.DeleteRecipeIngredients(recipeId);
+        }
+
+        public bool IsServerConnected()
+        {
+            return dataProvider.IsServerConnected();
         }
     }
 }

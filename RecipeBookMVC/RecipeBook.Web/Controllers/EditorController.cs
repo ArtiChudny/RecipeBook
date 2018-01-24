@@ -454,6 +454,10 @@ namespace RecipeBook.Web.Controllers
                         upload.SaveAs(Server.MapPath("~/Images/" + fileName));
                         recipe.PhotoUrl = "/Images/" + fileName;
                     }
+                    else if (model.PhotoUrl == null || model.PhotoUrl == "")
+                    {
+                        recipe.PhotoUrl = "";
+                    }
                     else
                     {
                         recipe.PhotoUrl = model.PhotoUrl;

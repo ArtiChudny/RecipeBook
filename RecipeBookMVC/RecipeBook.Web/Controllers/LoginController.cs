@@ -1,5 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using RecipeBook.Business.AuthentificationService;
+using log4net;
 using RecipeBook.Common.Enums;
 using RecipeBook.Web.Models;
 
@@ -7,6 +9,7 @@ namespace RecipeBook.Web.Controllers
 {
     public class LoginController : Controller
     {
+        private readonly ILog log = LogManager.GetLogger("Logger");
         private readonly ILoginService loginService;
 
         public LoginController(ILoginService _loginService)
@@ -25,16 +28,25 @@ namespace RecipeBook.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = loginService.Login(model.Login, model.Password);
-                if (result == LoginResult.InvalidCredentials)
+                try
                 {
-                    ModelState.AddModelError("Password", "Unable to log in. Check your login and password.");
-                    return View();
+                    var result = loginService.Login(model.Login, model.Password);
+                    if (result == LoginResult.InvalidCredentials)
+                    {
+                        ModelState.AddModelError("Password", "Unable to log in. Check your login and password.");
+                        return View();
+                    }
+                    if (result == LoginResult.NoError)
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
                 }
-                if (result == LoginResult.NoError)
+                catch (Exception ex)
                 {
-                    return RedirectToAction("Index", "Home");
+                    log.Error(ex);
+                    return View("Error", (object)"Sorry, something went wrong. Try again later.");
                 }
+
 
             }
             return View();

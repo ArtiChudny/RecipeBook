@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using RecipeBook.Data.Converters;
 using RecipeBook.Common.Models;
 using RecipeBook.Data.Clients;
 using RecipeBook.Data.UserService;
-
 
 namespace RecipeBook.Data.Repositories
 {
